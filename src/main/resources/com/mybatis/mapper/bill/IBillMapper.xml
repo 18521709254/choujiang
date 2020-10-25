@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zwy.bill.dao.IBillDao">
+  <resultMap type="com.zwy.bill.model.Bill" id="billResultMap" extends="BaseBusLongEntity.entity">
+    <!-- 开始时间 -->
+    <result property="startDate" column="C_START_DATE" />
+    <!-- 结束时间 -->
+    <result property="endDate" column="C_END_DATE" />
+    <!-- 付费时间 -->
+    <result property="payDate" column="C_PAY_DATE" />
+    <!-- 停车用户ID -->
+    <result property="memberId" column="C_MEMBER_ID" />
+    <!-- 车牌号 -->
+    <result property="carNo" column="C_CAR_NO" />
+    <!-- 状态：0-未交费、1-已交费 -->
+    <result property="status" column="C_STATUS" />
+    <!-- 车位ID -->
+    <result property="parkingSpaceId" column="C_PARKING_SPACE_ID" />
+    
+  </resultMap>
+
+  <sql id="allColumnSql">
+    o.ID,
+    o.C_START_DATE,
+    o.C_END_DATE,
+    o.C_PAY_DATE,
+    o.C_MEMBER_ID,
+    o.C_CAR_NO,
+    o.C_STATUS,
+    o.C_PARKING_SPACE_ID
+  </sql>
+
+  <sql id="searchConditionSql">
+	  <if test="condition.carNo != null and condition.carNo != ''">
+        AND o.C_CAR_NO like CONCAT('%',#{condition.carNo},'%')
+	  </if>
+  </sql>
+
+  <select id="listBillAll" resultMap="billResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM bill o
+  </select>
+
+
+
+  <select id="getBillById" resultMap="billResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM bill o
+    WHERE o.ID = #{id}
+  </select>
+
+  <insert id="add" parameterType="com.zwy.bill.model.Bill" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+    INSERT INTO bill
+    (
+    C_START_DATE,
+    C_END_DATE,
+    C_PAY_DATE,
+    C_MEMBER_ID,
+    C_CAR_NO,
+    C_STATUS,
+    C_PARKING_SPACE_ID
+    )
+    VALUES
+    (
+     #{startDate},
+     #{endDate},
+     #{payDate},
+     #{memberId},
+     #{carNo},
+     #{status},
+     #{parkingSpaceId}
+    )
+  </insert>
+
+  <update id="update" parameterType="com.zwy.bill.model.Bill">
+    UPDATE bill SET
+    C_START_DATE = #{startDate},
+    C_END_DATE = #{endDate},
+    C_PAY_DATE = #{payDate},
+    C_MEMBER_ID = #{memberId},
+    C_CAR_NO = #{carNo},
+    C_STATUS = #{status},
+    C_PARKING_SPACE_ID = #{parkingSpaceId}
+    WHERE ID = #{id}
+  </update>
+
+  <delete id="delByIds">
+    DELETE FROM bill
+    WHERE ID IN
+    <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+</mapper>

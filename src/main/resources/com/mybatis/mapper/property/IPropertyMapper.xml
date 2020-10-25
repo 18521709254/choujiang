@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zwy.property.dao.IPropertyDao">
+  <resultMap type="com.zwy.property.model.Property" id="propertyResultMap" extends="BaseBusLongEntity.entity">
+    <!-- 物业名称 -->
+    <result property="name" column="C_NAME" />
+    <!-- 状态：0-审核中、1-审核通过、2-审核不通过 -->
+    <result property="status" column="C_STATUS" />
+    
+  </resultMap>
+
+  <sql id="allColumnSql">
+    o.ID,
+    o.C_NAME,
+    o.C_STATUS
+  </sql>
+
+  <sql id="searchConditionSql">
+	  <if test="condition.name != null and condition.name != ''">
+        AND o.C_NAME like CONCAT('%',#{condition.name},'%')
+	  </if>
+  </sql>
+
+  <select id="listPropertyAll" resultMap="propertyResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM property o
+  </select>
+
+  <select id="listPropertyByPage" resultMap="propertyResultMap">
+    SELECT DISTINCT <include refid="allColumnSql"/>
+    
+    FROM property o
+    
+    WHERE 1=1 <include refid="searchConditionSql"/>
+  </select>
+  
+  <select id="listPropertyByPageCount" resultType="int">
+    SELECT count(DISTINCT o.ID) FROM property o
+    
+    WHERE 1=1 <include refid="searchConditionSql"/>
+  </select>
+
+  <select id="listPropertyByCondition" resultMap="propertyResultMap">
+    SELECT DISTINCT <include refid="allColumnSql"/>
+    
+    FROM property o
+    
+    WHERE 1=1 <include refid="searchConditionSql"/>
+  </select>
+
+  <select id="getPropertyById" resultMap="propertyResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM property o
+    WHERE o.ID = #{id}
+  </select>
+
+  <insert id="add" parameterType="com.zwy.property.model.Property" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+    INSERT INTO property
+    (
+    C_NAME,
+    C_STATUS
+    )
+    VALUES
+    (
+     #{name},
+     #{status}
+    )
+  </insert>
+
+  <update id="update" parameterType="com.zwy.property.model.Property">
+    UPDATE property SET
+    C_NAME = #{name},
+    C_STATUS = #{status}
+    WHERE ID = #{id}
+  </update>
+
+  <delete id="delByIds">
+    DELETE FROM property
+    WHERE ID IN
+    <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+</mapper>

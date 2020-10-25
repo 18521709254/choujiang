@@ -1,50 +1,50 @@
-package com.zwy.role.dao;
+package com.zwy.space.dao;
 
-import com.zwy.role.model.Role;
+import com.zwy.space.model.Space;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
- * 类 名: IRoleDao
- * 描 述: 角色控制层
+ * 类 名: ISpaceDao
+ * 描 述: 车位控制层
  * 作 者: 宋凯翔
  * 创 建：2020年10月25日
  * 版 本：v2.2.0
  * 历 史: (版本) 作者 时间 注释
  */
-@Repository("roleDaoImpl")
-public interface IRoleDao {
+@Repository("spaceDaoImpl")
+public interface ISpaceDao {
 
 	/**
-	 * 描 述： 查询全部角色
+	 * 描 述： 查询全部车位
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @return 角色列表
+	 * @return 车位列表
 	 */
-	List<Role> listRoleAll();
+	List<Space> listSpaceAll();
 
 	/**
-	 * 描 述： 新增用户
+	 * 描 述： 新增车位
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param user 用户信息
+	 * @param space 车位信息
 	 */
-	void add(Role user);
+	void add(Space space);
 
 	/**
-	 * 描 述： 修改用户
+	 * 描 述： 修改车位
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param user 用户信息
+	 * @param space 车位信息
 	 */
-	void update(Role user);
+	void update(Space space);
 
 	/**
-	 * 描 述： 删除用户
+	 * 描 述： 删除车位
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param ids 用户ID数组
+	 * @param ids 车位ID数组
 	 */
 	void delByIds(Long[] ids);
 }

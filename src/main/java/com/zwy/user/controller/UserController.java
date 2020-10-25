@@ -62,7 +62,7 @@ public class UserController {
 	 * @param ids 用户ID数组
 	 * @return 用户查询分页数据
 	 */
-	@PostMapping("/save")
+	@PostMapping("/delByIds")
 	public Result<String> delByIds(Long[] ids){
 		userService.delByIds(ids);
 		return Results.ok("删除成功");

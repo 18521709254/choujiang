@@ -1,10 +1,9 @@
-package com.zwy.role.controller;
+package com.zwy.community.controller;
 
-import com.github.pagehelper.PageInfo;
 import com.zwy.base.restfulapi.Result;
 import com.zwy.base.restfulapi.Results;
-import com.zwy.role.model.Role;
-import com.zwy.role.service.RoleService;
+import com.zwy.community.model.Community;
+import com.zwy.community.service.CommunityService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,8 +13,8 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 类 名: RoleController
- * 描 述: 角色控制层
+ * 类 名: CommunityController
+ * 描 述: 小区控制层
  * 作 者: 宋凯翔
  * 创 建：2020年10月25日
  * 版 本：v2.2.0
@@ -24,46 +23,46 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/role")
-public class RoleController {
+@RequestMapping("/api/community")
+public class CommunityController {
 
-	@Resource(name = "roleServiceImpl")
-	private RoleService roleService;
+	@Resource(name = "communityServiceImpl")
+	private CommunityService communityService;
 
 	/**
-	 * 描 述： 分页查询角色
+	 * 描 述： 分页查询小区
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @return 角色查询数据
+	 * @return 小区查询数据
 	 */
-	@PostMapping("/listRoleAll")
-	public Result<List<Role>> listRoleByPage(){
-		return Results.ok(roleService.listRoleAll());
+	@PostMapping("/listCommunityAll")
+	public Result<List<Community>> listCommunityByPage(){
+		return Results.ok(communityService.listCommunityAll());
 	}
 
 	/**
-	 * 描 述： 保存角色
+	 * 描 述： 保存小区
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param role 角色
-	 * @return 角色查询分页数据
+	 * @param community 小区
+	 * @return 小区查询分页数据
 	 */
 	@PostMapping("/save")
-	public Result<String> save(Role role){
-		roleService.save(role);
+	public Result<String> save(Community community){
+		communityService.save(community);
 		return Results.ok("保存成功");
 	}
 
 	/**
-	 * 描 述： 删除角色
+	 * 描 述： 删除小区
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param ids 角色ID数组
-	 * @return 角色查询分页数据
+	 * @param ids 小区ID数组
+	 * @return 小区查询分页数据
 	 */
 	@PostMapping("/delByIds")
 	public Result<String> delByIds(Long[] ids){
-		roleService.delByIds(ids);
+		communityService.delByIds(ids);
 		return Results.ok("删除成功");
 	}
 

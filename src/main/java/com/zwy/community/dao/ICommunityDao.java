@@ -1,28 +1,28 @@
-package com.zwy.role.dao;
+package com.zwy.community.dao;
 
-import com.zwy.role.model.Role;
+import com.zwy.community.model.Community;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
- * 类 名: IRoleDao
- * 描 述: 角色控制层
+ * 类 名: ICommunityDao
+ * 描 述: 小区控制层
  * 作 者: 宋凯翔
  * 创 建：2020年10月25日
  * 版 本：v2.2.0
  * 历 史: (版本) 作者 时间 注释
  */
-@Repository("roleDaoImpl")
-public interface IRoleDao {
+@Repository("communityDaoImpl")
+public interface ICommunityDao {
 
 	/**
-	 * 描 述： 查询全部角色
+	 * 描 述： 查询全部小区
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @return 角色列表
+	 * @return 小区列表
 	 */
-	List<Role> listRoleAll();
+	List<Community> listCommunityAll();
 
 	/**
 	 * 描 述： 新增用户
@@ -30,7 +30,7 @@ public interface IRoleDao {
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param user 用户信息
 	 */
-	void add(Role user);
+	void add(Community user);
 
 	/**
 	 * 描 述： 修改用户
@@ -38,7 +38,7 @@ public interface IRoleDao {
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param user 用户信息
 	 */
-	void update(Role user);
+	void update(Community user);
 
 	/**
 	 * 描 述： 删除用户

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zwy.member.dao.IMemberDao">
+  <resultMap type="com.zwy.member.model.Member" id="memberResultMap" extends="BaseBusLongEntity.entity">
+    <!-- 账号 -->
+    <result property="account" column="C_ACCOUNT" />
+    <!-- 密码 -->
+    <result property="password" column="C_PASSWORD" />
+    <!-- 名称 -->
+    <result property="name" column="C_NAME" />
+    <!-- 联系电话 -->
+    <result property="tel" column="C_TEL" />
+  </resultMap>
+
+  <sql id="allColumnSql">
+    o.ID,
+    o.C_ACCOUNT,
+    o.C_PASSWORD,
+    o.C_NAME,
+    o.C_TEL
+  </sql>
+
+  <sql id="searchConditionSql">
+	  <if test="condition.account != null and condition.account != ''">
+        AND o.C_ACCOUNT like CONCAT('%',#{condition.account},'%')
+	  </if>
+	  <if test="condition.password != null and condition.password != ''">
+        AND o.C_PASSWORD like CONCAT('%',#{condition.password},'%')
+	  </if>
+	  <if test="condition.name != null and condition.name != ''">
+        AND o.C_NAME like CONCAT('%',#{condition.name},'%')
+	  </if>
+	  <if test="condition.tel != null and condition.tel != ''">
+        AND o.C_TEL like CONCAT('%',#{condition.tel},'%')
+	  </if>
+  </sql>
+
+  <select id="listMemberAll" resultMap="memberResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM member o
+  </select>
+
+  <select id="listMemberByPage" resultMap="memberResultMap">
+    SELECT DISTINCT <include refid="allColumnSql"/>
+    FROM member o
+    WHERE 1=1 <include refid="searchConditionSql"/>
+  </select>
+
+
+  <select id="getMemberById" resultMap="memberResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM member o
+    WHERE o.ID = #{id}
+  </select>
+
+  <insert id="add" parameterType="com.zwy.member.model.Member" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+    INSERT INTO member
+    (
+    C_ACCOUNT,
+    C_PASSWORD,
+    C_NAME,
+    C_TEL
+    )
+    VALUES
+    (
+     #{account},
+     #{password},
+     #{name},
+     #{tel}
+    )
+  </insert>
+
+  <update id="update" parameterType="com.zwy.member.model.Member">
+    UPDATE member SET
+    C_ACCOUNT = #{account},
+    C_PASSWORD = #{password},
+    C_NAME = #{name},
+    C_TEL = #{tel}
+    WHERE ID = #{id}
+  </update>
+
+  <delete id="delByIds">
+    DELETE FROM member
+    WHERE ID IN
+    <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+</mapper>

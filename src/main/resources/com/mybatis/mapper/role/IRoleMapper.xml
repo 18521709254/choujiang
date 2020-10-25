@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zwy.role.dao.IRoleDao">
+  <resultMap type="com.zwy.role.model.Role" id="roleResultMap" extends="BaseBusLongEntity.entity">
+    <!-- 角色名称 -->
+    <result property="name" column="C_NAME" />
+    
+  </resultMap>
+
+  <sql id="allColumnSql">
+    o.ID,
+    o.C_NAME
+  </sql>
+
+  <sql id="searchConditionSql">
+	  <if test="condition.name != null and condition.name != ''">
+        AND o.C_NAME like CONCAT('%',#{condition.name},'%')
+	  </if>
+  </sql>
+
+  <select id="listRoleAll" resultMap="roleResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM role o
+  </select>
+
+  <select id="listRoleByPage" resultMap="roleResultMap">
+    SELECT DISTINCT <include refid="allColumnSql"/>
+    FROM role o
+    WHERE 1=1 <include refid="searchConditionSql"/>
+  </select>
+
+  <select id="getRoleById" resultMap="roleResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM role o
+    WHERE o.ID = #{id}
+  </select>
+
+  <insert id="add" parameterType="com.zwy.role.model.Role" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+    INSERT INTO role
+    (
+    C_NAME
+    )
+    VALUES
+    (
+     #{name}
+    )
+  </insert>
+
+  <update id="update" parameterType="com.zwy.role.model.Role">
+    UPDATE role SET
+    C_NAME = #{name}
+    WHERE ID = #{id}
+  </update>
+
+  <delete id="delByIds">
+    DELETE FROM role
+    WHERE ID IN
+    <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+</mapper>

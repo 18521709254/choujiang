@@ -1,28 +1,28 @@
-package com.zwy.role.dao;
+package com.zwy.bill.dao;
 
-import com.zwy.role.model.Role;
+import com.zwy.bill.model.Bill;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
- * 类 名: IRoleDao
- * 描 述: 角色控制层
+ * 类 名: IBillDao
+ * 描 述: 订单控制层
  * 作 者: 宋凯翔
  * 创 建：2020年10月25日
  * 版 本：v2.2.0
  * 历 史: (版本) 作者 时间 注释
  */
-@Repository("roleDaoImpl")
-public interface IRoleDao {
+@Repository("billDaoImpl")
+public interface IBillDao {
 
 	/**
-	 * 描 述： 查询全部角色
+	 * 描 述： 查询全部订单
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @return 角色列表
+	 * @return 订单列表
 	 */
-	List<Role> listRoleAll();
+	List<Bill> listBillAll();
 
 	/**
 	 * 描 述： 新增用户
@@ -30,7 +30,7 @@ public interface IRoleDao {
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param user 用户信息
 	 */
-	void add(Role user);
+	void add(Bill user);
 
 	/**
 	 * 描 述： 修改用户
@@ -38,7 +38,7 @@ public interface IRoleDao {
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param user 用户信息
 	 */
-	void update(Role user);
+	void update(Bill user);
 
 	/**
 	 * 描 述： 删除用户

@@ -60,7 +60,7 @@ public class PropertyController {
 	 * @param ids 物业ID数组
 	 * @return 物业查询分页数据
 	 */
-	@PostMapping("/save")
+	@PostMapping("/delByIds")
 	public Result<String> delByIds(Long[] ids){
 		propertyService.delByIds(ids);
 		return Results.ok("删除成功");

@@ -10,12 +10,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.Collections;
 import java.util.List;
 
 /**
  * 类 名: RoleServiceImpl
- * 描 述:
+ * 描 述: 角色事物实现
  * 作 者: 宋凯翔
  * 创 建：2020年10月25日
  * 版 本：v2.2.0

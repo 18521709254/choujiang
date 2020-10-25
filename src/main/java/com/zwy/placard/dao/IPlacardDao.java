@@ -1,20 +1,20 @@
-package com.zwy.role.dao;
+package com.zwy.placard.dao;
 
-import com.zwy.role.model.Role;
+import com.zwy.placard.model.Placard;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
- * 类 名: IRoleDao
- * 描 述: 角色控制层
+ * 类 名: IPlacardDao
+ * 描 述: 公告数据访问层
  * 作 者: 宋凯翔
  * 创 建：2020年10月25日
  * 版 本：v2.2.0
  * 历 史: (版本) 作者 时间 注释
  */
-@Repository("roleDaoImpl")
-public interface IRoleDao {
+@Repository("placardDaoImpl")
+public interface IPlacardDao {
 
 	/**
 	 * 描 述： 查询全部角色
@@ -22,29 +22,29 @@ public interface IRoleDao {
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 角色列表
 	 */
-	List<Role> listRoleAll();
+	List<Placard> listPlacardAll();
 
 	/**
-	 * 描 述： 新增用户
+	 * 描 述： 新增公告
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param user 用户信息
+	 * @param placard 公告信息
 	 */
-	void add(Role user);
+	void add(Placard placard);
 
 	/**
-	 * 描 述： 修改用户
+	 * 描 述： 修改公告
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param user 用户信息
+	 * @param placard 公告信息
 	 */
-	void update(Role user);
+	void update(Placard placard);
 
 	/**
-	 * 描 述： 删除用户
+	 * 描 述： 删除公告
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param ids 用户ID数组
+	 * @param ids 公告ID数组
 	 */
 	void delByIds(Long[] ids);
 }

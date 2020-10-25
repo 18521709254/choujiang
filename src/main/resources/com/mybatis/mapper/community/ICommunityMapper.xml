@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zwy.community.dao.ICommunityDao">
+  <resultMap type="com.zwy.community.model.Community" id="communityResultMap" extends="BaseBusLongEntity.entity">
+    <!-- 小区名称 -->
+    <result property="name" column="C_NAME" />
+    <!-- 小区地址 -->
+    <result property="address" column="C_ADDRESS" />
+    <!-- 车位平面图路径 -->
+    <result property="path" column="C_PATH" />
+    <!-- 状态：0-审核中、1-审核通过、2-审核不通过 -->
+    <result property="status" column="C_STATUS" />
+    <!-- 所属物业ID -->
+    <result property="propertyId" column="C_PROPERTY_ID" />
+    
+  </resultMap>
+
+  <sql id="allColumnSql">
+    o.ID,
+    o.C_NAME,
+    o.C_ADDRESS,
+    o.C_PATH,
+    o.C_STATUS,
+    o.C_PROPERTY_ID
+  </sql>
+
+  <sql id="searchConditionSql">
+	  <if test="condition.name != null and condition.name != ''">
+        AND o.C_NAME like CONCAT('%',#{condition.name},'%')
+	  </if>
+	  <if test="condition.address != null and condition.address != ''">
+        AND o.C_ADDRESS like CONCAT('%',#{condition.address},'%')
+	  </if>
+	  <if test="condition.path != null and condition.path != ''">
+        AND o.C_PATH like CONCAT('%',#{condition.path},'%')
+	  </if>
+  </sql>
+
+  <select id="listCommunityAll" resultMap="communityResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM community o
+  </select>
+
+
+  <select id="getCommunityById" resultMap="communityResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM community o
+    WHERE o.ID = #{id}
+  </select>
+
+  <insert id="add" parameterType="com.zwy.community.model.Community" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+    INSERT INTO community
+    (
+    C_NAME,
+    C_ADDRESS,
+    C_PATH,
+    C_STATUS,
+    C_PROPERTY_ID
+    )
+    VALUES
+    (
+     #{name},
+     #{address},
+     #{path},
+     #{status},
+     #{propertyId}
+    )
+  </insert>
+
+  <update id="update" parameterType="com.zwy.community.model.Community">
+    UPDATE community SET
+    C_NAME = #{name},
+    C_ADDRESS = #{address},
+    C_PATH = #{path},
+    C_STATUS = #{status},
+    C_PROPERTY_ID = #{propertyId}
+    WHERE ID = #{id}
+  </update>
+
+  <delete id="delByIds">
+    DELETE FROM community
+    WHERE ID IN
+    <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+</mapper>
