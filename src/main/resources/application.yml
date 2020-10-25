@@ -1,0 +1,17 @@
+
+#Mybatis查询Mapper脚本文件路径、
+mybatis:
+  config-location: classpath:com/mybatis/mybatis.xml
+  mapper-locations: classpath:com/mybatis/mapper/**/*Mapper.xml
+
+#Mybatis数据源、
+spring:
+  datasource:
+    url: "jdbc:mysql://127.0.0.1:3306/parking?serverTimezone=GMT&useUnicode=true&characterEncoding=utf8"
+    username: root
+    password: "root"
+    driver-class-name: com.mysql.jdbc.Driver
+
+#分页插件数据库、
+pagehelper:
+  helper-dialect: mysql

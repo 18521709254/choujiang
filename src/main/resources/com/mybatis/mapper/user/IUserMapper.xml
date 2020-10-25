@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zwy.user.dao.IUserDao">
+  <resultMap type="com.zwy.user.model.User" id="userResultMap" extends="BaseBusLongModel.model" >
+    <!-- 账号 -->
+    <result property="account" column="C_ACCOUNT" />
+    <!-- 密码 -->
+    <result property="password" column="C_PASSWORD" />
+    <!-- 名称 -->
+    <result property="name" column="C_NAME" />
+    <!-- 联系电话 -->
+    <result property="tel" column="C_TEL" />
+    <!-- 角色ID -->
+    <result property="roleId" column="C_ROLE_ID" />
+  </resultMap>
+
+  <sql id="allColumnSql">
+    o.ID,
+    o.C_ACCOUNT,
+    o.C_PASSWORD,
+    o.C_NAME,
+    o.C_TEL,
+    o.C_ROLE_ID
+  </sql>
+
+  <sql id="searchConditionSql">
+
+  </sql>
+
+  <select id="listUserByPage" resultMap="userResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM auth_user o
+    WHERE 1=1
+  </select>
+
+  <select id="getUserByUser" resultMap="userResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM auth_user o
+    WHERE o.C_ACCOUNT = #{account} AND o.C_PASSWORD = #{password}
+  </select>
+
+  <insert id="add" parameterType="com.zwy.user.model.User" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+    INSERT INTO auth_user
+    (
+    C_ACCOUNT,
+    C_PASSWORD,
+    C_NAME,
+    C_TEL,
+    C_ROLE_ID
+    )
+    VALUES
+    (
+     #{account},
+     #{password},
+     #{name},
+     #{tel},
+     #{roleId}
+    )
+  </insert>
+
+
+  <update id="update" parameterType="com.zwy.user.model.User">
+    UPDATE auth_user SET
+    C_ACCOUNT = #{account},
+    C_PASSWORD = #{password},
+    C_NAME = #{name},
+    C_TEL = #{tel},
+    C_ROLE_ID = #{roleId}
+    WHERE ID = #{id}
+  </update>
+
+  <delete id="delByIds">
+    DELETE FROM auth_user
+    WHERE ID IN
+    <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+
+</mapper>
