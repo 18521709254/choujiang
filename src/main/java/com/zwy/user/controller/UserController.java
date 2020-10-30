@@ -1,16 +1,20 @@
 package com.zwy.user.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.zwy.base.model.ApiAccessToken;
 import com.zwy.base.restfulapi.Result;
 import com.zwy.base.restfulapi.Results;
 import com.zwy.user.model.User;
 import com.zwy.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * 类 名: UserController
@@ -37,7 +41,7 @@ public class UserController {
 	 * @return 用户查询分页数据
 	 */
 	@PostMapping("/listUserByPage")
-	public Result<PageInfo<User>> listUserByPage(User user){
+	public Result<PageInfo<User>> listUserByPage(User user) {
 		userService.listUserByPage(user);
 		return Results.ok(user.getPageInfo());
 	}
@@ -63,7 +67,7 @@ public class UserController {
 	 * @return 用户查询分页数据
 	 */
 	@PostMapping("/delByIds")
-	public Result<String> delByIds(Long[] ids){
+	public Result<String> delByIds(Long[] ids) {
 		userService.delByIds(ids);
 		return Results.ok("删除成功");
 	}
@@ -77,12 +81,32 @@ public class UserController {
 	 * @param user 用户
 	 */
 	@PostMapping("/login")
-	public Result<String> login(User user){
-		String msg = "登录成功";
+	public Result<String> login(User user, HttpServletRequest request){
+		// 设置令牌
+		String accessToken = UUID.randomUUID().toString().replaceAll("-", "");
+		if(StringUtils.equals(user.getAccount(),"admin") && StringUtils.equals(user.getPassword(),"123456")){
+			ApiAccessToken apiAccessToken = new ApiAccessToken(accessToken,user);
+			request.setAttribute("token",apiAccessToken);
+		}
 		user = userService.getUserByUser(user);
 		if(user == null){
-			msg = "账号或密码错误";
+			return Results.ok("账号或密码错误");
 		}
-		return Results.ok(msg);
+		return Results.ok(accessToken);
+	}
+
+	/**
+	 * 描 述： 单纯需要的用户信息接口
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param token 登陆令牌
+	 */
+	@GetMapping("/info")
+	public Result<Map> info(@RequestParam("token") String token){
+		log.info(token);
+		HashMap<String,String> map = new HashMap<>(2);
+		map.put("name","测试Name");
+		map.put("avatar","测试avatar");
+		return Results.ok(map);
 	}
 }

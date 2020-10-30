@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zwy.community.dao.ICommunityDao">
-  <resultMap type="com.zwy.community.model.Community" id="communityResultMap" extends="BaseBusLongEntity.entity">
+  <resultMap type="com.zwy.community.model.Community" id="communityResultMap" extends="BaseBusLongModel.model">
     <!-- 小区名称 -->
     <result property="name" column="C_NAME" />
     <!-- 小区地址 -->

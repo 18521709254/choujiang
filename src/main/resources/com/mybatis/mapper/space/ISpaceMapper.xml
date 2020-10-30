@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zwy.space.dao.ISpaceDao">
-  <resultMap type="com.zwy.space.model.Space" id="parkingSpaceResultMap" extends="BaseBusLongEntity.entity">
+  <resultMap type="com.zwy.space.model.Space" id="parkingSpaceResultMap" extends="BaseBusLongModel.model">
     <!-- 所属小区ID -->
     <result property="communityId" column="C_COMMUNITY_ID" />
     <!-- 车位使用状态：0-暂停租用、1-空闲、2-使用中 -->

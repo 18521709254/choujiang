@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zwy.bill.dao.IBillDao">
-  <resultMap type="com.zwy.bill.model.Bill" id="billResultMap" extends="BaseBusLongEntity.entity">
+  <resultMap type="com.zwy.bill.model.Bill" id="billResultMap" extends="BaseBusLongModel.model">
     <!-- 开始时间 -->
     <result property="startDate" column="C_START_DATE" />
     <!-- 结束时间 -->
