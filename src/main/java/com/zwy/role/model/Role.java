@@ -1,6 +1,7 @@
 package com.zwy.role.model;
 
 import com.zwy.base.model.BaseBusLongModel;
+import com.zwy.base.model.BaseQuery;
 import lombok.Data;
 
 /**
@@ -12,7 +13,7 @@ import lombok.Data;
  * 历 史: (版本) 作者 时间 注释
  */
 @Data
-public class Role extends BaseBusLongModel {
+public class Role extends BaseQuery<Role> {
 	/** 角色名称 */
 	private String name;
 }

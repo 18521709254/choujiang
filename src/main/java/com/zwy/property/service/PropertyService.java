@@ -14,12 +14,19 @@ import java.util.List;
  */
 public interface PropertyService {
 
-
 	/**
 	 * 描 述： 分页查询物业
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param property 物业
+	 * @param item 物业
+	 */
+
+	void listPropertyByPage(Property item);
+
+	/**
+	 * 描 述： 查询全部物业
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
 	 */
 	List<Property> listPropertyAll();
 
@@ -38,4 +45,5 @@ public interface PropertyService {
 	 * @param ids 物业ID数组
 	 */
 	void delByIds(Long[] ids);
+
 }

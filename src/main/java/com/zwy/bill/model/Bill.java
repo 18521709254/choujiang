@@ -1,6 +1,7 @@
 package com.zwy.bill.model;
 
 import com.zwy.base.model.BaseBusLongModel;
+import com.zwy.base.model.BaseQuery;
 import lombok.Data;
 
 import java.util.Date;
@@ -14,7 +15,7 @@ import java.util.Date;
  * 历 史: (版本) 作者 时间 注释
  */
 @Data
-public class Bill extends BaseBusLongModel {
+public class Bill extends BaseQuery<Bill> {
 
 	/** 开始时间 */
 	private Date startDate;

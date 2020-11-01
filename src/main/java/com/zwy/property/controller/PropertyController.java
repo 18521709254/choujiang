@@ -1,13 +1,13 @@
 package com.zwy.property.controller;
 
+import com.github.pagehelper.PageInfo;
+import com.zwy.base.model.BaseQuery;
 import com.zwy.base.restfulapi.Result;
 import com.zwy.base.restfulapi.Results;
 import com.zwy.property.model.Property;
 import com.zwy.property.service.PropertyService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -29,15 +29,28 @@ public class PropertyController {
 	@Resource(name = "propertyServiceImpl")
 	private PropertyService propertyService;
 
+
 	/**
-	 * 描 述： 分页查询物业
+	 * 描 述： 查询全部物业
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 物业查询数据
 	 */
 	@PostMapping("/listPropertyAll")
-	public Result<List<Property>> listPropertyByPage(){
+	public Result<List<Property>> listPropertyAll(){
 		return Results.ok(propertyService.listPropertyAll());
+	}
+
+	/**
+	 * 描 述： 物业分页查询
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @return 物业查询数据
+	 */
+	@PostMapping("/listPropertyByPage")
+	public Result<PageInfo<Property>> listPropertyByPage(@RequestBody Property item){
+		propertyService.listPropertyByPage(item);
+		return Results.ok(item.getPageInfo());
 	}
 
 	/**

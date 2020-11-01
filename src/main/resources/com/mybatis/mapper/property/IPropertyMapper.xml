@@ -16,8 +16,8 @@
   </sql>
 
   <sql id="searchConditionSql">
-	  <if test="condition.name != null and condition.name != ''">
-        AND o.C_NAME like CONCAT('%',#{condition.name},'%')
+	  <if test="item.name != null and item.name != ''">
+        AND o.C_NAME like CONCAT('%',#{item.name},'%')
 	  </if>
   </sql>
 
@@ -28,23 +28,7 @@
 
   <select id="listPropertyByPage" resultMap="propertyResultMap">
     SELECT DISTINCT <include refid="allColumnSql"/>
-    
     FROM property o
-    
-    WHERE 1=1 <include refid="searchConditionSql"/>
-  </select>
-  
-  <select id="listPropertyByPageCount" resultType="int">
-    SELECT count(DISTINCT o.ID) FROM property o
-    
-    WHERE 1=1 <include refid="searchConditionSql"/>
-  </select>
-
-  <select id="listPropertyByCondition" resultMap="propertyResultMap">
-    SELECT DISTINCT <include refid="allColumnSql"/>
-    
-    FROM property o
-    
     WHERE 1=1 <include refid="searchConditionSql"/>
   </select>
 

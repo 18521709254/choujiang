@@ -1,6 +1,7 @@
 package com.zwy.property.dao;
 
 import com.zwy.property.model.Property;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,12 +18,29 @@ import java.util.List;
 public interface IPropertyDao {
 
 	/**
-	 * 描 述： 查询全部角色
+	 * 描 述： 查询全部物业
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 角色列表
 	 */
 	List<Property> listPropertyAll();
+
+	/**
+	 * 描 述： 分页查询物业
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @return 角色列表
+	 */
+	List<Property> listPropertyByPage(@Param("item") Property item);
+
+	/**
+	 * 描 述： 根据ID获取物业信息
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param id 物业ID
+	 * @return 物业信息
+	 */
+	Property getPropertyById(Long id);
 
 	/**
 	 * 描 述： 新增物业
@@ -47,4 +65,5 @@ public interface IPropertyDao {
 	 * @param ids 物业ID数组
 	 */
 	void delByIds(Long[] ids);
+
 }

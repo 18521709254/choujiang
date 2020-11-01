@@ -1,6 +1,6 @@
 package com.zwy.placard.model;
 
-import com.zwy.base.model.BaseBusLongModel;
+import com.zwy.base.model.BaseQuery;
 import lombok.Data;
 
 /**
@@ -12,7 +12,7 @@ import lombok.Data;
  * 历 史: (版本) 作者 时间 注释
  */
 @Data
-public class Placard extends BaseBusLongModel {
+public class Placard extends BaseQuery {
 	/** 公告标题 */
 	private String title;
 	/** 公告内容 */

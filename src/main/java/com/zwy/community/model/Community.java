@@ -1,6 +1,6 @@
 package com.zwy.community.model;
 
-import com.zwy.base.model.BaseBusLongModel;
+import com.zwy.base.model.BaseQuery;
 import lombok.Data;
 
 /**
@@ -12,7 +12,7 @@ import lombok.Data;
  * 历 史: (版本) 作者 时间 注释
  */
 @Data
-public class Community extends BaseBusLongModel {
+public class Community extends BaseQuery<Community> {
 	/** 小区名称 */
 	private String name;
 	/** 小区地址 */
