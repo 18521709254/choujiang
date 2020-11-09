@@ -6,7 +6,6 @@ import com.github.pagehelper.PageInfo;
 import com.zwy.property.service.PropertyService;
 import com.zwy.property.dao.IPropertyDao;
 import com.zwy.property.model.Property;
-import com.zwy.user.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,17 +34,17 @@ public class PropertyServiceImpl implements PropertyService {
 	public void listPropertyByPage(Property item) {
 		PageInfo<Property> pageInfo = item.getPageInfo();
 		// 设置分页属性
-		Page<User> pageResult = PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
-		// 设置总数
-		pageInfo.setTotal(pageResult.getTotal());
-		// 设置总页数
-		pageInfo.setPages(pageResult.getPages());
+		Page<Property> pageResult = PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
 		// 存放数据
 		List<Property> resultList = propertyDao.listPropertyByPage(item);
 		// 如果为空存放空数据
 		if(resultList == null){
 			resultList = Collections.emptyList();
 		}
+		// 设置总数
+		pageInfo.setTotal(pageResult.getTotal());
+		// 设置总页数
+		pageInfo.setPages(pageResult.getPages());
 		pageInfo.setList(resultList);
 	}
 
@@ -59,6 +58,19 @@ public class PropertyServiceImpl implements PropertyService {
 		return propertyDao.listPropertyAll();
 	}
 
+
+	/**
+	 * 描 述： 根据ID查询物业
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param propertyId 物业ID
+	 * @return 物业查询数据
+	 */
+	@Override
+	public Property getPropertyById(Long propertyId) {
+		return propertyDao.getPropertyById(propertyId);
+	}
+
 	/**
 	 * 描 述： 保存角色
 	 * 作 者： 宋凯翔
@@ -70,6 +82,8 @@ public class PropertyServiceImpl implements PropertyService {
 		// ID 不存在新增
 		if(property.getId() == null){
 			propertyDao.add(property);
+			// 新增的数据全部需要审核
+			property.setStatus(0);
 			return;
 		}
 		// 反之修改

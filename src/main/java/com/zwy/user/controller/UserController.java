@@ -96,6 +96,17 @@ public class UserController {
 	}
 
 	/**
+	 * 描 述： 登出
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param user 用户
+	 */
+	@PostMapping("/logout")
+	public Result<Void> logout(User user, HttpServletRequest request){
+		return Results.ok();
+	}
+
+	/**
 	 * 描 述： 单纯需要的用户信息接口
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释

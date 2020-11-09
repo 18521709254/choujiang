@@ -30,6 +30,16 @@ public interface PropertyService {
 	 */
 	List<Property> listPropertyAll();
 
+
+	/**
+	 * 描 述： 根据ID查询物业
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param propertyId 物业ID
+	 * @return 物业查询数据
+	 */
+	Property getPropertyById(Long propertyId);
+
 	/**
 	 * 描 述： 保存物业
 	 * 作 者： 宋凯翔

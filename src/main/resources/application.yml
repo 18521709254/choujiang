@@ -14,4 +14,8 @@ spring:
 
 #分页插件数据库、
 pagehelper:
+  reasonable: true
+  support-methods-arguments: true
+  params: "count=countSql"
   helper-dialect: mysql
+
