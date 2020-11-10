@@ -35,7 +35,7 @@ public class CommunityController {
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 小区查询数据
 	 */
-	@PostMapping("/listCommunityAll")
+	@PostMapping("/listCommunityByPage")
 	public Result<PageInfo<Community>> listCommunityByPage(@RequestBody Community community){
 		communityService.listCommunityByPage(community);
 		return Results.ok(community.getPageInfo());
@@ -62,7 +62,7 @@ public class CommunityController {
 	 * @return 小区查询分页数据
 	 */
 	@PostMapping("/save")
-	public Result<Void> save(Community community){
+	public Result<Void> save(@RequestBody Community community){
 		communityService.save(community);
 		return Results.ok("保存成功");
 	}
@@ -71,12 +71,12 @@ public class CommunityController {
 	 * 描 述： 删除小区
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param ids 小区ID数组
+	 * @param communityIds 小区ID数组
 	 * @return 小区查询分页数据
 	 */
 	@PostMapping("/delByIds")
-	public Result<Void> delByIds(Long[] ids){
-		communityService.delByIds(ids);
+	public Result<Void> delByIds(@RequestParam(value = "communityIds") Long[] communityIds){
+		communityService.delByIds(communityIds);
 		return Results.ok("删除成功");
 	}
 
