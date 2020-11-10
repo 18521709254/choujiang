@@ -9,7 +9,6 @@ import com.zwy.property.model.Property;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.annotation.Resource;
 import java.util.Collections;
 import java.util.List;
@@ -81,9 +80,9 @@ public class PropertyServiceImpl implements PropertyService {
 	public void save(Property property) {
 		// ID 不存在新增
 		if(property.getId() == null){
-			propertyDao.add(property);
 			// 新增的数据全部需要审核
 			property.setStatus(0);
+			propertyDao.add(property);
 			return;
 		}
 		// 反之修改

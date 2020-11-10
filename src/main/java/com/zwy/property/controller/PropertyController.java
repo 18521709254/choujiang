@@ -74,7 +74,7 @@ public class PropertyController {
 	 * @return 物业查询分页数据
 	 */
 	@PostMapping("/save")
-	public Result<String> save(@RequestBody Property property){
+	public Result<Void> save(@RequestBody Property property){
 		propertyService.save(property);
 		return Results.ok("保存成功");
 	}
@@ -87,7 +87,7 @@ public class PropertyController {
 	 * @return 物业查询分页数据
 	 */
 	@PostMapping("/delByIds")
-	public Result<String> delByIds(@RequestParam(value = "propertyIds") Long[] propertyIds){
+	public Result<Void> delByIds(@RequestParam(value = "propertyIds") Long[] propertyIds){
 		propertyService.delByIds(propertyIds);
 		return Results.ok("删除成功");
 	}

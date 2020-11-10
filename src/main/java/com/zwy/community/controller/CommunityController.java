@@ -48,7 +48,7 @@ public class CommunityController {
 	 * @return 小区查询分页数据
 	 */
 	@PostMapping("/save")
-	public Result<String> save(Community community){
+	public Result<Void> save(Community community){
 		communityService.save(community);
 		return Results.ok("保存成功");
 	}
@@ -61,7 +61,7 @@ public class CommunityController {
 	 * @return 小区查询分页数据
 	 */
 	@PostMapping("/delByIds")
-	public Result<String> delByIds(Long[] ids){
+	public Result<Void> delByIds(Long[] ids){
 		communityService.delByIds(ids);
 		return Results.ok("删除成功");
 	}

@@ -35,7 +35,7 @@ public class PlacardController {
 	 * @return 公告查询分页数据
 	 */
 	@PostMapping("/save")
-	public Result<String> save(Placard placard){
+	public Result<Void> save(Placard placard){
 		placardService.save(placard);
 		return Results.ok("保存成功");
 	}
@@ -48,7 +48,7 @@ public class PlacardController {
 	 * @return 公告查询分页数据
 	 */
 	@PostMapping("/delByIds")
-	public Result<String> delByIds(Long[] ids){
+	public Result<Void> delByIds(Long[] ids){
 		placardService.delByIds(ids);
 		return Results.ok("删除成功");
 	}

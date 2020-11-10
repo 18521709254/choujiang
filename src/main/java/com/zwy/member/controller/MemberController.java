@@ -48,7 +48,7 @@ public class MemberController {
 	 * @return 会员查询分页数据
 	 */
 	@PostMapping("/save")
-	public Result<String> save(Member member){
+	public Result<Void> save(Member member){
 		memberService.save(member);
 		return Results.ok("保存成功");
 	}
@@ -61,7 +61,7 @@ public class MemberController {
 	 * @return 会员查询分页数据
 	 */
 	@PostMapping("/delByIds")
-	public Result<String> delByIds(Long[] ids){
+	public Result<Void> delByIds(Long[] ids){
 		memberService.delByIds(ids);
 		return Results.ok("删除成功");
 	}

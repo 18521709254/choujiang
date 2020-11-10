@@ -48,7 +48,7 @@ public class SpaceController {
 	 * @return 停车位查询分页数据
 	 */
 	@PostMapping("/save")
-	public Result<String> save(Space space){
+	public Result<Void> save(Space space){
 		spaceService.save(space);
 		return Results.ok("保存成功");
 	}
@@ -61,7 +61,7 @@ public class SpaceController {
 	 * @return 停车位查询分页数据
 	 */
 	@PostMapping("/delByIds")
-	public Result<String> delByIds(Long[] ids){
+	public Result<Void> delByIds(Long[] ids){
 		spaceService.delByIds(ids);
 		return Results.ok("删除成功");
 	}

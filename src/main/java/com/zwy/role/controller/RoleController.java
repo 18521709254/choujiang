@@ -49,7 +49,7 @@ public class RoleController {
 	 * @return 角色查询分页数据
 	 */
 	@PostMapping("/save")
-	public Result<String> save(Role role){
+	public Result<Void> save(Role role){
 		roleService.save(role);
 		return Results.ok("保存成功");
 	}
@@ -62,7 +62,7 @@ public class RoleController {
 	 * @return 角色查询分页数据
 	 */
 	@PostMapping("/delByIds")
-	public Result<String> delByIds(Long[] ids){
+	public Result<Void> delByIds(Long[] ids){
 		roleService.delByIds(ids);
 		return Results.ok("删除成功");
 	}

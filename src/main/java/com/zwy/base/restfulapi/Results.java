@@ -46,6 +46,10 @@ public final class Results {
         return ok(null, null);
     }
 
+    public static Result<Void> ok(String message) {
+        return ok(message, null);
+    }
+
     public static <T> Result<T> ok(T data) {
         return ok(null, data);
     }

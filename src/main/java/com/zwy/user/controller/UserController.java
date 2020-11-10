@@ -8,7 +8,11 @@ import com.zwy.user.model.User;
 import com.zwy.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -54,7 +58,7 @@ public class UserController {
 	 * @return 用户查询分页数据
 	 */
 	@PostMapping("/save")
-	public Result<String> save(User user){
+	public Result<Void> save(User user){
 		userService.save(user);
 		return Results.ok("保存成功");
 	}
@@ -67,7 +71,7 @@ public class UserController {
 	 * @return 用户查询分页数据
 	 */
 	@PostMapping("/delByIds")
-	public Result<String> delByIds(Long[] ids) {
+	public Result<Void> delByIds(Long[] ids) {
 		userService.delByIds(ids);
 		return Results.ok("删除成功");
 	}
@@ -81,7 +85,7 @@ public class UserController {
 	 * @param user 用户
 	 */
 	@PostMapping("/login")
-	public Result<String> login(User user, HttpServletRequest request){
+	public Result<Void> login(User user, HttpServletRequest request){
 		// 设置令牌
 		String accessToken = UUID.randomUUID().toString().replaceAll("-", "");
 		if(StringUtils.equals(user.getAccount(),"admin") && StringUtils.equals(user.getPassword(),"123456")){
