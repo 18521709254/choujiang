@@ -25,14 +25,8 @@
   </sql>
 
   <sql id="searchConditionSql">
-	  <if test="condition.name != null and condition.name != ''">
+	  <if test="name != null and name != ''">
         AND o.C_NAME like CONCAT('%',#{condition.name},'%')
-	  </if>
-	  <if test="condition.address != null and condition.address != ''">
-        AND o.C_ADDRESS like CONCAT('%',#{condition.address},'%')
-	  </if>
-	  <if test="condition.path != null and condition.path != ''">
-        AND o.C_PATH like CONCAT('%',#{condition.path},'%')
 	  </if>
   </sql>
 
@@ -46,6 +40,12 @@
     SELECT <include refid="allColumnSql"/>
     FROM community o
     WHERE o.ID = #{id}
+  </select>
+
+  <select id="listPropertyByPage" resultMap="communityResultMap">
+    SELECT DISTINCT <include refid="allColumnSql"/>
+    FROM community o
+    WHERE 1=1 <include refid="searchConditionSql"/>
   </select>
 
   <insert id="add" parameterType="com.zwy.community.model.Community" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">

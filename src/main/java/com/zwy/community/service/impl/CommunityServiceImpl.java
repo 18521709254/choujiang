@@ -1,13 +1,18 @@
 package com.zwy.community.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zwy.community.dao.ICommunityDao;
 import com.zwy.community.model.Community;
 import com.zwy.community.service.CommunityService;
+import com.zwy.property.model.Property;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,14 +32,51 @@ public class CommunityServiceImpl implements CommunityService {
 	private ICommunityDao communityDao;
 
 	/**
-	 * 描 述： 分页查询小区
+	 * 描 述： 查询全部小区
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param community 小区
+	 * @return 小区集合
 	 */
 	@Override
 	public List<Community> listCommunityAll() {
 		return communityDao.listCommunityAll();
+	}
+
+
+	/**
+	 * 描 述： 分页查询小区
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param item 小区
+	 */
+	@Override
+	public void listCommunityByPage(Community item) {
+		PageInfo<Community> pageInfo = item.getPageInfo();
+		// 设置分页属性
+		Page<Property> pageResult = PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
+		// 存放数据
+		List<Community> resultList = communityDao.listPropertyByPage(item);
+		// 如果为空存放空数据
+		if(resultList == null){
+			resultList = Collections.emptyList();
+		}
+		// 设置总数
+		pageInfo.setTotal(pageResult.getTotal());
+		// 设置总页数
+		pageInfo.setPages(pageResult.getPages());
+		pageInfo.setList(resultList);
+	}
+
+	/**
+	 * 描 述： 根据ID查询小区
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param communityId 小区ID
+	 * @return 小区数据
+	 */
+	@Override
+	public Community getCommunityById(Long communityId) {
+		return communityDao.getCommunityById(communityId);
 	}
 
 	/**

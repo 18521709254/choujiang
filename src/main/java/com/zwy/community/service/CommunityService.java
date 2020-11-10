@@ -15,12 +15,30 @@ public interface CommunityService {
 
 
 	/**
+	 * 描 述： 查询全部小区
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @return 小区集合
+	 */
+	List<Community> listCommunityAll();
+
+	/**
 	 * 描 述： 分页查询小区
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param community 小区
 	 */
-	List<Community> listCommunityAll();
+	void listCommunityByPage(Community community);
+
+	/**
+	 * 描 述： 根据ID查询小区
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param communityId 小区ID
+	 * @return 小区数据
+	 */
+	Community getCommunityById(Long communityId);
+
 
 	/**
 	 * 描 述： 保存小区
@@ -37,4 +55,6 @@ public interface CommunityService {
 	 * @param ids 小区ID数组
 	 */
 	void delByIds(Long[] ids);
+
+
 }

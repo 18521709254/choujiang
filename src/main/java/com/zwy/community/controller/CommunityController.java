@@ -1,13 +1,13 @@
 package com.zwy.community.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.zwy.base.restfulapi.Result;
 import com.zwy.base.restfulapi.Results;
 import com.zwy.community.model.Community;
 import com.zwy.community.service.CommunityService;
+import com.zwy.community.model.Community;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -36,10 +36,24 @@ public class CommunityController {
 	 * @return 小区查询数据
 	 */
 	@PostMapping("/listCommunityAll")
-	public Result<List<Community>> listCommunityByPage(){
-		return Results.ok(communityService.listCommunityAll());
+	public Result<PageInfo<Community>> listCommunityByPage(@RequestBody Community community){
+		communityService.listCommunityByPage(community);
+		return Results.ok(community.getPageInfo());
 	}
 
+	/**
+	 * 描 述： 根据ID查询小区
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param communityId 小区ID
+	 * @return 小区数据
+	 */
+	@PostMapping("/getCommunityById")
+	public Result<Community> getCommunityById(@RequestParam(value = "communityId") Long communityId){
+		Community item = communityService.getCommunityById(communityId);
+		return Results.ok(item);
+	}
+	
 	/**
 	 * 描 述： 保存小区
 	 * 作 者： 宋凯翔

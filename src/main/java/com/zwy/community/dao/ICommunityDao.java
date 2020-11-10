@@ -25,6 +25,23 @@ public interface ICommunityDao {
 	List<Community> listCommunityAll();
 
 	/**
+	 * 描 述： 分页查询小区
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param item 小区
+	 */
+	List<Community> listPropertyByPage(Community item);
+
+	/**
+	 * 描 述： 根据ID查询小区
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param id 小区ID
+	 * @return 小区数据
+	 */
+	Community getCommunityById(Long id);
+
+	/**
 	 * 描 述： 新增用户
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
@@ -47,4 +64,6 @@ public interface ICommunityDao {
 	 * @param ids 用户ID数组
 	 */
 	void delByIds(Long[] ids);
+
+
 }
