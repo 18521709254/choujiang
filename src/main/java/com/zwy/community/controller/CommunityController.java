@@ -7,7 +7,10 @@ import com.zwy.community.model.Community;
 import com.zwy.community.service.CommunityService;
 import com.zwy.community.model.Community;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -78,6 +81,19 @@ public class CommunityController {
 	public Result<Void> delByIds(@RequestParam(value = "communityIds") Long[] communityIds){
 		communityService.delByIds(communityIds);
 		return Results.ok("删除成功");
+	}
+
+	/**
+	 * 描 述： 上传车位平面图
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param image 上传的文件
+	 * @return 小区查询分页数据
+	 */
+	@PostMapping("/uploadImage")
+	public Result<String> uploadImage(@RequestBody MultipartFile image){
+		// communityService.delByIds(communityIds);
+		return Results.ok("上传文件成功",null);
 	}
 
 }

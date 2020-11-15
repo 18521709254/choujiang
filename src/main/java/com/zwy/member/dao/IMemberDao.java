@@ -25,6 +25,23 @@ public interface IMemberDao {
 	List<Member> listMemberAll();
 
 	/**
+	 * 描 述： 分页查询会员
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param item 会员
+	 */
+	List<Member> listMemberByPage(Member item);
+
+	/**
+	 * 描 述： 根据ID查询会员
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param memberId 会员ID
+	 * @return 会员数据
+	 */
+	Member getMemberById(Long memberId);
+
+	/**
 	 * 描 述： 新增用户
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
@@ -47,4 +64,6 @@ public interface IMemberDao {
 	 * @param ids 用户ID数组
 	 */
 	void delByIds(Long[] ids);
+
+
 }

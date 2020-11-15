@@ -8,11 +8,7 @@ import com.zwy.user.model.User;
 import com.zwy.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -85,18 +81,19 @@ public class UserController {
 	 * @param user 用户
 	 */
 	@PostMapping("/login")
-	public Result<Void> login(User user, HttpServletRequest request){
+	public Result<String> login(@RequestBody User user, HttpServletRequest request){
 		// 设置令牌
 		String accessToken = UUID.randomUUID().toString().replaceAll("-", "");
 		if(StringUtils.equals(user.getAccount(),"admin") && StringUtils.equals(user.getPassword(),"123456")){
 			ApiAccessToken apiAccessToken = new ApiAccessToken(accessToken,user);
 			request.setAttribute("token",apiAccessToken);
+			return Results.ok("登陆成功",accessToken);
 		}
 		user = userService.getUserByUser(user);
 		if(user == null){
-			return Results.ok("账号或密码错误");
+			return Results.ok("账号或密码错误",null);
 		}
-		return Results.ok(accessToken);
+		return Results.ok("登陆成功",accessToken);
 	}
 
 	/**

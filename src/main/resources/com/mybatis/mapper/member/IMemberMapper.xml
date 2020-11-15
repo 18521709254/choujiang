@@ -10,6 +10,9 @@
     <result property="name" column="C_NAME" />
     <!-- 联系电话 -->
     <result property="tel" column="C_TEL" />
+    <!-- 性别 -->
+    <result property="sex" column="C_SEX" />
+
   </resultMap>
 
   <sql id="allColumnSql">
@@ -17,21 +20,22 @@
     o.C_ACCOUNT,
     o.C_PASSWORD,
     o.C_NAME,
-    o.C_TEL
+    o.C_TEL,
+    o.C_SEX
   </sql>
 
   <sql id="searchConditionSql">
-	  <if test="condition.account != null and condition.account != ''">
-        AND o.C_ACCOUNT like CONCAT('%',#{condition.account},'%')
+	  <if test="account != null and account != ''">
+        AND o.C_ACCOUNT like CONCAT('%',#{account},'%')
 	  </if>
-	  <if test="condition.password != null and condition.password != ''">
-        AND o.C_PASSWORD like CONCAT('%',#{condition.password},'%')
+	  <if test="password != null and password != ''">
+        AND o.C_PASSWORD like CONCAT('%',#{password},'%')
 	  </if>
-	  <if test="condition.name != null and condition.name != ''">
-        AND o.C_NAME like CONCAT('%',#{condition.name},'%')
+	  <if test="name != null and name != ''">
+        AND o.C_NAME like CONCAT('%',#{name},'%')
 	  </if>
-	  <if test="condition.tel != null and condition.tel != ''">
-        AND o.C_TEL like CONCAT('%',#{condition.tel},'%')
+	  <if test="tel != null and tel != ''">
+        AND o.C_TEL like CONCAT('%',#{tel},'%')
 	  </if>
   </sql>
 
@@ -41,7 +45,7 @@
   </select>
 
   <select id="listMemberByPage" resultMap="memberResultMap">
-    SELECT DISTINCT <include refid="allColumnSql"/>
+    SELECT <include refid="allColumnSql"/>
     FROM member o
     WHERE 1=1 <include refid="searchConditionSql"/>
   </select>
@@ -59,14 +63,16 @@
     C_ACCOUNT,
     C_PASSWORD,
     C_NAME,
-    C_TEL
+    C_TEL,
+    C_SEX
     )
     VALUES
     (
      #{account},
      #{password},
      #{name},
-     #{tel}
+     #{tel},
+     #{sex}
     )
   </insert>
 

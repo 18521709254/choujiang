@@ -53,7 +53,7 @@ public class CommunityServiceImpl implements CommunityService {
 	public void listCommunityByPage(Community item) {
 		PageInfo<Community> pageInfo = item.getPageInfo();
 		// 设置分页属性
-		Page<Property> pageResult = PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
+		Page<Community> pageResult = PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
 		// 存放数据
 		List<Community> resultList = communityDao.listPropertyByPage(item);
 		// 如果为空存放空数据
