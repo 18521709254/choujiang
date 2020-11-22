@@ -10,7 +10,6 @@ package com.zwy.base.config;
  */
 public final class SystemConstant {
 	private SystemConstant(){
-
 	}
 	/** 当前登录用户令牌 */
 	public static final String CURRENT_API_ACCESS_TOKEN = "CURRENT_API_ACCESS_TOKEN";

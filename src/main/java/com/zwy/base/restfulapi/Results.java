@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 /**
  * 类 名: Results
  * 描 述: 响应结果集
- * 作 者: 张强
+ * 作 者: 宋凯翔
  * 创 建：2020年1月15日
  * 版 本：v1.0.0
  *
@@ -19,7 +19,7 @@ public final class Results {
     /**
      * 类 名: Results.Code
      * 描 述: 响应代码
-     * 作 者: 张强
+     * 作 者: 宋凯翔
      * 创 建：2020年1月15日
      * 版 本：v1.0.0
      * 历 史: (版本) 作者 时间 注释
