@@ -45,6 +45,18 @@ public class CommunityController {
 	}
 
 	/**
+	 * 描 述： 查询全部小区
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @return 小区查询数据
+	 */
+	@PostMapping("/listCommunityAll")
+	public Result<List<Community>> listCommunityAll(){
+		List<Community> communityList = communityService.listCommunityAll();
+		return Results.ok(communityList);
+	}
+
+	/**
 	 * 描 述： 根据ID查询小区
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
@@ -93,6 +105,7 @@ public class CommunityController {
 	@PostMapping("/uploadImage")
 	public Result<String> uploadImage(@RequestBody MultipartFile image){
 		// communityService.delByIds(communityIds);
+		log.info("test");
 		return Results.ok("上传文件成功",null);
 	}
 

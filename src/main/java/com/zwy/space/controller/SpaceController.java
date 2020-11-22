@@ -1,11 +1,14 @@
 package com.zwy.space.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.zwy.base.restfulapi.Result;
 import com.zwy.base.restfulapi.Results;
+import com.zwy.community.model.Community;
 import com.zwy.space.model.Space;
 import com.zwy.space.service.SpaceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,7 +33,7 @@ public class SpaceController {
 	private SpaceService spaceService;
 
 	/**
-	 * 描 述： 分页查询停车位
+	 * 描 述： 分页查询全部停车位
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 停车位查询数据
@@ -38,6 +41,18 @@ public class SpaceController {
 	@PostMapping("/listSpaceAll")
 	public Result<List<Space>> listSpaceByPage(){
 		return Results.ok(spaceService.listSpaceAll());
+	}
+
+	/**
+	 * 描 述： 分页查询停车位
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param space 车位数据
+	 */
+	@PostMapping("/listSpaceByPage")
+	public Result<PageInfo<Space>> listSpaceByPage(@RequestBody Space space){
+		spaceService.listSpaceByPage(space);
+		return Results.ok(space.getPageInfo());
 	}
 
 	/**

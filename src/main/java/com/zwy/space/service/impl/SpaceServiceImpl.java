@@ -1,5 +1,9 @@
 package com.zwy.space.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.zwy.community.model.Community;
 import com.zwy.space.dao.ISpaceDao;
 import com.zwy.space.model.Space;
 import com.zwy.space.service.SpaceService;
@@ -8,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -30,11 +35,34 @@ public class SpaceServiceImpl implements SpaceService {
 	 * 描 述： 分页查询车位
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param space 车位
 	 */
 	@Override
 	public List<Space> listSpaceAll() {
 		return spaceDao.listSpaceAll();
+	}
+
+	/**
+	 * 描 述： 分页查询停车位
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param item 车位数据
+	 */
+	@Override
+	public void listSpaceByPage(Space item) {
+		PageInfo<Space> pageInfo = item.getPageInfo();
+		// 设置分页属性
+		Page<Space> pageResult = PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
+		// 存放数据
+		List<Space> resultList = spaceDao.listSpaceByPage(item);
+		// 如果为空存放空数据
+		if(resultList == null){
+			resultList = Collections.emptyList();
+		}
+		// 设置总数
+		pageInfo.setTotal(pageResult.getTotal());
+		// 设置总页数
+		pageInfo.setPages(pageResult.getPages());
+		pageInfo.setList(resultList);
 	}
 
 	/**

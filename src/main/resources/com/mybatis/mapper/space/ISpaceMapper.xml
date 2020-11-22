@@ -23,7 +23,7 @@
     o.C_USE_STATUS,
     o.C_CHECK_STATUS,
     o.C_PRICE,
-    o.C_PERCET,
+    o.C_PERCENT,
     o.C_NO
   </sql>
 
@@ -35,25 +35,9 @@
     FROM parking_space o
   </select>
 
-  <select id="listParkingSpaceByPage" resultMap="parkingSpaceResultMap">
-    SELECT DISTINCT <include refid="allColumnSql"/>
-    
+  <select id="listSpaceByPage" resultMap="parkingSpaceResultMap">
+    SELECT  <include refid="allColumnSql"/>
     FROM parking_space o
-    
-    WHERE 1=1 <include refid="searchConditionSql"/>
-  </select>
-  
-  <select id="listParkingSpaceByPageCount" resultType="int">
-    SELECT count(DISTINCT o.ID) FROM parking_space o
-    
-    WHERE 1=1 <include refid="searchConditionSql"/>
-  </select>
-
-  <select id="listParkingSpaceByCondition" resultMap="parkingSpaceResultMap">
-    SELECT DISTINCT <include refid="allColumnSql"/>
-    
-    FROM parking_space o
-    
     WHERE 1=1 <include refid="searchConditionSql"/>
   </select>
 
@@ -70,7 +54,7 @@
     C_USE_STATUS,
     C_CHECK_STATUS,
     C_PRICE,
-    C_PERCET,
+    C_PERCENT,
     C_NO
     )
     VALUES
@@ -79,7 +63,7 @@
      #{useStatus},
      #{checkStatus},
      #{price},
-     #{percet},
+     #{percent},
      #{no}
     )
   </insert>
@@ -90,7 +74,7 @@
     C_USE_STATUS = #{useStatus},
     C_CHECK_STATUS = #{checkStatus},
     C_PRICE = #{price},
-    C_PERCET = #{percet},
+    C_PERCENT = #{percet},
     C_NO = #{no}
     WHERE ID = #{id}
   </update>

@@ -14,6 +14,7 @@ import lombok.Data;
  */
 @Data
 public class Space extends BaseQuery<Space> {
+
 	/** 所属小区ID */
 	private Long communityId;
 	/** 车位使用状态：0-暂停租用、1-空闲、2-使用中 */

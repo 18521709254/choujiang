@@ -25,6 +25,14 @@ public interface ISpaceDao {
 	List<Space> listSpaceAll();
 
 	/**
+	 * 描 述： 分页查询停车位
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param item 车位数据
+	 */
+	List<Space> listSpaceByPage(Space item);
+
+	/**
 	 * 描 述： 新增车位
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
@@ -47,4 +55,6 @@ public interface ISpaceDao {
 	 * @param ids 车位ID数组
 	 */
 	void delByIds(Long[] ids);
+
+
 }

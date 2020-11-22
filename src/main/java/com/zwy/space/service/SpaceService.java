@@ -18,9 +18,17 @@ public interface SpaceService {
 	 * 描 述： 分页查询车位
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param space 车位
 	 */
 	List<Space> listSpaceAll();
+
+	/**
+	 * 描 述： 分页查询停车位
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param space 车位数据
+	 */
+	void listSpaceByPage(Space space);
+
 
 	/**
 	 * 描 述： 保存车位
@@ -37,4 +45,5 @@ public interface SpaceService {
 	 * @param ids 车位ID数组
 	 */
 	void delByIds(Long[] ids);
+
 }
