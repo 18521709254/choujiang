@@ -14,7 +14,9 @@
     <result property="percent" column="C_PERCENT" />
     <!-- 车位编号 -->
     <result property="no" column="C_NO" />
-    
+    <!-- 车位类型：1-物业、2-私人 -->
+    <result property="type" column="C_TYPE" />
+
   </resultMap>
 
   <sql id="allColumnSql">
@@ -52,6 +54,7 @@
     (
     C_COMMUNITY_ID,
     C_USE_STATUS,
+    C_TYPE,
     C_CHECK_STATUS,
     C_PRICE,
     C_PERCENT,
@@ -61,6 +64,7 @@
     (
      #{communityId},
      #{useStatus},
+     #{type},
      #{checkStatus},
      #{price},
      #{percent},
@@ -72,6 +76,7 @@
     UPDATE parking_space SET
     C_COMMUNITY_ID = #{communityId},
     C_USE_STATUS = #{useStatus},
+    C_TYPE = #{type},
     C_CHECK_STATUS = #{checkStatus},
     C_PRICE = #{price},
     C_PERCENT = #{percet},

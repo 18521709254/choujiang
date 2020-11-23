@@ -21,6 +21,8 @@ public class Space extends BaseQuery<Space> {
 	private Integer useStatus;
 	/** 车位审核状态：0-审核中、1-审核通过、2审核未通过 */
 	private Integer checkStatus;
+	/** 车位类型：1-物业、2-私人 */
+	private Integer type;
 	/** 停车单价/每小时 */
 	private Double price;
 	/** 费用占比 */

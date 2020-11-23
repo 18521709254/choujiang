@@ -66,6 +66,18 @@ public class SpaceServiceImpl implements SpaceService {
 	}
 
 	/**
+	 * 描 述： 根据ID获取停车位
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param id 车位ID
+	 * @return 停车位查询数据
+	 */
+	@Override
+	public Space getParkingSpaceById(Long id) {
+		return spaceDao.getParkingSpaceById(id);
+	}
+
+	/**
 	 * 描 述： 保存车位
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
@@ -75,6 +87,10 @@ public class SpaceServiceImpl implements SpaceService {
 	public void save(Space space) {
 		// ID 不存在新增
 		if(space.getId() == null){
+			// 默认空闲
+			space.setUseStatus(0);
+			// 新增数据默认给审核中
+			space.setCheckStatus(0);
 			spaceDao.add(space);
 			return;
 		}

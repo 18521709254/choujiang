@@ -29,6 +29,14 @@ public interface SpaceService {
 	 */
 	void listSpaceByPage(Space space);
 
+	/**
+	 * 描 述： 根据ID获取停车位
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param id 车位ID
+	 * @return 停车位查询数据
+	 */
+	Space getParkingSpaceById(Long id);
 
 	/**
 	 * 描 述： 保存车位

@@ -7,10 +7,7 @@ import com.zwy.community.model.Community;
 import com.zwy.space.model.Space;
 import com.zwy.space.service.SpaceService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -56,6 +53,19 @@ public class SpaceController {
 	}
 
 	/**
+	 * 描 述： 根据ID获取停车位
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param id 车位ID
+	 * @return 停车位查询数据
+	 */
+	@PostMapping("/getParkingSpaceById")
+	public Result<Space> getParkingSpaceById(@RequestParam(value = "id") Long id){
+		Space space = spaceService.getParkingSpaceById(id);
+		return Results.ok(space);
+	}
+
+	/**
 	 * 描 述： 保存停车位
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
@@ -63,7 +73,7 @@ public class SpaceController {
 	 * @return 停车位查询分页数据
 	 */
 	@PostMapping("/save")
-	public Result<Void> save(Space space){
+	public Result<Void> save(@RequestBody Space space){
 		spaceService.save(space);
 		return Results.ok("保存成功");
 	}
@@ -76,7 +86,7 @@ public class SpaceController {
 	 * @return 停车位查询分页数据
 	 */
 	@PostMapping("/delByIds")
-	public Result<Void> delByIds(Long[] ids){
+	public Result<Void> delByIds(@RequestParam(value = "ids") Long[] ids){
 		spaceService.delByIds(ids);
 		return Results.ok("删除成功");
 	}

@@ -32,6 +32,9 @@ public interface ISpaceDao {
 	 */
 	List<Space> listSpaceByPage(Space item);
 
+	Space getParkingSpaceById(Long id);
+
+
 	/**
 	 * 描 述： 新增车位
 	 * 作 者： 宋凯翔
