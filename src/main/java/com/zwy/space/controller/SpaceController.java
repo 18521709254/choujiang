@@ -82,12 +82,12 @@ public class SpaceController {
 	 * 描 述： 删除停车位
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param ids 停车位ID数组
+	 * @param spaceIds 停车位ID数组
 	 * @return 停车位查询分页数据
 	 */
 	@PostMapping("/delByIds")
-	public Result<Void> delByIds(@RequestParam(value = "ids") Long[] ids){
-		spaceService.delByIds(ids);
+	public Result<Void> delByIds(@RequestParam(value = "spaceIds") Long[] spaceIds){
+		spaceService.delByIds(spaceIds);
 		return Results.ok("删除成功");
 	}
 

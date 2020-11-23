@@ -16,13 +16,15 @@
     <result property="no" column="C_NO" />
     <!-- 车位类型：1-物业、2-私人 -->
     <result property="type" column="C_TYPE" />
-
+    <!-- 小区名称 -->
+    <result property="communityName" column="communityName" />
   </resultMap>
 
   <sql id="allColumnSql">
     o.ID,
     o.C_COMMUNITY_ID,
     o.C_USE_STATUS,
+    o.C_TYPE,
     o.C_CHECK_STATUS,
     o.C_PRICE,
     o.C_PERCENT,
@@ -39,7 +41,9 @@
 
   <select id="listSpaceByPage" resultMap="parkingSpaceResultMap">
     SELECT  <include refid="allColumnSql"/>
+    ,c.C_NAME AS communityName
     FROM parking_space o
+    LEFT JOIN community c ON o.C_COMMUNITY_ID = c.ID
     WHERE 1=1 <include refid="searchConditionSql"/>
   </select>
 

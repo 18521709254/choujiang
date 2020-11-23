@@ -1,6 +1,5 @@
 package com.zwy.space.model;
 
-import com.zwy.base.model.BaseBusLongModel;
 import com.zwy.base.model.BaseQuery;
 import lombok.Data;
 
@@ -17,6 +16,8 @@ public class Space extends BaseQuery<Space> {
 
 	/** 所属小区ID */
 	private Long communityId;
+	/** 小区名称 */
+	private String communityName;
 	/** 车位使用状态：0-暂停租用、1-空闲、2-使用中 */
 	private Integer useStatus;
 	/** 车位审核状态：0-审核中、1-审核通过、2审核未通过 */
