@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * 类 名: CommunityController
  * 描 述: 小区控制层
- * 作 者: 宋凯翔
+ * 作 者: 张文雅
  * 创 建：2020年10月25日
  * 版 本：v2.2.0
  * 历 史: (版本) 作者 时间 注释
@@ -48,7 +48,7 @@ public class CommunityController {
 
 	/**
 	 * 描 述： 分页查询小区
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 小区查询数据
 	 */
@@ -100,7 +100,7 @@ public class CommunityController {
 	
 	/**
 	 * 描 述： 保存小区
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param community 小区
 	 * @return 小区查询分页数据
@@ -113,7 +113,7 @@ public class CommunityController {
 
 	/**
 	 * 描 述： 删除小区
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param communityIds 小区ID数组
 	 * @return 小区查询分页数据

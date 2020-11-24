@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * 类 名: UserServiceImpl
  * 描 述:
- * 作 者: 宋凯翔
+ * 作 者: 张文雅
  * 创 建：2020年10月25日
  * 版 本：v2.2.0
  * 历 史: (版本) 作者 时间 注释
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * 描 述： 分页查询用户
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param user 用户
 	 */
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * 描 述： 用户登录
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param user 登录信息
 	 */
@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * 描 述： 保存用户
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param user 用户
 	 */
@@ -95,7 +95,7 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * 描 述： 根据ID删除用户
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param ids 用户ID数组
 	 */

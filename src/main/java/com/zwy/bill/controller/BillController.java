@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * 类 名: BillController
  * 描 述: 订单控制层
- * 作 者: 宋凯翔
+ * 作 者: 张文雅
  * 创 建：2020年10月25日
  * 版 本：v2.2.0
  * 历 史: (版本) 作者 时间 注释
@@ -30,7 +30,7 @@ public class BillController {
 
 	/**
 	 * 描 述： 分页查询订单
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 订单查询数据
 	 */
@@ -55,7 +55,7 @@ public class BillController {
 
 	/**
 	 * 描 述： 保存订单
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param bill 订单
 	 * @return 订单查询分页数据
@@ -68,7 +68,7 @@ public class BillController {
 
 	/**
 	 * 描 述： 删除订单
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param ids 订单ID数组
 	 * @return 订单查询分页数据

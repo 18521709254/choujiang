@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * 类 名: SpaceServiceImpl
  * 描 述: 车位事物实现
- * 作 者: 宋凯翔
+ * 作 者: 张文雅
  * 创 建：2020年10月25日
  * 版 本：v2.2.0
  * 历 史: (版本) 作者 时间 注释
@@ -33,7 +33,7 @@ public class SpaceServiceImpl implements SpaceService {
 
 	/**
 	 * 描 述： 分页查询车位
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 */
 	@Override
@@ -91,7 +91,7 @@ public class SpaceServiceImpl implements SpaceService {
 
 	/**
 	 * 描 述： 保存车位
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param space 车位
 	 */
@@ -112,7 +112,7 @@ public class SpaceServiceImpl implements SpaceService {
 
 	/**
 	 * 描 述： 根据ID删除车位
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param ids 车位ID数组
 	 */

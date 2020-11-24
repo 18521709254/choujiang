@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 类 名: IBillDao
  * 描 述: 订单控制层
- * 作 者: 宋凯翔
+ * 作 者: 张文雅
  * 创 建：2020年10月25日
  * 版 本：v2.2.0
  * 历 史: (版本) 作者 时间 注释
@@ -18,7 +18,7 @@ public interface IBillDao {
 
 	/**
 	 * 描 述： 查询全部订单
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 订单列表
 	 */
@@ -34,7 +34,7 @@ public interface IBillDao {
 
 	/**
 	 * 描 述： 新增用户
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param user 用户信息
 	 */
@@ -42,7 +42,7 @@ public interface IBillDao {
 
 	/**
 	 * 描 述： 修改用户
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param user 用户信息
 	 */
@@ -50,7 +50,7 @@ public interface IBillDao {
 
 	/**
 	 * 描 述： 删除用户
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param ids 用户ID数组
 	 */
