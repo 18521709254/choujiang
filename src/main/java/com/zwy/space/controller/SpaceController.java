@@ -59,12 +59,12 @@ public class SpaceController {
 	 * 描 述： 根据ID获取停车位
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param id 车位ID
+	 * @param spaceId 车位ID
 	 * @return 停车位查询数据
 	 */
 	@PostMapping("/getParkingSpaceById")
-	public Result<Space> getParkingSpaceById(@RequestParam(value = "id") Long id){
-		Space space = spaceService.getParkingSpaceById(id);
+	public Result<Space> getParkingSpaceById(@RequestParam(value = "spaceId") Long spaceId){
+		Space space = spaceService.getParkingSpaceById(spaceId);
 		return Results.ok(space);
 	}
 

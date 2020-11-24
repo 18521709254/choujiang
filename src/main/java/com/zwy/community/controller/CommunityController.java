@@ -1,7 +1,6 @@
 package com.zwy.community.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.zwy.base.config.SystemConstant;
 import com.zwy.base.model.FileUploadDataDTO;
 import com.zwy.base.restfulapi.Result;
 import com.zwy.base.restfulapi.Results;
