@@ -1,5 +1,6 @@
 package com.zwy.base.config;
 
+
 /**
  * 类 名: SystemConstant
  * 描 述: 系统固定配置
@@ -11,6 +12,7 @@ package com.zwy.base.config;
 public final class SystemConstant {
 	private SystemConstant(){
 	}
+
 	/** 当前登录用户令牌 */
 	public static final String CURRENT_API_ACCESS_TOKEN = "CURRENT_API_ACCESS_TOKEN";
 }

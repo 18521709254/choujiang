@@ -1,4 +1,6 @@
-
+server:
+  address: "localhost"
+  port: 8080
 #Mybatis查询Mapper脚本文件路径、
 mybatis:
   config-location: classpath:com/mybatis/mybatis.xml
@@ -11,7 +13,6 @@ spring:
     username: root
     password: "root"
     driver-class-name: com.mysql.jdbc.Driver
-
 #分页插件数据库、
 pagehelper:
   reasonable: true

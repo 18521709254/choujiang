@@ -1,6 +1,7 @@
 package com.zwy.community.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.zwy.base.config.SystemConstant;
 import com.zwy.base.model.FileUploadDataDTO;
 import com.zwy.base.restfulapi.Result;
 import com.zwy.base.restfulapi.Results;
@@ -11,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,7 +38,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/community")
 public class CommunityController {
-
+	/** 服务访问地址 */
+	@Value("${server.address}")
+	public String address;
+	/** 服务端口 */
+	@Value("${server.port}")
+	public String port;
 	@Resource(name = "communityServiceImpl")
 	private CommunityService communityService;
 
@@ -134,14 +141,19 @@ public class CommunityController {
 			return Results.badRequest("文件格式错误",resultData);
 		}
 		String date = DateFormatUtils.format(System.currentTimeMillis(),"yyyyMMddHHmmss");
+		// 真实的文件名称
+		String realName = File.separator + date + "." + fileExt;
 		// 图片路径
-		String realPath = uploadDirPath + File.separator + date + "." + fileExt;
+		String realPath = uploadDirPath + realName;
+		// 前端展示的路径
+		String resultPath = "http://" + address + ":" + port + StringUtils.substringAfter(realPath,"classes");
+		resultPath = StringUtils.replace(resultPath,"\\","/");
 		// 数据持久化
 		File dest = new File(realPath);
 		uploadFile.transferTo(dest);
 		// 返回数据
 		resultData.setFileName(fileName);
-		resultData.setFilePath(realPath);
+		resultData.setFilePath(resultPath);
 		return Results.ok(resultData);
 	}
 

@@ -3,11 +3,14 @@ package com.zwy.space.controller;
 import com.github.pagehelper.PageInfo;
 import com.zwy.base.restfulapi.Result;
 import com.zwy.base.restfulapi.Results;
-import com.zwy.community.model.Community;
 import com.zwy.space.model.Space;
 import com.zwy.space.service.SpaceService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
