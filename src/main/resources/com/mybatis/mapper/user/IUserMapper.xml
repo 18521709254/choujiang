@@ -12,6 +12,8 @@
     <result property="tel" column="C_TEL" />
     <!-- 角色ID -->
     <result property="roleId" column="C_ROLE_ID" />
+    <!-- 角色名称 -->
+    <result property="roleName" column="roleName" />
   </resultMap>
 
   <sql id="allColumnSql">
@@ -29,7 +31,9 @@
 
   <select id="listUserByPage" resultMap="userResultMap">
     SELECT <include refid="allColumnSql"/>
+    ,ur.C_NAME AS roleName
     FROM auth_user o
+    LEFT JOIN user_role ur ON o.C_ROLE_ID = ur.ID
     WHERE 1=1
   </select>
 

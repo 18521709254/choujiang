@@ -24,4 +24,6 @@ public class User extends BaseQuery<User> {
 	private String tel;
 	/** 角色ID */
 	private Long roleId;
+	/** 角色名称 */
+	private String roleName;
 }

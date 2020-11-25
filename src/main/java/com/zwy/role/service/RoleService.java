@@ -23,6 +23,23 @@ public interface RoleService {
 	List<Role> listRoleAll();
 
 	/**
+	 * 描 述： 分页查询角色
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param role 角色信息
+	 */
+	void listRoleByPage(Role role);
+
+	/**
+	 * 描 述： 根据ID查询橘色
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param roleId 角色ID
+	 * @return 角色查询数据
+	 */
+	Role getRoleById(Long roleId);
+
+	/**
 	 * 描 述： 保存角色
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
@@ -37,4 +54,6 @@ public interface RoleService {
 	 * @param ids 角色ID数组
 	 */
 	void delByIds(Long[] ids);
+
+
 }

@@ -41,7 +41,7 @@ public class UserController {
 	 * @return 用户查询分页数据
 	 */
 	@PostMapping("/listUserByPage")
-	public Result<PageInfo<User>> listUserByPage(User user) {
+	public Result<PageInfo<User>> listUserByPage(@RequestBody User user) {
 		userService.listUserByPage(user);
 		return Results.ok(user.getPageInfo());
 	}
@@ -54,7 +54,7 @@ public class UserController {
 	 * @return 用户查询分页数据
 	 */
 	@PostMapping("/save")
-	public Result<Void> save(User user){
+	public Result<Void> save(@RequestBody User user){
 		userService.save(user);
 		return Results.ok("保存成功");
 	}
@@ -103,7 +103,7 @@ public class UserController {
 	 * @param user 用户
 	 */
 	@PostMapping("/logout")
-	public Result<Void> logout(User user, HttpServletRequest request){
+	public Result<Void> logout(@RequestBody User user, HttpServletRequest request){
 		return Results.ok();
 	}
 

@@ -4,7 +4,7 @@
   <resultMap type="com.zwy.role.model.Role" id="roleResultMap" extends="BaseBusLongModel.model">
     <!-- 角色名称 -->
     <result property="name" column="C_NAME" />
-    
+
   </resultMap>
 
   <sql id="allColumnSql">
@@ -13,30 +13,30 @@
   </sql>
 
   <sql id="searchConditionSql">
-	  <if test="condition.name != null and condition.name != ''">
-        AND o.C_NAME like CONCAT('%',#{condition.name},'%')
+	  <if test="name != null and name != ''">
+        AND o.C_NAME like CONCAT('%',#{name},'%')
 	  </if>
   </sql>
 
   <select id="listRoleAll" resultMap="roleResultMap">
     SELECT <include refid="allColumnSql"/>
-    FROM role o
+    FROM user_role o
   </select>
 
   <select id="listRoleByPage" resultMap="roleResultMap">
-    SELECT DISTINCT <include refid="allColumnSql"/>
-    FROM role o
+    SELECT <include refid="allColumnSql"/>
+    FROM user_role o
     WHERE 1=1 <include refid="searchConditionSql"/>
   </select>
 
   <select id="getRoleById" resultMap="roleResultMap">
     SELECT <include refid="allColumnSql"/>
-    FROM role o
+    FROM user_role o
     WHERE o.ID = #{id}
   </select>
 
   <insert id="add" parameterType="com.zwy.role.model.Role" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
-    INSERT INTO role
+    INSERT INTO user_role
     (
     C_NAME
     )
@@ -47,13 +47,13 @@
   </insert>
 
   <update id="update" parameterType="com.zwy.role.model.Role">
-    UPDATE role SET
+    UPDATE user_role SET
     C_NAME = #{name}
     WHERE ID = #{id}
   </update>
 
   <delete id="delByIds">
-    DELETE FROM role
+    DELETE FROM user_role
     WHERE ID IN
     <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
       #{item}

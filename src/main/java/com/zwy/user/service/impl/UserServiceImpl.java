@@ -38,9 +38,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public void listUserByPage(User user) {
-		PageInfo<User> pageInfo = new PageInfo<>();
-		pageInfo.setPageNum(1);
-		pageInfo.setPageSize(10);
+		PageInfo<User> pageInfo = user.getPageInfo();
 		// 设置分页属性
 		Page<User> pageResult = PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
 		// 设置总数

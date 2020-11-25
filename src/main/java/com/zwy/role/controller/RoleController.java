@@ -6,9 +6,7 @@ import com.zwy.base.restfulapi.Results;
 import com.zwy.role.model.Role;
 import com.zwy.role.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -31,14 +29,40 @@ public class RoleController {
 	private RoleService roleService;
 
 	/**
-	 * 描 述： 分页查询角色
+	 * 描 述： 分页全部角色
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 角色查询数据
 	 */
 	@PostMapping("/listRoleAll")
-	public Result<List<Role>> listRoleByPage(){
+	public Result<List<Role>> listRoleAll(){
 		return Results.ok(roleService.listRoleAll());
+	}
+
+	/**
+	 * 描 述： 分页查询角色
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param role 角色信息
+	 * @return 角色查询数据
+	 */
+	@PostMapping("/listRoleByPage")
+	public Result<PageInfo<Role>> listRoleByPage(@RequestBody Role role){
+		roleService.listRoleByPage(role);
+		return Results.ok(role.getPageInfo());
+	}
+
+	/**
+	 * 描 述： 根据ID查询橘色
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param roleId 角色ID
+	 * @return 角色查询数据
+	 */
+	@PostMapping("/getRoleById")
+	public Result<Role> getRoleById(@RequestParam(value = "roleId") Long roleId){
+		Role role = roleService.getRoleById(roleId);
+		return Results.ok(role);
 	}
 
 	/**
@@ -49,7 +73,7 @@ public class RoleController {
 	 * @return 角色查询分页数据
 	 */
 	@PostMapping("/save")
-	public Result<Void> save(Role role){
+	public Result<Void> save(@RequestBody Role role){
 		roleService.save(role);
 		return Results.ok("保存成功");
 	}

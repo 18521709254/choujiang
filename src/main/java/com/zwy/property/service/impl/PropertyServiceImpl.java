@@ -29,6 +29,12 @@ public class PropertyServiceImpl implements PropertyService {
 	@Resource(name = "propertyDaoImpl")
 	private IPropertyDao propertyDao;
 
+	/**
+	 * 描 述： 分页查询物业
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param item 物业
+	 */
 	@Override
 	public void listPropertyByPage(Property item) {
 		PageInfo<Property> pageInfo = item.getPageInfo();
