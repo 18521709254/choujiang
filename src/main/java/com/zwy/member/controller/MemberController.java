@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 类 名: MemberController
@@ -40,6 +41,18 @@ public class MemberController {
 	public Result<PageInfo<Member>> listMemberByPage(@RequestBody Member member){
 		memberService.listMemberByPage(member);
 		return Results.ok(member.getPageInfo());
+	}
+
+	/**
+	 * 描 述： 查询全部会员
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @return 会员查询数据
+	 */
+	@PostMapping("/listMemberAll")
+	public Result<List<Member>> listMemberAll(){
+		List<Member> memberList = memberService.listMemberAll();
+		return Results.ok(memberList);
 	}
 
 	/**

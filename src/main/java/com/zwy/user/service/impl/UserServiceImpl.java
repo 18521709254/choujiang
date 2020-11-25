@@ -64,6 +64,17 @@ public class UserServiceImpl implements UserService {
 		return userDao.getUserByUser(user);
 	}
 
+	/**
+	 * 描 述： 根据ID获取用户
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param userId 用户ID
+	 * @return 用户信息
+	 */
+	@Override
+	public User getUserById(Long userId) {
+		return userDao.getUserById(userId);
+	}
 
 	/**
 	 * 描 述： 保存用户

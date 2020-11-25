@@ -1,13 +1,12 @@
 package com.zwy.bill.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.zwy.base.restfulapi.Result;
 import com.zwy.base.restfulapi.Results;
 import com.zwy.bill.model.Bill;
 import com.zwy.bill.service.BillService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -35,9 +34,23 @@ public class BillController {
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 订单查询数据
 	 */
-	@PostMapping("/listBillAll")
-	public Result<List<Bill>> listBillByPage(){
-		return Results.ok(billService.listBillAll());
+	@PostMapping("/listBillByPage")
+	public Result<PageInfo<Bill>> listBillByPage(@RequestBody Bill bill){
+		billService.listBillByPage(bill);
+		return Results.ok(bill.getPageInfo());
+	}
+
+	/**
+	 * 描 述： 根据ID查询订单信息
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param billId 订单ID
+	 * @return 订单查询数据
+	 */
+	@PostMapping("/getBillById")
+	public Result<Bill> getBillById(@RequestParam(value = "billId") Long billId){
+		Bill bill = billService.getBillById(billId);
+		return Results.ok(bill);
 	}
 
 	/**
@@ -48,7 +61,7 @@ public class BillController {
 	 * @return 订单查询分页数据
 	 */
 	@PostMapping("/save")
-	public Result<Void> save(Bill bill){
+	public Result<Void> save(@RequestBody Bill bill){
 		billService.save(bill);
 		return Results.ok("保存成功");
 	}

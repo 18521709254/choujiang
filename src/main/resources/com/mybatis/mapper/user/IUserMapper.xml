@@ -43,6 +43,12 @@
     WHERE o.C_ACCOUNT = #{account} AND o.C_PASSWORD = #{password}
   </select>
 
+  <select id="getUserById" resultMap="userResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM auth_user o
+    WHERE o.ID = #{userId}
+  </select>
+
   <insert id="add" parameterType="com.zwy.user.model.User" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
     INSERT INTO auth_user
     (

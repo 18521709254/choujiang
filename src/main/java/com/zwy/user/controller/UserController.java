@@ -47,6 +47,19 @@ public class UserController {
 	}
 
 	/**
+	 * 描 述： 根据ID获取用户
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param userId 用户ID
+	 * @return 用户信息
+	 */
+	@PostMapping("/getUserById")
+	public Result<User> getUserById(@RequestParam(value = "userId") Long userId) {
+		User user = userService.getUserById(userId);
+		return Results.ok(user);
+	}
+
+	/**
 	 * 描 述： 保存用户
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
@@ -63,12 +76,12 @@ public class UserController {
 	 * 描 述： 删除用户
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param ids 用户ID数组
+	 * @param userIds 用户ID数组
 	 * @return 用户查询分页数据
 	 */
 	@PostMapping("/delByIds")
-	public Result<Void> delByIds(Long[] ids) {
-		userService.delByIds(ids);
+	public Result<Void> delByIds(@RequestParam(value = "userIds") Long[] userIds) {
+		userService.delByIds(userIds);
 		return Results.ok("删除成功");
 	}
 

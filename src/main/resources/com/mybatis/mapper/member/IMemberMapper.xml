@@ -81,7 +81,8 @@
     C_ACCOUNT = #{account},
     C_PASSWORD = #{password},
     C_NAME = #{name},
-    C_TEL = #{tel}
+    C_TEL = #{tel},
+    C_SEX = #{sex}
     WHERE ID = #{id}
   </update>
 

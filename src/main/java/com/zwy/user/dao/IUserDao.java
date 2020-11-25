@@ -34,6 +34,14 @@ public interface IUserDao {
 	 */
 	User getUserByUser(User user);
 
+	/**
+	 * 描 述： 根据ID获取用户
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param userId 用户ID
+	 * @return 用户信息
+	 */
+	User getUserById(Long userId);
 
 	/**
 	 * 描 述： 新增用户
@@ -58,5 +66,6 @@ public interface IUserDao {
 	 * @param ids 用户ID数组
 	 */
 	void delByIds(Long[] ids);
+
 
 }

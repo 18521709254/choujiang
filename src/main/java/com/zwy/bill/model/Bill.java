@@ -1,8 +1,10 @@
 package com.zwy.bill.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zwy.base.model.BaseBusLongModel;
 import com.zwy.base.model.BaseQuery;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -18,10 +20,16 @@ import java.util.Date;
 public class Bill extends BaseQuery<Bill> {
 
 	/** 开始时间 */
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date startDate;
 	/** 结束时间 */
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date endDate;
 	/** 付费时间 */
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date payDate;
 	/** 停车会员ID */
 	private Long memberId;

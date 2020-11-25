@@ -18,9 +18,25 @@ public interface BillService {
 	 * 描 述： 分页查询订单
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param bill 订单
 	 */
 	List<Bill> listBillAll();
+
+	/**
+	 * 描 述： 分页查询订单
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param bill 订单信息
+	 */
+	void listBillByPage(Bill bill);
+
+	/**
+	 * 描 述： 根据ID查询订单信息
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param billId 订单ID
+	 * @return 订单查询数据
+	 */
+	Bill getBillById(Long billId);
 
 	/**
 	 * 描 述： 保存订单
@@ -37,4 +53,6 @@ public interface BillService {
 	 * @param ids 订单ID数组
 	 */
 	void delByIds(Long[] ids);
+
+
 }

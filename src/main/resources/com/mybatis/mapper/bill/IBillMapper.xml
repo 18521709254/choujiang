@@ -31,8 +31,8 @@
   </sql>
 
   <sql id="searchConditionSql">
-	  <if test="condition.carNo != null and condition.carNo != ''">
-        AND o.C_CAR_NO like CONCAT('%',#{condition.carNo},'%')
+	  <if test="carNo != null and carNo != ''">
+        AND o.C_CAR_NO like CONCAT('%',#{carNo},'%')
 	  </if>
   </sql>
 
@@ -41,12 +41,16 @@
     FROM bill o
   </select>
 
-
-
   <select id="getBillById" resultMap="billResultMap">
     SELECT <include refid="allColumnSql"/>
     FROM bill o
     WHERE o.ID = #{id}
+  </select>
+
+  <select id="listBillByPage" resultMap="billResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM bill o
+    WHERE 1=1 <include refid="searchConditionSql"/>
   </select>
 
   <insert id="add" parameterType="com.zwy.bill.model.Bill" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
