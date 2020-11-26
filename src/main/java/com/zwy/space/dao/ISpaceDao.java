@@ -32,6 +32,22 @@ public interface ISpaceDao {
 	 */
 	List<Space> listSpaceByPage(Space item);
 
+	/**
+	 * 描 述： 根据ID获取停车位
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param communityId 小区ID
+	 * @return 停车位查询数据
+	 */
+	List<Space> listSpaceByCommunityId(Long communityId);
+
+	/**
+	 * 描 述： 根据ID获取停车位
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param id 车位ID
+	 * @return 停车位查询数据
+	 */
 	Space getParkingSpaceById(Long id);
 
 

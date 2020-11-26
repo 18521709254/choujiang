@@ -34,17 +34,18 @@
   <sql id="searchConditionSql">
   </sql>
 
-  <select id="listParkingSpaceAll" resultMap="parkingSpaceResultMap">
-    SELECT <include refid="allColumnSql"/>
-    FROM parking_space o
-  </select>
-
   <select id="listSpaceByPage" resultMap="parkingSpaceResultMap">
     SELECT  <include refid="allColumnSql"/>
     ,c.C_NAME AS communityName
     FROM parking_space o
     LEFT JOIN community c ON o.C_COMMUNITY_ID = c.ID
     WHERE 1=1 <include refid="searchConditionSql"/>
+  </select>
+
+  <select id="listSpaceByCommunityId" resultMap="parkingSpaceResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM parking_space o
+    WHERE o.C_COMMUNITY_ID = #{communityId}
   </select>
 
   <select id="getParkingSpaceById" resultMap="parkingSpaceResultMap">

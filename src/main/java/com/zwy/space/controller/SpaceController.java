@@ -59,6 +59,19 @@ public class SpaceController {
 	 * 描 述： 根据ID获取停车位
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
+	 * @param communityId 小区ID
+	 * @return 停车位查询数据
+	 */
+	@PostMapping("/listSpaceByCommunityId")
+	public Result<List<Space>> listSpaceByCommunityId(@RequestParam(value = "communityId") Long communityId){
+		List<Space> spaceList = spaceService.listSpaceByCommunityId(communityId);
+		return Results.ok(spaceList);
+	}
+
+	/**
+	 * 描 述： 根据ID获取停车位
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
 	 * @param spaceId 车位ID
 	 * @return 停车位查询数据
 	 */

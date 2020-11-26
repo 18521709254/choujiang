@@ -43,9 +43,15 @@
   </select>
 
   <select id="listPropertyByPage" resultMap="communityResultMap">
-    SELECT DISTINCT <include refid="allColumnSql"/>
+    SELECT  <include refid="allColumnSql"/>
     FROM community o
     WHERE 1=1 <include refid="searchConditionSql"/>
+  </select>
+
+  <select id="listCommunityByPropertyId" resultMap="communityResultMap">
+    SELECT  <include refid="allColumnSql"/>
+    FROM community o
+    WHERE o.C_PROPERTY_ID = #{propertyId}
   </select>
 
   <insert id="add" parameterType="com.zwy.community.model.Community" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">

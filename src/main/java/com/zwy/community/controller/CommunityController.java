@@ -71,6 +71,21 @@ public class CommunityController {
 	}
 
 	/**
+	 * 描 述： 根据物业ID查询小区
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param propertyId 物业ID
+	 * @return 小区查询数据
+	 */
+	@PostMapping("/listCommunityByPropertyId")
+	public Result<List<Community>> listCommunityByPropertyId(@RequestParam(value = "propertyId")Long propertyId){
+		List<Community> communityList = communityService.listCommunityByPropertyId(propertyId);
+		return Results.ok(communityList);
+	}
+
+
+
+	/**
 	 * 描 述： 根据ID查询小区
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
