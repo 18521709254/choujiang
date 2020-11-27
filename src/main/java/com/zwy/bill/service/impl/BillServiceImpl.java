@@ -6,13 +6,13 @@ import com.github.pagehelper.PageInfo;
 import com.zwy.bill.dao.IBillDao;
 import com.zwy.bill.model.Bill;
 import com.zwy.bill.service.BillService;
-import com.zwy.community.model.Community;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,7 +35,6 @@ public class BillServiceImpl implements BillService {
 	 * 描 述： 分页查询订单
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param bill 订单
 	 */
 	@Override
 	public List<Bill> listBillAll() {
@@ -86,13 +85,38 @@ public class BillServiceImpl implements BillService {
 	 */
 	@Override
 	public void save(Bill bill) {
+		Date now = new Date();
 		// ID 不存在新增
 		if(bill.getId() == null){
+			bill.setStatus(0);
+			bill.setStartDate(now);
 			billDao.add(bill);
 			return;
 		}
 		// 反之修改
 		billDao.update(bill);
+	}
+
+	/**
+	 * 描 述： 结束订单
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param billIds 订单ID数组
+	 */
+	@Override
+	public void closeBillByIds(Long[] billIds) {
+		billDao.closeBillByIds(billIds);
+	}
+
+	/**
+	 * 描 述： 订单缴费
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param billIds 订单ID数组
+	 */
+	@Override
+	public void payBillByIds(Long[] billIds) {
+		billDao.payBillByIds(billIds);
 	}
 
 	/**

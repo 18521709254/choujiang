@@ -33,10 +33,23 @@ public class Bill extends BaseQuery<Bill> {
 	private Date payDate;
 	/** 停车会员ID */
 	private Long memberId;
+	/** 会员名称 */
+	private String memberName;
+	/** 物业ID */
+	private Long propertyId;
+	/** 物业名称 */
+	private String propertyName;
+	/** 小区ID */
+	private Long communityId;
+	/** 小区名称 */
+	private String communityName;
 	/** 车牌号 */
 	private String carNo;
 	/** 状态：0-未交费、1-已交费 */
 	private Integer status;
 	/** 车位ID */
 	private Integer parkingSpaceId;
+	/** 车位编号 */
+	private String spaceNo;
+
 }

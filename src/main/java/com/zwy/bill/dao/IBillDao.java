@@ -32,6 +32,16 @@ public interface IBillDao {
 	 */
 	List<Bill> listBillByPage(Bill item);
 
+
+	/**
+	 * 描 述： 根据ID查询订单信息
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param billId 订单ID
+	 * @return 订单查询数据
+	 */
+	Bill getBillById(Long billId);
+
 	/**
 	 * 描 述： 新增用户
 	 * 作 者： 宋凯翔
@@ -56,12 +66,20 @@ public interface IBillDao {
 	 */
 	void delByIds(Long[] ids);
 
+
 	/**
-	 * 描 述： 根据ID查询订单信息
+	 * 描 述： 结束订单
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param billId 订单ID
-	 * @return 订单查询数据
+	 * @param billIds 订单ID数组
 	 */
-	Bill getBillById(Long billId);
+	void closeBillByIds(Long[] billIds);
+
+	/**
+	 * 描 述： 订单缴费
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param billIds 订单ID数组
+	 */
+	void payBillByIds(Long[] billIds);
 }

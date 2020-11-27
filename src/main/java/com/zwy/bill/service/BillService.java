@@ -47,6 +47,22 @@ public interface BillService {
 	void save(Bill bill);
 
 	/**
+	 * 描 述： 结束订单
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param billIds 订单ID数组
+	 */
+	void closeBillByIds(Long[] billIds);
+
+	/**
+	 * 描 述： 订单缴费
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param billIds 订单ID数组
+	 */
+	void payBillByIds(Long[] billIds);
+
+	/**
 	 * 描 述： 根据ID删除订单
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
