@@ -39,7 +39,9 @@
 
   <select id="getUserByUser" resultMap="userResultMap">
     SELECT <include refid="allColumnSql"/>
+    ,ur.C_NAME AS roleName
     FROM auth_user o
+    LEFT JOIN user_role ur ON o.C_ROLE_ID = ur.ID
     WHERE o.C_ACCOUNT = #{account} AND o.C_PASSWORD = #{password}
   </select>
 
