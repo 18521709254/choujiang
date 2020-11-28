@@ -1,6 +1,5 @@
 package com.zwy.role.model;
 
-import com.zwy.base.model.BaseBusLongModel;
 import com.zwy.base.model.BaseQuery;
 import lombok.Data;
 

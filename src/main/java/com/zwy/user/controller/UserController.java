@@ -3,11 +3,13 @@ package com.zwy.user.controller;
 import com.github.pagehelper.PageInfo;
 import com.zwy.base.config.SystemConstant;
 import com.zwy.base.model.ApiAccessToken;
+import com.zwy.base.model.Router;
 import com.zwy.base.restfulapi.Result;
 import com.zwy.base.restfulapi.Results;
 import com.zwy.user.model.User;
 import com.zwy.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -101,10 +104,15 @@ public class UserController {
 		user = userService.getUserByUser(user);
 		// 设置令牌
 		String accessToken = UUID.randomUUID().toString().replaceAll("-", "");
-		ApiAccessToken apiAccessToken = new ApiAccessToken(accessToken,user);
 		if(user == null){
 			return Results.ok("账号或密码错误",null);
 		}
+		List<Router> routerList = SystemConstant.adminRouter;
+		if(StringUtils.equals("管理员",user.getRoleName())){
+			routerList = SystemConstant.otherRouter;
+		}
+		user.setRouterList(routerList);
+		ApiAccessToken apiAccessToken = new ApiAccessToken(accessToken,user);
 		request.setAttribute("token",apiAccessToken);
 		// 将数据存入缓存
 		SystemConstant.TOKEN_MAP.put(accessToken,apiAccessToken);
@@ -136,6 +144,11 @@ public class UserController {
 		// 获取当前登录人信息
 		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
 		User user = apiAccessToken.getUser();
+		List<Router> routerList = SystemConstant.adminRouter;
+		if(!StringUtils.equals("管理员",user.getRoleName())){
+			routerList = SystemConstant.otherRouter;
+		}
+		user.setRouterList(routerList);
 		return Results.ok(user);
 	}
 }
