@@ -45,11 +45,6 @@
     SELECT <include refid="allColumnSql"/>
     FROM community o
     WHERE o.ID = #{id}
-    <where>
-      <if test="user.roleName != '平台管理员'">
-        o.C_PROPERTY_ID = ${user.propertyId}
-      </if>
-    </where>
   </select>
 
   <select id="listPropertyByPage" resultMap="communityResultMap">
