@@ -41,7 +41,7 @@ public class SystemConstant {
 		adminRouter.add(new Router("车位管理","/property/spaceList"));
 		// 其他路由集合
 		otherRouter.add(new Router("首页","/dashboard"));
-		otherRouter.add(new Router("物业管理","/property"));
+		adminRouter.add(new Router("物业管理","/property/propertyList"));
 		otherRouter.add(new Router("小区管理","/property/communityList"));
 	}
 
