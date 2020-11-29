@@ -48,7 +48,7 @@ public class Bill extends BaseQuery<Bill> {
 	/** 状态：0-未交费、1-已交费 */
 	private Integer status;
 	/** 车位ID */
-	private Integer parkingSpaceId;
+	private Long parkingSpaceId;
 	/** 车位编号 */
 	private String spaceNo;
 

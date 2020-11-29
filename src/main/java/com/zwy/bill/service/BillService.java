@@ -44,7 +44,7 @@ public interface BillService {
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param bill 订单
 	 */
-	void save(Bill bill);
+	String save(Bill bill);
 
 	/**
 	 * 描 述： 结束订单

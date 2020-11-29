@@ -25,6 +25,23 @@ public interface IPlacardDao {
 	List<Placard> listPlacardAll();
 
 	/**
+	 * 描 述： 公告分页查询
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param item 公告
+	 */
+	List<Placard> listPlacardByPage(Placard item);
+
+	/**
+	 * 描 述： 公告分页查询
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param placardId 公告ID
+	 * @return 物业查询数据
+	 */
+	Placard getPlacardById(Long placardId);
+
+	/**
 	 * 描 述： 新增公告
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
@@ -47,4 +64,6 @@ public interface IPlacardDao {
 	 * @param ids 公告ID数组
 	 */
 	void delByIds(Long[] ids);
+
+
 }

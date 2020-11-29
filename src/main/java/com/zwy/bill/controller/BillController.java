@@ -65,7 +65,7 @@ public class BillController {
 	 */
 	@PostMapping("/save")
 	public Result<Void> save(@RequestBody Bill bill){
-		billService.save(bill);
+		String msg = billService.save(bill);
 		return Results.ok("保存成功");
 	}
 
