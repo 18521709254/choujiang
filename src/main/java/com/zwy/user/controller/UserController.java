@@ -6,6 +6,8 @@ import com.zwy.base.model.ApiAccessToken;
 import com.zwy.base.model.Router;
 import com.zwy.base.restfulapi.Result;
 import com.zwy.base.restfulapi.Results;
+import com.zwy.placard.dao.IPlacardDao;
+import com.zwy.placard.model.Placard;
 import com.zwy.user.model.User;
 import com.zwy.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +39,8 @@ public class UserController {
 
 	@Resource(name = "userServiceImpl")
 	private UserService userService;
+	@Resource(name = "placardDaoImpl")
+	private IPlacardDao placardDao;
 
 
 	/**
@@ -90,8 +94,6 @@ public class UserController {
 		userService.delByIds(userIds);
 		return Results.ok("删除成功");
 	}
-
-
 
 	/**
 	 * 描 述： 用户登录
@@ -148,7 +150,10 @@ public class UserController {
 		if(!StringUtils.equals("管理员",user.getRoleName())){
 			routerList = SystemConstant.otherRouter;
 		}
+		// 公告集合
+		List<Placard> placardList = placardDao.listPlacardAll();
 		user.setRouterList(routerList);
+		user.setPlacardList(placardList);
 		return Results.ok(user);
 	}
 }
