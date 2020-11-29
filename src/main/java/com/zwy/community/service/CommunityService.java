@@ -1,5 +1,6 @@
 package com.zwy.community.service;
 import com.zwy.community.model.Community;
+import com.zwy.user.model.User;
 
 import java.util.List;
 
@@ -19,25 +20,28 @@ public interface CommunityService {
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 小区集合
+	 * @param user 当前用户
 	 */
-	List<Community> listCommunityAll();
+	List<Community> listCommunityAll(User user);
 
 	/**
 	 * 描 述： 分页查询小区
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param community 小区
+	 * @param user 当前用户
 	 */
-	void listCommunityByPage(Community community);
+	void listCommunityByPage(Community community, User user);
 
 	/**
 	 * 描 述： 根据物业ID查询小区
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param propertyId 物业ID
+	 * @param user 当前用户
 	 * @return 小区查询数据
 	 */
-	List<Community> listCommunityByPropertyId(Long propertyId);
+	List<Community> listCommunityByPropertyId(Long propertyId, User user);
 
 	/**
 	 * 描 述： 根据ID查询小区

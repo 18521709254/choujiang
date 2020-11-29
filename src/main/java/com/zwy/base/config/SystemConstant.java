@@ -26,12 +26,12 @@ public final class SystemConstant {
 	public static final String CURRENT_API_ACCESS_TOKEN = "CURRENT_API_ACCESS_TOKEN";
 	/** 当前登录用户令牌 */
 	public static Map<String, ApiAccessToken> TOKEN_MAP = new HashMap<>();
-	/** 管理员菜单 */
+	/** 平台管理员菜单 */
 	public static final List<Router> adminRouter = new ArrayList<>();
-	/** 管理员菜单 */
+	/** 平台管理员菜单 */
 	public static final List<Router> otherRouter = new ArrayList<>();
 	static {
-		// 管理员路由集合
+		// 平台管理员路由集合
 		adminRouter.add(new Router("首页","/dashboard"));
 		adminRouter.add(new Router("物业管理","/property/propertyList"));
 		adminRouter.add(new Router("小区管理","/property/communityList"));

@@ -110,7 +110,7 @@ public class UserController {
 			return Results.ok("账号或密码错误",null);
 		}
 		List<Router> routerList = SystemConstant.adminRouter;
-		if(StringUtils.equals("管理员",user.getRoleName())){
+		if(StringUtils.equals("平台管理员",user.getRoleName())){
 			routerList = SystemConstant.otherRouter;
 		}
 		user.setRouterList(routerList);
@@ -147,7 +147,7 @@ public class UserController {
 		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
 		User user = apiAccessToken.getUser();
 		List<Router> routerList = SystemConstant.adminRouter;
-		if(!StringUtils.equals("管理员",user.getRoleName())){
+		if(!StringUtils.equals("平台管理员",user.getRoleName())){
 			routerList = SystemConstant.otherRouter;
 		}
 		// 公告集合

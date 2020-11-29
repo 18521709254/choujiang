@@ -6,7 +6,7 @@ import com.github.pagehelper.PageInfo;
 import com.zwy.community.dao.ICommunityDao;
 import com.zwy.community.model.Community;
 import com.zwy.community.service.CommunityService;
-import com.zwy.property.model.Property;
+import com.zwy.user.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,10 +36,11 @@ public class CommunityServiceImpl implements CommunityService {
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 小区集合
+	 * @param user 当前用户
 	 */
 	@Override
-	public List<Community> listCommunityAll() {
-		return communityDao.listCommunityAll();
+	public List<Community> listCommunityAll(User user) {
+		return communityDao.listCommunityAll(user);
 	}
 
 
@@ -48,14 +49,15 @@ public class CommunityServiceImpl implements CommunityService {
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param item 小区
+	 * @param user 当前用户
 	 */
 	@Override
-	public void listCommunityByPage(Community item) {
+	public void listCommunityByPage(Community item, User user) {
 		PageInfo<Community> pageInfo = item.getPageInfo();
 		// 设置分页属性
 		Page<Community> pageResult = PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
 		// 存放数据
-		List<Community> resultList = communityDao.listPropertyByPage(item);
+		List<Community> resultList = communityDao.listPropertyByPage(item,user);
 		// 如果为空存放空数据
 		if(resultList == null){
 			resultList = Collections.emptyList();
@@ -72,11 +74,12 @@ public class CommunityServiceImpl implements CommunityService {
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param propertyId 物业ID
+	 * @param user 当前用户
 	 * @return 小区查询数据
 	 */
 	@Override
-	public List<Community> listCommunityByPropertyId(Long propertyId) {
-		return communityDao.listCommunityByPropertyId(propertyId);
+	public List<Community> listCommunityByPropertyId(Long propertyId, User user) {
+		return communityDao.listCommunityByPropertyId(propertyId,user);
 	}
 
 	/**

@@ -1,6 +1,8 @@
 package com.zwy.community.dao;
 
 import com.zwy.community.model.Community;
+import com.zwy.user.model.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,25 +23,28 @@ public interface ICommunityDao {
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 小区列表
+	 * @param user 当前用户
 	 */
-	List<Community> listCommunityAll();
+	List<Community> listCommunityAll(@Param("user") User user);
 
 	/**
 	 * 描 述： 分页查询小区
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param item 小区
+	 * @param user 当前用户
 	 */
-	List<Community> listPropertyByPage(Community item);
+	List<Community> listPropertyByPage(@Param("item") Community item,@Param("user") User user);
 
 	/**
 	 * 描 述： 根据物业ID查询小区
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param propertyId 物业ID
+	 * @param user 当前用户
 	 * @return 小区查询数据
 	 */
-	List<Community> listCommunityByPropertyId(Long propertyId);
+	List<Community> listCommunityByPropertyId(@Param("propertyId") Long propertyId,@Param("user") User user);
 
 	/**
 	 * 描 述： 根据ID查询小区

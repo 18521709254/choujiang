@@ -66,7 +66,7 @@
     SELECT <include refid="allColumnSql"/>
     <include refid="tableAndLeftJoin"/>
     <where>
-      <if test="user.roleName != '管理员'">
+      <if test="user.roleName != '平台管理员'">
         o.C_ROLE_ID = ${user.roleId}
       </if>
     </where>
@@ -82,7 +82,7 @@
     SELECT <include refid="allColumnSql"/>
     <include refid="tableAndLeftJoin"/>
     WHERE 1=1 <include refid="searchConditionSql"/>
-    <if test="user.roleName != '管理员'">
+    <if test="user.roleName != '平台管理员'">
       AND o.C_PROPERTY_ID = ${user.propertyId}
     </if>
   </select>

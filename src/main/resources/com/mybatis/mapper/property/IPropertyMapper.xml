@@ -25,7 +25,7 @@
     SELECT <include refid="allColumnSql"/>
     FROM property o
     <where>
-      <if test="user.roleName != '管理员'">
+      <if test="user.roleName != '平台管理员'">
         o.ID = ${user.propertyId}
       </if>
     </where>

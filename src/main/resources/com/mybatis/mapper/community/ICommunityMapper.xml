@@ -25,14 +25,19 @@
   </sql>
 
   <sql id="searchConditionSql">
-	  <if test="name != null and name != ''">
-        AND o.C_NAME like CONCAT('%',#{condition.name},'%')
+	  <if test="item.name != null and item.name != ''">
+        AND o.C_NAME like CONCAT('%',#{item.name},'%')
 	  </if>
   </sql>
 
   <select id="listCommunityAll" resultMap="communityResultMap">
     SELECT <include refid="allColumnSql"/>
     FROM community o
+    <where>
+      <if test="user.roleName != '平台管理员'">
+        o.C_PROPERTY_ID = ${user.propertyId}
+      </if>
+    </where>
   </select>
 
 
@@ -40,12 +45,22 @@
     SELECT <include refid="allColumnSql"/>
     FROM community o
     WHERE o.ID = #{id}
+    <where>
+      <if test="user.roleName != '平台管理员'">
+        o.C_PROPERTY_ID = ${user.propertyId}
+      </if>
+    </where>
   </select>
 
   <select id="listPropertyByPage" resultMap="communityResultMap">
     SELECT  <include refid="allColumnSql"/>
     FROM community o
-    WHERE 1=1 <include refid="searchConditionSql"/>
+    <where>
+      <include refid="searchConditionSql"/>
+      <if test="user.roleName != '平台管理员'">
+        o.C_PROPERTY_ID = ${user.propertyId}
+      </if>
+    </where>
   </select>
 
   <select id="listCommunityByPropertyId" resultMap="communityResultMap">
