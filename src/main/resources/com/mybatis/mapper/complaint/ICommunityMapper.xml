@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zwy.complaint.dao.IComplaintDao">
+  <resultMap type="com.zwy.complaint.model.Complaint" id="complaintResultMap" extends="BaseBusLongModel.model">
+    <!-- 小区名称 -->
+    <result property="memberId" column="C_NAME" />
+    <!-- 小区名称 -->
+    <result property="memberName" column="memberName" />
+    <!-- 小区地址 -->
+    <result property="propertyId" column="C_PROPERTY_ID" />
+    <!-- 小区地址 -->
+    <result property="propertyName" column="propertyName" />
+    <!-- 车位平面图路径 -->
+    <result property="content" column="C_CONTENT" />
+    <!-- 状态：0-审核中、1-审核通过、2-审核不通过 -->
+    <result property="status" column="C_STATUS" />
+    <!-- 所属物业ID -->
+    <result property="replayContent" column="C_REPLY_CONTENT" />
+    
+  </resultMap>
+
+  <sql id="allColumnSql">
+    o.ID,
+    o.C_MEMBER_ID,
+    o.C_COMMUNITY_ID,
+    o.C_PROPERTY_ID,
+    o.C_CONTENT,
+    o.C_STATUS,
+    o.C_REPLY_CONTENT
+  </sql>
+
+  <sql id="searchConditionSql">
+	  <if test="item.name != null and item.name != ''">
+        AND o.C_NAME like CONCAT('%',#{item.name},'%')
+	  </if>
+  </sql>
+
+  <select id="listComplaintAll" resultMap="complaintResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM complaint o
+    <where>
+      <if test="user.roleName != '平台管理员'">
+        o.C_PROPERTY_ID = ${user.propertyId}
+      </if>
+    </where>
+  </select>
+
+
+  <select id="getComplaintById" resultMap="complaintResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM complaint o
+    WHERE o.ID = #{id}
+  </select>
+
+  <select id="listPropertyByPage" resultMap="complaintResultMap">
+    SELECT  <include refid="allColumnSql"/>
+    FROM complaint o
+    <where>
+      <include refid="searchConditionSql"/>
+      <if test="user.roleName != '平台管理员'">
+        o.C_PROPERTY_ID = ${user.propertyId}
+      </if>
+    </where>
+  </select>
+
+
+  <insert id="add" parameterType="com.zwy.complaint.model.Complaint" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+    INSERT INTO complaint
+    (
+    C_MEMBER_ID,
+    C_COMMUNITY_ID,
+    C_PROPERTY_ID,
+    C_CONTENT,
+    C_STATUS,
+    C_REPLY_CONTENT
+    )
+    VALUES
+    (
+     #{memberId},
+     #{communityId},
+     #{propertyId},
+     #{content},
+     #{status},
+     #{replyContent}
+    )
+  </insert>
+
+  <update id="update" parameterType="com.zwy.complaint.model.Complaint">
+    UPDATE complaint SET
+    C_MEMBER_ID = #{memberId},
+    C_COMMUNITY_ID = #{communityId},
+    C_PROPERTY_ID = #{propertyId},
+    C_CONTENT = #{content},
+    C_STATUS = #{status},
+    C_REPLY_CONTENT = #{replyContent}
+    WHERE ID = #{id}
+  </update>
+
+  <delete id="delByIds">
+    DELETE FROM complaint
+    WHERE ID IN
+    <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+</mapper>
