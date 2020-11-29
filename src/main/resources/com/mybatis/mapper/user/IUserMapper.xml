@@ -51,6 +51,12 @@
     WHERE o.ID = #{userId}
   </select>
 
+  <select id="getUserByAccout" resultMap="userResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM auth_user o
+    WHERE o.C_ACCOUNT = #{account}
+  </select>
+
   <insert id="add" parameterType="com.zwy.user.model.User" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
     INSERT INTO auth_user
     (

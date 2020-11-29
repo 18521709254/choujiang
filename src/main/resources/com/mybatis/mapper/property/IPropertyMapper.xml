@@ -38,6 +38,12 @@
     WHERE o.ID = #{id}
   </select>
 
+  <select id="getPropertyByName" resultMap="propertyResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM property o
+    WHERE o.C_NAME = #{name}
+  </select>
+
   <insert id="add" parameterType="com.zwy.property.model.Property" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
     INSERT INTO property
     (

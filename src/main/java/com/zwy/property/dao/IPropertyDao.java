@@ -43,6 +43,16 @@ public interface IPropertyDao {
 	Property getPropertyById(Long id);
 
 	/**
+	 * 描 述： 根据物业名称查询物业
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param name 物业名称
+	 * @return 物业数据
+	 */
+	Property getPropertyByName(String name);
+
+
+	/**
 	 * 描 述： 新增物业
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释

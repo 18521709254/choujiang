@@ -51,7 +51,7 @@ public interface UserService {
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param user 用户
 	 */
-	void register(User user);
+	String register(User user);
 
 	/**
 	 * 描 述： 根据ID删除用户

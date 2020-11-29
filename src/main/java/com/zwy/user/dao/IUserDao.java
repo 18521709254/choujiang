@@ -44,6 +44,16 @@ public interface IUserDao {
 	User getUserById(Long userId);
 
 	/**
+	 * 描 述： 根据账号查询用户
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param account 账号
+	 * @return 用户信息
+	 */
+	User getUserByAccout(String account);
+
+
+	/**
 	 * 描 述： 新增用户
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
