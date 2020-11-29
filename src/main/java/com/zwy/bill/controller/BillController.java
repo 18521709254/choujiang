@@ -1,15 +1,21 @@
 package com.zwy.bill.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.zwy.base.config.SystemConstant;
+import com.zwy.base.model.ApiAccessToken;
 import com.zwy.base.restfulapi.Result;
 import com.zwy.base.restfulapi.Results;
 import com.zwy.bill.model.Bill;
 import com.zwy.bill.service.BillService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 类 名: BillController
@@ -35,8 +41,10 @@ public class BillController {
 	 * @return 订单查询数据
 	 */
 	@PostMapping("/listBillByPage")
-	public Result<PageInfo<Bill>> listBillByPage(@RequestBody Bill bill){
-		billService.listBillByPage(bill);
+	public Result<PageInfo<Bill>> listBillByPage(@RequestBody Bill bill, HttpServletRequest request){
+		// 获取当前登录人信息
+		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
+		billService.listBillByPage(bill,apiAccessToken.getUser());
 		return Results.ok(bill.getPageInfo());
 	}
 
@@ -62,21 +70,47 @@ public class BillController {
 	 */
 	@PostMapping("/save")
 	public Result<Void> save(@RequestBody Bill bill){
-		billService.save(bill);
-		return Results.ok("保存成功");
+		String msg = billService.save(bill);
+		return Results.ok(msg);
 	}
 
 	/**
 	 * 描 述： 删除订单
 	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param ids 订单ID数组
+	 * @param billIds 订单ID数组
 	 * @return 订单查询分页数据
 	 */
 	@PostMapping("/delByIds")
-	public Result<Void> delByIds(Long[] ids){
-		billService.delByIds(ids);
+	public Result<Void> delByIds(@RequestParam(value = "billIds") Long[] billIds){
+		billService.delByIds(billIds);
 		return Results.ok("删除成功");
+	}
+
+	/**
+	 * 描 述： 结束订单
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param billIds 订单ID数组
+	 * @return 订单查询分页数据
+	 */
+	@PostMapping("/closeBillByIds")
+	public Result<Void> closeBillByIds(@RequestParam(value = "billIds") Long[] billIds){
+		billService.closeBillByIds(billIds);
+		return Results.ok("结束订单成功");
+	}
+
+	/**
+	 * 描 述： 订单缴费
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param billIds 订单ID数组
+	 * @return 订单查询分页数据
+	 */
+	@PostMapping("/payBillByIds")
+	public Result<Void> payBillByIds(@RequestParam(value = "billIds") Long[] billIds){
+		billService.payBillByIds(billIds);
+		return Results.ok("订单缴费成功");
 	}
 
 }

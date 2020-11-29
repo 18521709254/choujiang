@@ -1,5 +1,6 @@
 package com.zwy.bill.service;
 import com.zwy.bill.model.Bill;
+import com.zwy.user.model.User;
 
 import java.util.List;
 
@@ -26,8 +27,9 @@ public interface BillService {
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param bill 订单信息
+	 * @param user 登陆用户
 	 */
-	void listBillByPage(Bill bill);
+	void listBillByPage(Bill bill, User user);
 
 	/**
 	 * 描 述： 根据ID查询订单信息
@@ -44,7 +46,23 @@ public interface BillService {
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param bill 订单
 	 */
-	void save(Bill bill);
+	String save(Bill bill);
+
+	/**
+	 * 描 述： 结束订单
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param billIds 订单ID数组
+	 */
+	void closeBillByIds(Long[] billIds);
+
+	/**
+	 * 描 述： 订单缴费
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param billIds 订单ID数组
+	 */
+	void payBillByIds(Long[] billIds);
 
 	/**
 	 * 描 述： 根据ID删除订单

@@ -84,7 +84,7 @@
     C_TYPE = #{type},
     C_CHECK_STATUS = #{checkStatus},
     C_PRICE = #{price},
-    C_PERCENT = #{percet},
+    C_PERCENT = #{percent},
     C_NO = #{no}
     WHERE ID = #{id}
   </update>

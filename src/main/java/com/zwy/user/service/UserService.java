@@ -46,12 +46,19 @@ public interface UserService {
 	void save(User user);
 
 	/**
+	 * 描 述： 用户注册
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param user 用户
+	 */
+	String register(User user);
+
+	/**
 	 * 描 述： 根据ID删除用户
 	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param ids 用户ID数组
 	 */
 	void delByIds(Long[] ids);
-
 
 }

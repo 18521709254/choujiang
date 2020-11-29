@@ -1,6 +1,8 @@
 package com.zwy.property.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.zwy.base.config.SystemConstant;
+import com.zwy.base.model.ApiAccessToken;
 import com.zwy.base.restfulapi.Result;
 import com.zwy.base.restfulapi.Results;
 import com.zwy.property.model.Property;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -40,8 +43,10 @@ public class PropertyController {
 	 * @return 物业查询数据
 	 */
 	@PostMapping("/listPropertyAll")
-	public Result<List<Property>> listPropertyAll(){
-		return Results.ok(propertyService.listPropertyAll());
+	public Result<List<Property>> listPropertyAll(HttpServletRequest request){
+		// 获取当前登录人信息
+		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
+		return Results.ok(propertyService.listPropertyAll(apiAccessToken.getUser()));
 	}
 
 	/**

@@ -16,11 +16,11 @@
   </sql>
 
   <sql id="searchConditionSql">
-	  <if test="condition.title != null and condition.title != ''">
-        AND o.C_TITLE like CONCAT('%',#{condition.title},'%')
+	  <if test="title != null and title != ''">
+        AND o.C_TITLE like CONCAT('%',#{title},'%')
 	  </if>
-	  <if test="condition.content != null and condition.content != ''">
-        AND o.C_CONTENT like CONCAT('%',#{condition.content},'%')
+	  <if test="content != null and content != ''">
+        AND o.C_CONTENT like CONCAT('%',#{content},'%')
 	  </if>
   </sql>
 
@@ -30,7 +30,7 @@
   </select>
 
   <select id="listPlacardByPage" resultMap="placardResultMap">
-    SELECT DISTINCT <include refid="allColumnSql"/>
+    SELECT <include refid="allColumnSql"/>
     FROM placard o
     WHERE 1=1 <include refid="searchConditionSql"/>
   </select>

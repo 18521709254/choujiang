@@ -1,6 +1,8 @@
 package com.zwy.community.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.zwy.base.config.SystemConstant;
+import com.zwy.base.model.ApiAccessToken;
 import com.zwy.base.model.FileUploadDataDTO;
 import com.zwy.base.restfulapi.Result;
 import com.zwy.base.restfulapi.Results;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.List;
 
@@ -53,8 +56,10 @@ public class CommunityController {
 	 * @return 小区查询数据
 	 */
 	@PostMapping("/listCommunityByPage")
-	public Result<PageInfo<Community>> listCommunityByPage(@RequestBody Community community){
-		communityService.listCommunityByPage(community);
+	public Result<PageInfo<Community>> listCommunityByPage(@RequestBody Community community, HttpServletRequest request){
+		// 获取当前登录人信息
+		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
+		communityService.listCommunityByPage(community,apiAccessToken.getUser());
 		return Results.ok(community.getPageInfo());
 	}
 
@@ -65,8 +70,10 @@ public class CommunityController {
 	 * @return 小区查询数据
 	 */
 	@PostMapping("/listCommunityAll")
-	public Result<List<Community>> listCommunityAll(){
-		List<Community> communityList = communityService.listCommunityAll();
+	public Result<List<Community>> listCommunityAll(HttpServletRequest request){
+		// 获取当前登录人信息
+		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
+		List<Community> communityList = communityService.listCommunityAll(apiAccessToken.getUser());
 		return Results.ok(communityList);
 	}
 
@@ -78,8 +85,10 @@ public class CommunityController {
 	 * @return 小区查询数据
 	 */
 	@PostMapping("/listCommunityByPropertyId")
-	public Result<List<Community>> listCommunityByPropertyId(@RequestParam(value = "propertyId")Long propertyId){
-		List<Community> communityList = communityService.listCommunityByPropertyId(propertyId);
+	public Result<List<Community>> listCommunityByPropertyId(@RequestParam(value = "propertyId")Long propertyId,HttpServletRequest request){
+		// 获取当前登录人信息
+		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
+		List<Community> communityList = communityService.listCommunityByPropertyId(propertyId,apiAccessToken.getUser());
 		return Results.ok(communityList);
 	}
 

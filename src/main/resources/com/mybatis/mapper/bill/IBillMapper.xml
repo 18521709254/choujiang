@@ -14,9 +14,21 @@
     <result property="carNo" column="C_CAR_NO" />
     <!-- 状态：0-未交费、1-已交费 -->
     <result property="status" column="C_STATUS" />
+    <!-- 物业ID -->
+    <result property="propertyId" column="C_PROPERTY_ID" />
+    <!-- 小区ID -->
+    <result property="communityId" column="C_COMMUNITY_ID" />
     <!-- 车位ID -->
     <result property="parkingSpaceId" column="C_PARKING_SPACE_ID" />
-    
+    <!-- 物业名称 -->
+    <result property="propertyName" column="propertyName" />
+    <!-- 小区名称 -->
+    <result property="communityName" column="communityName" />
+    <!-- 会员名称 -->
+    <result property="memberName" column="memberName" />
+    <!-- 车位编号 -->
+    <result property="spaceNo" column="spaceNo" />
+
   </resultMap>
 
   <sql id="allColumnSql">
@@ -27,30 +39,52 @@
     o.C_MEMBER_ID,
     o.C_CAR_NO,
     o.C_STATUS,
-    o.C_PARKING_SPACE_ID
+    o.C_PROPERTY_ID,
+    o.C_COMMUNITY_ID,
+    o.C_PARKING_SPACE_ID,
+    p.C_NAME AS propertyName,
+    c.C_NAME AS communityName,
+    m.C_NAME AS memberName,
+    ps.C_NO AS spaceNo
   </sql>
 
   <sql id="searchConditionSql">
-	  <if test="carNo != null and carNo != ''">
-        AND o.C_CAR_NO like CONCAT('%',#{carNo},'%')
+	  <if test="item.carNo != null and item.carNo != ''">
+        AND o.C_CAR_NO like CONCAT('%',#{item.carNo},'%')
 	  </if>
+  </sql>
+
+  <sql id="tableAndLeftJoin">
+    FROM bill o
+    LEFT JOIN member m ON m.ID = o.C_MEMBER_ID
+    LEFT JOIN property p ON p.ID = o.C_PROPERTY_ID
+    LEFT JOIN community c ON c.ID = o.C_COMMUNITY_ID
+    LEFT JOIN parking_space ps ON ps.ID = o.C_PARKING_SPACE_ID
   </sql>
 
   <select id="listBillAll" resultMap="billResultMap">
     SELECT <include refid="allColumnSql"/>
-    FROM bill o
+    <include refid="tableAndLeftJoin"/>
+    <where>
+      <if test="user.roleName != '平台管理员'">
+        o.C_ROLE_ID = ${user.roleId}
+      </if>
+    </where>
   </select>
 
   <select id="getBillById" resultMap="billResultMap">
     SELECT <include refid="allColumnSql"/>
-    FROM bill o
+    <include refid="tableAndLeftJoin"/>
     WHERE o.ID = #{id}
   </select>
 
   <select id="listBillByPage" resultMap="billResultMap">
     SELECT <include refid="allColumnSql"/>
-    FROM bill o
+    <include refid="tableAndLeftJoin"/>
     WHERE 1=1 <include refid="searchConditionSql"/>
+    <if test="user.roleName != '平台管理员'">
+      AND o.C_PROPERTY_ID = ${user.propertyId}
+    </if>
   </select>
 
   <insert id="add" parameterType="com.zwy.bill.model.Bill" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
@@ -62,6 +96,8 @@
     C_MEMBER_ID,
     C_CAR_NO,
     C_STATUS,
+    C_PROPERTY_ID,
+    C_COMMUNITY_ID,
     C_PARKING_SPACE_ID
     )
     VALUES
@@ -72,6 +108,8 @@
      #{memberId},
      #{carNo},
      #{status},
+     #{propertyId},
+     #{communityId},
      #{parkingSpaceId}
     )
   </insert>
@@ -84,8 +122,28 @@
     C_MEMBER_ID = #{memberId},
     C_CAR_NO = #{carNo},
     C_STATUS = #{status},
+    C_PROPERTY_ID = #{propertyId},
+    C_COMMUNITY_ID = #{communityId},
     C_PARKING_SPACE_ID = #{parkingSpaceId}
     WHERE ID = #{id}
+  </update>
+
+  <update id="closeBillByIds">
+    UPDATE bill set C_END_DATE = sysdate()
+    WHERE ID IN
+    <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+
+  <update id="payBillByIds">
+    UPDATE bill set
+    C_PAY_DATE = sysdate(),
+    C_STATUS = 1
+    WHERE ID IN
+    <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
   </update>
 
   <delete id="delByIds">

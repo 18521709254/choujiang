@@ -24,6 +24,11 @@
   <select id="listPropertyAll" resultMap="propertyResultMap">
     SELECT <include refid="allColumnSql"/>
     FROM property o
+    <where>
+      <if test="user.roleName != '平台管理员'">
+        o.ID = ${user.propertyId}
+      </if>
+    </where>
   </select>
 
   <select id="listPropertyByPage" resultMap="propertyResultMap">
@@ -36,6 +41,12 @@
     SELECT <include refid="allColumnSql"/>
     FROM property o
     WHERE o.ID = #{id}
+  </select>
+
+  <select id="getPropertyByName" resultMap="propertyResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM property o
+    WHERE o.C_NAME = #{name}
   </select>
 
   <insert id="add" parameterType="com.zwy.property.model.Property" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">

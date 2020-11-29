@@ -14,6 +14,8 @@
     <result property="roleId" column="C_ROLE_ID" />
     <!-- 角色名称 -->
     <result property="roleName" column="roleName" />
+    <!-- 物业ID -->
+    <result property="propertyId" column="C_PROPERTY_ID" />
   </resultMap>
 
   <sql id="allColumnSql">
@@ -22,7 +24,8 @@
     o.C_PASSWORD,
     o.C_NAME,
     o.C_TEL,
-    o.C_ROLE_ID
+    o.C_ROLE_ID,
+    o.C_PROPERTY_ID
   </sql>
 
   <sql id="searchConditionSql">
@@ -39,7 +42,9 @@
 
   <select id="getUserByUser" resultMap="userResultMap">
     SELECT <include refid="allColumnSql"/>
+    ,ur.C_NAME AS roleName
     FROM auth_user o
+    LEFT JOIN user_role ur ON o.C_ROLE_ID = ur.ID
     WHERE o.C_ACCOUNT = #{account} AND o.C_PASSWORD = #{password}
   </select>
 
@@ -49,6 +54,12 @@
     WHERE o.ID = #{userId}
   </select>
 
+  <select id="getUserByAccout" resultMap="userResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM auth_user o
+    WHERE o.C_ACCOUNT = #{account}
+  </select>
+
   <insert id="add" parameterType="com.zwy.user.model.User" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
     INSERT INTO auth_user
     (
@@ -56,7 +67,8 @@
     C_PASSWORD,
     C_NAME,
     C_TEL,
-    C_ROLE_ID
+    C_ROLE_ID,
+    C_PROPERTY_ID
     )
     VALUES
     (
@@ -64,10 +76,10 @@
      #{password},
      #{name},
      #{tel},
-     #{roleId}
+     #{roleId},
+     #{propertyId}
     )
   </insert>
-
 
   <update id="update" parameterType="com.zwy.user.model.User">
     UPDATE auth_user SET
@@ -75,7 +87,8 @@
     C_PASSWORD = #{password},
     C_NAME = #{name},
     C_TEL = #{tel},
-    C_ROLE_ID = #{roleId}
+    C_ROLE_ID = #{roleId},
+    C_PROPERTY_ID = #{propertyId}
     WHERE ID = #{id}
   </update>
 

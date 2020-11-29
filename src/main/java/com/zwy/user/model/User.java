@@ -2,7 +2,11 @@ package com.zwy.user.model;
 
 import com.zwy.base.model.BaseBusLongModel;
 import com.zwy.base.model.BaseQuery;
+import com.zwy.base.model.Router;
+import com.zwy.placard.model.Placard;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * 类 名: User
@@ -26,4 +30,12 @@ public class User extends BaseQuery<User> {
 	private Long roleId;
 	/** 角色名称 */
 	private String roleName;
+	/** 物业ID */
+	private Long propertyId;
+	/** 物业名称 */
+	private String propertyName;
+	/** 路由集合 */
+	private List<Router> routerList;
+	/** 公告集合 */
+	private List<Placard> placardList;
 }

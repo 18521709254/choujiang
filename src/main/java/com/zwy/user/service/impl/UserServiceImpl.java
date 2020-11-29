@@ -3,6 +3,8 @@ package com.zwy.user.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.zwy.property.dao.IPropertyDao;
+import com.zwy.property.model.Property;
 import com.zwy.user.dao.IUserDao;
 import com.zwy.user.model.User;
 import com.zwy.user.service.UserService;
@@ -29,6 +31,8 @@ public class UserServiceImpl implements UserService {
 
 	@Resource(name = "userDaoImpl")
 	private IUserDao userDao;
+	@Resource(name = "propertyDaoImpl")
+	private IPropertyDao propertyDao;
 
 	/**
 	 * 描 述： 分页查询用户
@@ -91,6 +95,37 @@ public class UserServiceImpl implements UserService {
 		}
 		// 反之修改
 		userDao.update(user);
+	}
+
+	/**
+	 * 描 述： 用户注册
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param user 用户
+	 * @return 注册结果
+	 */
+	@Override
+	public String register(User user) {
+		// 物业名称
+		String propertyName = user.getPropertyName();
+		// 查询物业
+		Property property = propertyDao.getPropertyByName(propertyName);
+		if(property != null){
+			return "物业已存在";
+		}
+		property = new Property();
+		property.setName(user.getPropertyName());
+		property.setStatus(0);
+		propertyDao.add(property);
+		user.setPropertyId(property.getId());
+		// 查看账号是否存在
+		User exitUser = userDao.getUserByAccout(user.getAccount());
+		if(exitUser != null){
+			return "注册账号已经存在";
+		}
+		user.setRoleId(2L);
+		userDao.add(user);
+		return "注册成功";
 	}
 
 	/**
