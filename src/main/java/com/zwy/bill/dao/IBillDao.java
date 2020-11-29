@@ -2,6 +2,7 @@ package com.zwy.bill.dao;
 
 import com.zwy.bill.model.Bill;
 import com.zwy.user.model.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -32,8 +33,7 @@ public interface IBillDao {
 	 * @param item 订单信息
 	 * @param user 登陆用户
 	 */
-	List<Bill> listBillByPage(Bill item, User user);
-
+	List<Bill> listBillByPage(@Param("item") Bill item, @Param("user")User user);
 
 	/**
 	 * 描 述： 根据ID查询订单信息

@@ -49,8 +49,8 @@
   </sql>
 
   <sql id="searchConditionSql">
-	  <if test="carNo != null and carNo != ''">
-        AND o.C_CAR_NO like CONCAT('%',#{carNo},'%')
+	  <if test="item.carNo != null and item.carNo != ''">
+        AND o.C_CAR_NO like CONCAT('%',#{item.carNo},'%')
 	  </if>
   </sql>
 
@@ -129,7 +129,7 @@
   </update>
 
   <update id="closeBillByIds">
-    DELETE bill set C_END_DATE = sysdate()
+    UPDATE bill set C_END_DATE = sysdate()
     WHERE ID IN
     <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
       #{item}
@@ -137,7 +137,7 @@
   </update>
 
   <update id="payBillByIds">
-    DELETE bill set
+    UPDATE bill set
     C_PAY_DATE = sysdate(),
     C_STATUS = 1
     WHERE ID IN
