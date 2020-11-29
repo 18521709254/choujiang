@@ -33,16 +33,16 @@ public class SystemConstant {
 	static {
 		// 管理员路由集合
 		adminRouter.add(new Router("首页","/dashboard"));
-		adminRouter.add(new Router("物业管理","/property"));
-		adminRouter.add(new Router("小区管理","communityList"));
-		adminRouter.add(new Router("用户管理","userList"));
-		adminRouter.add(new Router("角色管理","roleList"));
-		adminRouter.add(new Router("订单管理","billList"));
-		adminRouter.add(new Router("车位管理","spaceList"));
+		adminRouter.add(new Router("物业管理","/property/propertyList"));
+		adminRouter.add(new Router("小区管理","/property/communityList"));
+		adminRouter.add(new Router("用户管理","/property/userList"));
+		adminRouter.add(new Router("角色管理","/property/roleList"));
+		adminRouter.add(new Router("订单管理","/property/billList"));
+		adminRouter.add(new Router("车位管理","/property/spaceList"));
 		// 其他路由集合
 		otherRouter.add(new Router("首页","/dashboard"));
 		otherRouter.add(new Router("物业管理","/property"));
-		otherRouter.add(new Router("小区管理","communityList"));
+		otherRouter.add(new Router("小区管理","/property/communityList"));
 	}
 
 }
