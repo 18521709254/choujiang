@@ -24,6 +24,9 @@
   <select id="listPropertyAll" resultMap="propertyResultMap">
     SELECT <include refid="allColumnSql"/>
     FROM property o
+    <if test="user.roleName != '管理员'">
+      AND o.C_ROLE_ID = ${user.roleId}
+    </if>
   </select>
 
   <select id="listPropertyByPage" resultMap="propertyResultMap">

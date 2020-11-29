@@ -1,6 +1,7 @@
 package com.zwy.property.service;
 
 import com.zwy.property.model.Property;
+import com.zwy.user.model.User;
 
 import java.util.List;
 
@@ -26,8 +27,9 @@ public interface PropertyService {
 	 * 描 述： 查询全部物业
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
+	 * @param user 当前用户
 	 */
-	List<Property> listPropertyAll();
+	List<Property> listPropertyAll(User user);
 
 
 	/**

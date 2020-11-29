@@ -1,6 +1,7 @@
 package com.zwy.bill.dao;
 
 import com.zwy.bill.model.Bill;
+import com.zwy.user.model.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,8 +30,9 @@ public interface IBillDao {
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param item 订单信息
+	 * @param user 登陆用户
 	 */
-	List<Bill> listBillByPage(Bill item);
+	List<Bill> listBillByPage(Bill item, User user);
 
 
 	/**

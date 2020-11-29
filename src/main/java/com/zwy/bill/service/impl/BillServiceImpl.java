@@ -8,6 +8,7 @@ import com.zwy.bill.model.Bill;
 import com.zwy.bill.service.BillService;
 import com.zwy.space.dao.ISpaceDao;
 import com.zwy.space.model.Space;
+import com.zwy.user.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,14 +52,15 @@ public class BillServiceImpl implements BillService {
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param item 订单信息
+	 * @param user 登陆用户
 	 */
 	@Override
-	public void listBillByPage(Bill item) {
+	public void listBillByPage(Bill item, User user) {
 		PageInfo<Bill> pageInfo = item.getPageInfo();
 		// 设置分页属性
 		Page<Bill> pageResult = PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
 		// 存放数据
-		List<Bill> resultList = billDao.listBillByPage(item);
+		List<Bill> resultList = billDao.listBillByPage(item,user);
 		// 如果为空存放空数据
 		if(resultList == null){
 			resultList = Collections.emptyList();

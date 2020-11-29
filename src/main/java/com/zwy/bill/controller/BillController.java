@@ -1,6 +1,8 @@
 package com.zwy.bill.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.zwy.base.config.SystemConstant;
+import com.zwy.base.model.ApiAccessToken;
 import com.zwy.base.restfulapi.Result;
 import com.zwy.base.restfulapi.Results;
 import com.zwy.bill.model.Bill;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 类 名: BillController
@@ -38,8 +41,10 @@ public class BillController {
 	 * @return 订单查询数据
 	 */
 	@PostMapping("/listBillByPage")
-	public Result<PageInfo<Bill>> listBillByPage(@RequestBody Bill bill){
-		billService.listBillByPage(bill);
+	public Result<PageInfo<Bill>> listBillByPage(@RequestBody Bill bill, HttpServletRequest request){
+		// 获取当前登录人信息
+		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
+		billService.listBillByPage(bill,apiAccessToken.getUser());
 		return Results.ok(bill.getPageInfo());
 	}
 
@@ -66,7 +71,7 @@ public class BillController {
 	@PostMapping("/save")
 	public Result<Void> save(@RequestBody Bill bill){
 		String msg = billService.save(bill);
-		return Results.ok("保存成功");
+		return Results.ok(msg);
 	}
 
 	/**

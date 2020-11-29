@@ -6,6 +6,7 @@ import com.github.pagehelper.PageInfo;
 import com.zwy.property.service.PropertyService;
 import com.zwy.property.dao.IPropertyDao;
 import com.zwy.property.model.Property;
+import com.zwy.user.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,10 +58,11 @@ public class PropertyServiceImpl implements PropertyService {
 	 * 描 述： 查询全部物业
 	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
+	 * @param user 当前用户
 	 */
 	@Override
-	public List<Property> listPropertyAll() {
-		return propertyDao.listPropertyAll();
+	public List<Property> listPropertyAll(User user) {
+		return propertyDao.listPropertyAll(user);
 	}
 
 
