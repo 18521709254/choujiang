@@ -156,4 +156,16 @@ public class UserController {
 		user.setPlacardList(placardList);
 		return Results.ok(user);
 	}
+
+	/**
+	 * 描 述： 用户注册
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param request 连接请求
+	 */
+	@GetMapping("/register")
+	public Result<Void> register(@RequestBody User user, HttpServletRequest request){
+		userService.register(user);
+		return Results.ok("注册成功");
+	}
 }

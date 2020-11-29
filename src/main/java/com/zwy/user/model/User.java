@@ -30,6 +30,10 @@ public class User extends BaseQuery<User> {
 	private Long roleId;
 	/** 角色名称 */
 	private String roleName;
+	/** 物业ID */
+	private Long propertyId;
+	/** 物业名称 */
+	private String propertyName;
 	/** 路由集合 */
 	private List<Router> routerList;
 	/** 公告集合 */

@@ -3,6 +3,9 @@ package com.zwy.user.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.zwy.property.dao.IPropertyDao;
+import com.zwy.property.model.Property;
+import com.zwy.property.service.PropertyService;
 import com.zwy.user.dao.IUserDao;
 import com.zwy.user.model.User;
 import com.zwy.user.service.UserService;
@@ -29,6 +32,8 @@ public class UserServiceImpl implements UserService {
 
 	@Resource(name = "userDaoImpl")
 	private IUserDao userDao;
+	@Resource(name = "propertyDaoImpl")
+	private IPropertyDao propertyDao;
 
 	/**
 	 * 描 述： 分页查询用户
@@ -91,6 +96,23 @@ public class UserServiceImpl implements UserService {
 		}
 		// 反之修改
 		userDao.update(user);
+	}
+
+	/**
+	 * 描 述： 用户注册
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param user 用户
+	 */
+	@Override
+	public void register(User user) {
+		//
+		Property property = new Property();
+		property.setName(user.getPropertyName());
+		property.setStatus(0);
+		propertyDao.add(property);
+		user.setPropertyId(property.getId());
+		userDao.add(user);
 	}
 
 	/**
