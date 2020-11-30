@@ -6,7 +6,7 @@ import lombok.Data;
 /**
  * 类 名: FileUploadDataDTO
  * 描 述: 文件上传DTO
- * 作 者: 宋凯翔
+ * 作 者: 张文雅
  * 创 建：2020年06月08日
  * 版 本：v1.0.0
  *

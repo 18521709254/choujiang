@@ -65,7 +65,7 @@ public class CommunityController {
 
 	/**
 	 * 描 述： 查询全部小区
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 小区查询数据
 	 */
@@ -79,7 +79,7 @@ public class CommunityController {
 
 	/**
 	 * 描 述： 根据物业ID查询小区
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param propertyId 物业ID
 	 * @return 小区查询数据
@@ -96,7 +96,7 @@ public class CommunityController {
 
 	/**
 	 * 描 述： 根据ID查询小区
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param communityId 小区ID
 	 * @return 小区数据
@@ -135,7 +135,7 @@ public class CommunityController {
 
 	/**
 	 * 描 述： 上传车位平面图
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param uploadFile 上传的文件
 	 * @return 小区查询分页数据

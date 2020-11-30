@@ -50,7 +50,7 @@ public class ComplaintController {
 
 	/**
 	 * 描 述： 查询全部投诉
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 投诉查询数据
 	 */
@@ -64,7 +64,7 @@ public class ComplaintController {
 
 	/**
 	 * 描 述： 根据物业ID查询投诉
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param propertyId 物业ID
 	 * @return 投诉查询数据
@@ -81,7 +81,7 @@ public class ComplaintController {
 
 	/**
 	 * 描 述： 根据ID查询投诉
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param complaintId 投诉ID
 	 * @return 投诉数据

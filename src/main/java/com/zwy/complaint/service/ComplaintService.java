@@ -17,7 +17,7 @@ public interface ComplaintService {
 
 	/**
 	 * 描 述： 查询全部投诉
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 投诉集合
 	 * @param user 当前用户
@@ -35,7 +35,7 @@ public interface ComplaintService {
 
 	/**
 	 * 描 述： 根据物业ID查询投诉
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param propertyId 物业ID
 	 * @param user 当前用户
@@ -45,7 +45,7 @@ public interface ComplaintService {
 
 	/**
 	 * 描 述： 根据ID查询投诉
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param communityId 投诉ID
 	 * @return 投诉数据

@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * 描 述： 根据ID获取用户
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param userId 用户ID
 	 * @return 用户信息
@@ -99,7 +99,7 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * 描 述： 用户注册
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param user 用户
 	 * @return 注册结果

@@ -32,7 +32,7 @@ public class PropertyServiceImpl implements PropertyService {
 
 	/**
 	 * 描 述： 分页查询物业
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param item 物业
 	 */
@@ -68,7 +68,7 @@ public class PropertyServiceImpl implements PropertyService {
 
 	/**
 	 * 描 述： 根据ID查询物业
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param propertyId 物业ID
 	 * @return 物业查询数据

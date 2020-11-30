@@ -45,7 +45,7 @@ public class MemberController {
 
 	/**
 	 * 描 述： 查询全部会员
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 会员查询数据
 	 */
@@ -57,7 +57,7 @@ public class MemberController {
 
 	/**
 	 * 描 述： 根据ID查询会员
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param memberId 会员ID
 	 * @return 会员数据

@@ -29,7 +29,7 @@ public interface ICommunityDao {
 
 	/**
 	 * 描 述： 分页查询小区
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param item 小区
 	 * @param user 当前用户
@@ -38,7 +38,7 @@ public interface ICommunityDao {
 
 	/**
 	 * 描 述： 根据物业ID查询小区
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param propertyId 物业ID
 	 * @param user 当前用户
@@ -48,7 +48,7 @@ public interface ICommunityDao {
 
 	/**
 	 * 描 述： 根据ID查询小区
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param id 小区ID
 	 * @return 小区数据

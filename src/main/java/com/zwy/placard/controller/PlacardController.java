@@ -31,7 +31,7 @@ public class PlacardController {
 
 	/**
 	 * 描 述： 公告分页查询
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param item 公告
 	 * @return 物业查询数据
@@ -44,7 +44,7 @@ public class PlacardController {
 
 	/**
 	 * 描 述： 公告分页查询
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param placardId 公告ID
 	 * @return 物业查询数据

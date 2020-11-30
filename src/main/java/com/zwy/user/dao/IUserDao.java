@@ -36,7 +36,7 @@ public interface IUserDao {
 
 	/**
 	 * 描 述： 根据ID获取用户
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param userId 用户ID
 	 * @return 用户信息
@@ -45,7 +45,7 @@ public interface IUserDao {
 
 	/**
 	 * 描 述： 根据账号查询用户
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param account 账号
 	 * @return 用户信息

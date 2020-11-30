@@ -29,7 +29,7 @@ public interface IComplaintDao {
 
 	/**
 	 * 描 述： 分页查询投诉
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param item 投诉
 	 * @param user 当前用户
@@ -38,7 +38,7 @@ public interface IComplaintDao {
 
 	/**
 	 * 描 述： 根据物业ID查询投诉
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param propertyId 物业ID
 	 * @param user 当前用户
@@ -48,7 +48,7 @@ public interface IComplaintDao {
 
 	/**
 	 * 描 述： 根据ID查询投诉
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param id 投诉ID
 	 * @return 投诉数据

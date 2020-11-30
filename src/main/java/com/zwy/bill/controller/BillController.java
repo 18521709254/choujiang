@@ -50,7 +50,7 @@ public class BillController {
 
 	/**
 	 * 描 述： 根据ID查询订单信息
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param billId 订单ID
 	 * @return 订单查询数据
@@ -89,7 +89,7 @@ public class BillController {
 
 	/**
 	 * 描 述： 结束订单
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param billIds 订单ID数组
 	 * @return 订单查询分页数据
@@ -102,7 +102,7 @@ public class BillController {
 
 	/**
 	 * 描 述： 订单缴费
-	 * 作 者： 宋凯翔
+	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param billIds 订单ID数组
 	 * @return 订单查询分页数据
