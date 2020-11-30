@@ -2,20 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zwy.complaint.dao.IComplaintDao">
   <resultMap type="com.zwy.complaint.model.Complaint" id="complaintResultMap" extends="BaseBusLongModel.model">
-    <!-- 小区名称 -->
-    <result property="memberId" column="C_NAME" />
-    <!-- 小区名称 -->
+    <!-- 会员名称 -->
+    <result property="memberId" column="C_MEMBER_ID" />
+    <!-- 会员名称 -->
     <result property="memberName" column="memberName" />
-    <!-- 小区地址 -->
+    <!-- 物业地址 -->
     <result property="propertyId" column="C_PROPERTY_ID" />
-    <!-- 小区地址 -->
+    <!-- 物业地址 -->
     <result property="propertyName" column="propertyName" />
+    <!-- 小区地址 -->
+    <result property="communityId" column="C_COMMUNITY_ID" />
+    <!-- 小区地址 -->
+    <result property="communityName" column="communityName" />
     <!-- 车位平面图路径 -->
     <result property="content" column="C_CONTENT" />
     <!-- 状态：0-审核中、1-审核通过、2-审核不通过 -->
     <result property="status" column="C_STATUS" />
     <!-- 所属物业ID -->
-    <result property="replayContent" column="C_REPLY_CONTENT" />
+    <result property="replyContent" column="C_REPLY_CONTENT" />
     
   </resultMap>
 
@@ -26,18 +30,26 @@
     o.C_PROPERTY_ID,
     o.C_CONTENT,
     o.C_STATUS,
-    o.C_REPLY_CONTENT
+    o.C_REPLY_CONTENT,
+    m.C_NAME AS memberName,
+    p.C_NAME AS propertyName,
+    c.C_NAME AS communityName
+  </sql>
+
+  <sql id="leftJoinTable">
+    LEFT JOIN member m ON m.ID = o.C_MEMBER_ID
+    LEFT JOIN property p ON p.ID = o.C_PROPERTY_ID
+    LEFT JOIN community c ON c.ID = o.C_COMMUNITY_ID
   </sql>
 
   <sql id="searchConditionSql">
-	  <if test="item.name != null and item.name != ''">
-        AND o.C_NAME like CONCAT('%',#{item.name},'%')
-	  </if>
+
   </sql>
 
   <select id="listComplaintAll" resultMap="complaintResultMap">
     SELECT <include refid="allColumnSql"/>
     FROM complaint o
+    <include refid="leftJoinTable"></include>
     <where>
       <if test="user.roleName != '平台管理员'">
         o.C_PROPERTY_ID = ${user.propertyId}
@@ -49,12 +61,14 @@
   <select id="getComplaintById" resultMap="complaintResultMap">
     SELECT <include refid="allColumnSql"/>
     FROM complaint o
+    <include refid="leftJoinTable"></include>
     WHERE o.ID = #{id}
   </select>
 
   <select id="listPropertyByPage" resultMap="complaintResultMap">
     SELECT  <include refid="allColumnSql"/>
     FROM complaint o
+    <include refid="leftJoinTable"></include>
     <where>
       <include refid="searchConditionSql"/>
       <if test="user.roleName != '平台管理员'">

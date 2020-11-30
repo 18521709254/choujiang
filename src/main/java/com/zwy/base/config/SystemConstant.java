@@ -41,11 +41,13 @@ public final class SystemConstant {
 		adminRouter.add(new Router("会员管理","/property/memberList"));
 		adminRouter.add(new Router("车位管理","/property/spaceList"));
 		adminRouter.add(new Router("公告管理","/property/placardList"));
+		adminRouter.add(new Router("投诉管理","/property/complaintList"));
 		// 其他路由集合
 		otherRouter.add(new Router("首页","/dashboard"));
 		otherRouter.add(new Router("小区管理","/property/communityList"));
 		otherRouter.add(new Router("车位管理","/property/spaceList"));
 		otherRouter.add(new Router("订单管理","/property/billList"));
+		otherRouter.add(new Router("投诉管理","/property/complaintList"));
 	}
 
 }

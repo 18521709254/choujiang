@@ -4,7 +4,7 @@ import com.zwy.base.model.BaseQuery;
 import lombok.Data;
 
 /**
- * 类 名: Community
+ * 类 名: Complaint
  * 描 述:
  * 作 者: 张文雅
  * 创 建：2020年10月25日
@@ -21,10 +21,14 @@ public class Complaint extends BaseQuery<Complaint> {
 	private Long propertyId;
 	/** 物业名称 */
 	private String propertyName;
+	/** 小区ID */
+	private Long communityId;
+	/** 小区名称 */
+	private String communityName;
 	/** 投诉内容 */
 	private String content;
 	/** 投诉状态：0-未处理、1-已处理 */
 	private Integer status;
 	/** 投诉内容回复 */
-	private String replayContent;
+	private String replyContent;
 }

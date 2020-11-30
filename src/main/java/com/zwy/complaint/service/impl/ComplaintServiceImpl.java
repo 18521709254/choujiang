@@ -8,6 +8,7 @@ import com.zwy.complaint.model.Complaint;
 import com.zwy.complaint.service.ComplaintService;
 import com.zwy.user.model.User;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -102,10 +103,16 @@ public class ComplaintServiceImpl implements ComplaintService {
 	 */
 	@Override
 	public void save(Complaint complaint) {
+		// 审核状态
+		int status = 0;
+		if (StringUtils.isNotEmpty(complaint.getContent())){
+			status = 1;
+		}
+		complaint.setStatus(status);
 		// ID 不存在新增
 		if(complaint.getId() == null){
 			// 新增状态为审核中
-			complaint.setStatus(0);
+			complaint.setStatus(status);
 			complaintDao.add(complaint);
 			return;
 		}
