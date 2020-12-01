@@ -102,7 +102,10 @@ public class BillServiceImpl implements BillService {
 			if(!Objects.equals(1,space.getCheckStatus())){
 				return "车位未审核通过,暂无法使用";
 			}
-			if(Objects.equals(space.getUseStatus(),1)){
+			if(Objects.equals(space.getUseStatus(),0)){
+				return "车位已暂停租用，请使用其他车位";
+			}
+			if(Objects.equals(space.getUseStatus(),2)){
 				return "车位已使用请选择其他编号车位";
 			}
 			bill.setStatus(0);
