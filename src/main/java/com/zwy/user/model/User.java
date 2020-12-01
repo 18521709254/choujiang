@@ -1,6 +1,5 @@
 package com.zwy.user.model;
 
-import com.zwy.base.model.BaseBusLongModel;
 import com.zwy.base.model.BaseQuery;
 import com.zwy.base.model.Router;
 import com.zwy.placard.model.Placard;
@@ -34,6 +33,8 @@ public class User extends BaseQuery<User> {
 	private Long propertyId;
 	/** 物业名称 */
 	private String propertyName;
+	/** 状态：0-审核中、1-审核通过、2-审核不通过 */
+	private Integer propertyStatus;
 	/** 路由集合 */
 	private List<Router> routerList;
 	/** 公告集合 */

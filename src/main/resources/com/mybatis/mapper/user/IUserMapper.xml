@@ -16,6 +16,10 @@
     <result property="roleName" column="roleName" />
     <!-- 物业ID -->
     <result property="propertyId" column="C_PROPERTY_ID" />
+    <!-- 物业名称 -->
+    <result property="propertyName" column="propertyName" />
+    <!-- 物业审核状态 -->
+    <result property="propertyStatus" column="propertyStatus" />
   </resultMap>
 
   <sql id="allColumnSql">
@@ -25,7 +29,10 @@
     o.C_NAME,
     o.C_TEL,
     o.C_ROLE_ID,
-    o.C_PROPERTY_ID
+    o.C_PROPERTY_ID,
+    ur.C_NAME AS roleName,
+    p.C_NAME AS propertyName,
+    p.C_STATUS AS propertyStatus
   </sql>
 
   <sql id="searchConditionSql">
@@ -34,29 +41,33 @@
 
   <select id="listUserByPage" resultMap="userResultMap">
     SELECT <include refid="allColumnSql"/>
-    ,ur.C_NAME AS roleName
     FROM auth_user o
     LEFT JOIN user_role ur ON o.C_ROLE_ID = ur.ID
+    LEFT JOIN property p ON o.C_PROPERTY_ID = p.ID
     WHERE 1=1
   </select>
 
   <select id="getUserByUser" resultMap="userResultMap">
     SELECT <include refid="allColumnSql"/>
-    ,ur.C_NAME AS roleName
     FROM auth_user o
     LEFT JOIN user_role ur ON o.C_ROLE_ID = ur.ID
+    LEFT JOIN property p ON o.C_PROPERTY_ID = p.ID
     WHERE o.C_ACCOUNT = #{account} AND o.C_PASSWORD = #{password}
   </select>
 
   <select id="getUserById" resultMap="userResultMap">
     SELECT <include refid="allColumnSql"/>
     FROM auth_user o
+    LEFT JOIN user_role ur ON o.C_ROLE_ID = ur.ID
+    LEFT JOIN property p ON o.C_PROPERTY_ID = p.ID
     WHERE o.ID = #{userId}
   </select>
 
   <select id="getUserByAccout" resultMap="userResultMap">
     SELECT <include refid="allColumnSql"/>
     FROM auth_user o
+    LEFT JOIN user_role ur ON o.C_ROLE_ID = ur.ID
+    LEFT JOIN property p ON o.C_PROPERTY_ID = p.ID
     WHERE o.C_ACCOUNT = #{account}
   </select>
 

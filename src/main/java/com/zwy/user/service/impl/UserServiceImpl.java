@@ -45,15 +45,15 @@ public class UserServiceImpl implements UserService {
 		PageInfo<User> pageInfo = user.getPageInfo();
 		// 设置分页属性
 		Page<User> pageResult = PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
-		// 设置总数
-		pageInfo.setTotal(pageResult.getTotal());
-		// 设置总页数
-		pageInfo.setPages(pageResult.getPages());
 		// 存放数据
 		List<User> userList = userDao.listUserByPage(user);
 		if(userList == null){
 			userList = Collections.emptyList();
 		}
+		// 设置总数
+		pageInfo.setTotal(pageResult.getTotal());
+		// 设置总页数
+		pageInfo.setPages(pageResult.getPages());
 		pageInfo.setList(userList);
 	}
 
@@ -125,7 +125,7 @@ public class UserServiceImpl implements UserService {
 		}
 		user.setRoleId(2L);
 		userDao.add(user);
-		return "注册成功";
+		return "注册成功,请等待平台审核";
 	}
 
 	/**

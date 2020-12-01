@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -112,6 +113,9 @@ public class UserController {
 		List<Router> routerList = SystemConstant.adminRouter;
 		if(StringUtils.equals("平台管理员",user.getRoleName())){
 			routerList = SystemConstant.otherRouter;
+		}else if (!Objects.equals(user.getPropertyStatus(),1)){
+			// 不是平台管理员需要判断是否审核通过
+			return Results.ok("账号审核未通过，请联系平台管理员",accessToken);
 		}
 		user.setRouterList(routerList);
 		ApiAccessToken apiAccessToken = new ApiAccessToken(accessToken,user);
