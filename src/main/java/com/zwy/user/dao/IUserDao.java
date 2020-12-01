@@ -1,6 +1,7 @@
 package com.zwy.user.dao;
 
 import com.zwy.user.model.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public interface IUserDao {
 	 * @param user 用户信息
 	 * @return 数据集合
 	 */
-	List<User> listUserByPage(User user);
+	List<User> listUserByPage(@Param("item") User user);
 
 	/**
 	 * 描 述： 根据账号密码查询用户

@@ -35,6 +35,7 @@
     SELECT DISTINCT <include refid="allColumnSql"/>
     FROM property o
     WHERE 1=1 <include refid="searchConditionSql"/>
+    ORDER BY o.C_STATUS
   </select>
 
   <select id="getPropertyById" resultMap="propertyResultMap">

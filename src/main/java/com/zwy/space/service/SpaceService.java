@@ -1,5 +1,6 @@
 package com.zwy.space.service;
 import com.zwy.space.model.Space;
+import com.zwy.user.model.User;
 
 import java.util.List;
 
@@ -26,8 +27,9 @@ public interface SpaceService {
 	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param space 车位数据
+	 * @param user 当前登录用户
 	 */
-	void listSpaceByPage(Space space);
+	void listSpaceByPage(Space space, User user);
 
 	/**
 	 * 描 述： 根据ID获取停车位

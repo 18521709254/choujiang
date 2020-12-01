@@ -36,7 +36,9 @@
   </sql>
 
   <sql id="searchConditionSql">
-
+    <if test="item.name != null and item.name != ''">
+      AND o.C_NAME = #{item.name}
+    </if>
   </sql>
 
   <select id="listUserByPage" resultMap="userResultMap">
@@ -44,7 +46,7 @@
     FROM auth_user o
     LEFT JOIN user_role ur ON o.C_ROLE_ID = ur.ID
     LEFT JOIN property p ON o.C_PROPERTY_ID = p.ID
-    WHERE 1=1
+    WHERE 1=1 <include refid="searchConditionSql"/>
   </select>
 
   <select id="getUserByUser" resultMap="userResultMap">

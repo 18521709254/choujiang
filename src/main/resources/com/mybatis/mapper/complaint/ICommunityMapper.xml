@@ -43,7 +43,9 @@
   </sql>
 
   <sql id="searchConditionSql">
-
+    <if test="item.content != null and item.content != ''">
+      AND o.C_CONTENT LIKE CONCAT('%',#{item.content},'%')
+    </if>
   </sql>
 
   <select id="listComplaintAll" resultMap="complaintResultMap">

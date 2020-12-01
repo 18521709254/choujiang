@@ -3,10 +3,10 @@ package com.zwy.space.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.zwy.community.model.Community;
 import com.zwy.space.dao.ISpaceDao;
 import com.zwy.space.model.Space;
 import com.zwy.space.service.SpaceService;
+import com.zwy.user.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,14 +46,15 @@ public class SpaceServiceImpl implements SpaceService {
 	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param item 车位数据
+	 * @param user 当前登录用户
 	 */
 	@Override
-	public void listSpaceByPage(Space item) {
+	public void listSpaceByPage(Space item, User user) {
 		PageInfo<Space> pageInfo = item.getPageInfo();
 		// 设置分页属性
 		Page<Space> pageResult = PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
 		// 存放数据
-		List<Space> resultList = spaceDao.listSpaceByPage(item);
+		List<Space> resultList = spaceDao.listSpaceByPage(item,user);
 		// 如果为空存放空数据
 		if(resultList == null){
 			resultList = Collections.emptyList();

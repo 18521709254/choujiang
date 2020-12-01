@@ -1,6 +1,8 @@
 package com.zwy.space.dao;
 
 import com.zwy.space.model.Space;
+import com.zwy.user.model.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,8 +31,9 @@ public interface ISpaceDao {
 	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param item 车位数据
+	 * @param user 当前登录用户
 	 */
-	List<Space> listSpaceByPage(Space item);
+	List<Space> listSpaceByPage(@Param("item") Space item, @Param("user") User user);
 
 	/**
 	 * 描 述： 根据ID获取停车位

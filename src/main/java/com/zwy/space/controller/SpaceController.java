@@ -1,6 +1,8 @@
 package com.zwy.space.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.zwy.base.config.SystemConstant;
+import com.zwy.base.model.ApiAccessToken;
 import com.zwy.base.restfulapi.Result;
 import com.zwy.base.restfulapi.Results;
 import com.zwy.space.model.Space;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -50,8 +53,10 @@ public class SpaceController {
 	 * @param space 车位数据
 	 */
 	@PostMapping("/listSpaceByPage")
-	public Result<PageInfo<Space>> listSpaceByPage(@RequestBody Space space){
-		spaceService.listSpaceByPage(space);
+	public Result<PageInfo<Space>> listSpaceByPage(@RequestBody Space space,HttpServletRequest request){
+		// 获取当前登录人信息
+		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
+		spaceService.listSpaceByPage(space,apiAccessToken.getUser());
 		return Results.ok(space.getPageInfo());
 	}
 
