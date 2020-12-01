@@ -99,8 +99,11 @@ public class BillServiceImpl implements BillService {
 			if(space == null){
 				return "保存订单时车位不存在";
 			}
-			if(!Objects.equals(1,space.getCheckStatus()) || Objects.equals(space.getUseStatus(),1)){
-				return "车位未审核通过，或车位已使用请稍稍重试";
+			if(!Objects.equals(1,space.getCheckStatus())){
+				return "车位未审核通过,暂无法使用";
+			}
+			if(Objects.equals(space.getUseStatus(),1)){
+				return "车位已使用请选择其他编号车位";
 			}
 			bill.setStatus(0);
 			bill.setStartDate(now);

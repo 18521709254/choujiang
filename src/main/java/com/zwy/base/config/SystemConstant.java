@@ -36,10 +36,10 @@ public final class SystemConstant {
 		adminRouter.add(new Router("物业管理","/property/propertyList"));
 		adminRouter.add(new Router("小区管理","/property/communityList"));
 		adminRouter.add(new Router("用户管理","/property/userList"));
-		adminRouter.add(new Router("角色管理","/property/roleList"));
-		adminRouter.add(new Router("订单管理","/property/billList"));
-		adminRouter.add(new Router("会员管理","/property/memberList"));
-		adminRouter.add(new Router("车位管理","/property/spaceList"));
+		// adminRouter.add(new Router("角色管理","/property/roleList"));
+		// adminRouter.add(new Router("订单管理","/property/billList"));
+		// adminRouter.add(new Router("会员管理","/property/memberList"));
+		// adminRouter.add(new Router("车位管理","/property/spaceList"));
 		adminRouter.add(new Router("公告管理","/property/placardList"));
 		adminRouter.add(new Router("投诉管理","/property/complaintList"));
 		// 其他路由集合
@@ -47,7 +47,7 @@ public final class SystemConstant {
 		otherRouter.add(new Router("小区管理","/property/communityList"));
 		otherRouter.add(new Router("车位管理","/property/spaceList"));
 		otherRouter.add(new Router("订单管理","/property/billList"));
-		otherRouter.add(new Router("投诉管理","/property/complaintList"));
+		// otherRouter.add(new Router("投诉管理","/property/complaintList"));
 	}
 
 }
