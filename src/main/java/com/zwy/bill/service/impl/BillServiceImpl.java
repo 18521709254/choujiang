@@ -6,8 +6,6 @@ import com.github.pagehelper.PageInfo;
 import com.zwy.bill.dao.IBillDao;
 import com.zwy.bill.model.Bill;
 import com.zwy.bill.service.BillService;
-import com.zwy.space.dao.ISpaceDao;
-import com.zwy.space.model.Space;
 import com.zwy.user.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -15,9 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * 类 名: BillServiceImpl
@@ -34,8 +30,6 @@ public class BillServiceImpl implements BillService {
 
 	@Resource(name = "billDaoImpl")
 	private IBillDao billDao;
-	@Resource(name = "spaceDaoImpl")
-	private ISpaceDao spaceDao;
 
 	/**
 	 * 描 述： 分页查询订单
@@ -84,39 +78,6 @@ public class BillServiceImpl implements BillService {
 		return billDao.getBillById(billId);
 	}
 
-	/**
-	 * 描 述： 保存订单
-	 * 作 者： 张文雅
-	 * 历 史： (版本) 作者 时间 注释
-	 * @param bill 订单
-	 */
-	@Override
-	public String save(Bill bill) {
-		Date now = new Date();
-		// ID 不存在新增
-		if(bill.getId() == null){
-			Space space = spaceDao.getParkingSpaceById(bill.getParkingSpaceId()) ;
-			if(space == null){
-				return "保存订单时车位不存在";
-			}
-			if(!Objects.equals(1,space.getCheckStatus())){
-				return "车位未审核通过,暂无法使用";
-			}
-			if(Objects.equals(space.getUseStatus(),0)){
-				return "车位已暂停租用，请使用其他车位";
-			}
-			if(Objects.equals(space.getUseStatus(),2)){
-				return "车位已使用请选择其他编号车位";
-			}
-			bill.setStatus(0);
-			bill.setStartDate(now);
-			billDao.add(bill);
-			return "订单保存成功";
-		}
-		// 反之修改
-		billDao.update(bill);
-		return "订单保存成功";
-	}
 
 	/**
 	 * 描 述： 结束订单

@@ -45,14 +45,6 @@ public interface IBillDao {
 	Bill getBillById(Long billId);
 
 	/**
-	 * 描 述： 新增用户
-	 * 作 者： 张文雅
-	 * 历 史： (版本) 作者 时间 注释
-	 * @param user 用户信息
-	 */
-	void add(Bill user);
-
-	/**
 	 * 描 述： 修改用户
 	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释

@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zwy.space.dao.IMemberSpaceDao">
+  <resultMap type="com.zwy.space.model.MemberSpace" id="memberSpaceResultMap" extends="BaseBusLongModel.model">
+    <!-- 所属小区ID -->
+    <result property="communityId" column="C_COMMUNITY_ID" />
+    <!-- 车位使用状态：0-暂停租用、1-空闲、2-使用中 -->
+    <result property="useStatus" column="C_USE_STATUS" />
+    <!-- 车位审核状态：0-审核中、1-审核通过、2审核未通过 -->
+    <result property="checkStatus" column="C_CHECK_STATUS" />
+    <!-- 停车单价/每小时 -->
+    <result property="price" column="C_PRICE" />
+    <!-- 费用占比 -->
+    <result property="percent" column="C_PERCENT" />
+    <!-- 车位编号 -->
+    <result property="no" column="C_NO" />
+    <!-- 车位类型：1-物业、2-私人 -->
+    <result property="type" column="C_TYPE" />
+    <!-- 小区名称 -->
+    <result property="communityName" column="communityName" />
+  </resultMap>
+
+  <sql id="allColumnSql">
+    o.ID,
+    o.C_COMMUNITY_ID,
+    o.C_USE_STATUS,
+    o.C_TYPE,
+    o.C_CHECK_STATUS,
+    o.C_PRICE,
+    o.C_PERCENT,
+    o.C_NO
+  </sql>
+
+  <sql id="searchConditionSql">
+    <if test="item.no != null and item.no != ''">
+      AND o.C_NO = #{item.no}
+    </if>
+  </sql>
+
+  <select id="listMemberSpaceByPage" resultMap="memberSpaceResultMap">
+    SELECT  <include refid="allColumnSql"/>
+    ,c.C_NAME AS communityName
+    FROM member_space o
+    LEFT JOIN community c ON o.C_COMMUNITY_ID = c.ID
+    LEFT JOIN property p ON p.ID = c.C_PROPERTY_ID
+    <where>
+      <include refid="searchConditionSql"/>
+      <if test="user.roleName != '平台管理员'">
+        p.ID = ${user.propertyId}
+      </if>
+    </where>
+    ORDER BY o.C_CHECK_STATUS,o.C_USE_STATUS
+  </select>
+
+  <select id="listMemberSpaceByCommunityId" resultMap="memberSpaceResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM member_space o
+    WHERE o.C_COMMUNITY_ID = #{communityId}
+    ORDER BY o.C_CHECK_STATUS,o.C_USE_STATUS
+  </select>
+
+  <select id="getParkingSpaceById" resultMap="memberSpaceResultMap">
+    SELECT <include refid="allColumnSql"/>
+    FROM member_space o
+    WHERE o.ID = #{id}
+  </select>
+
+  <insert id="add" parameterType="com.zwy.space.model.Space" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
+    INSERT INTO member_space
+    (
+    C_COMMUNITY_ID,
+    C_USE_STATUS,
+    C_TYPE,
+    C_CHECK_STATUS,
+    C_PRICE,
+    C_PERCENT,
+    C_NO
+    )
+    VALUES
+    (
+     #{communityId},
+     #{useStatus},
+     #{type},
+     #{checkStatus},
+     #{price},
+     #{percent},
+     #{no}
+    )
+  </insert>
+
+  <update id="update" parameterType="com.zwy.space.model.Space">
+    UPDATE member_space SET
+    C_COMMUNITY_ID = #{communityId},
+    C_USE_STATUS = #{useStatus},
+    C_TYPE = #{type},
+    C_CHECK_STATUS = #{checkStatus},
+    C_PRICE = #{price},
+    C_PERCENT = #{percent},
+    C_NO = #{no}
+    WHERE ID = #{id}
+  </update>
+
+  <delete id="delByIds">
+    DELETE FROM member_space
+    WHERE ID IN
+    <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+</mapper>

@@ -87,33 +87,6 @@
     </if>
   </select>
 
-  <insert id="add" parameterType="com.zwy.bill.model.Bill" useGeneratedKeys="true" keyProperty="id" keyColumn="ID">
-    INSERT INTO bill
-    (
-    C_START_DATE,
-    C_END_DATE,
-    C_PAY_DATE,
-    C_MEMBER_ID,
-    C_CAR_NO,
-    C_STATUS,
-    C_PROPERTY_ID,
-    C_COMMUNITY_ID,
-    C_PARKING_SPACE_ID
-    )
-    VALUES
-    (
-     #{startDate},
-     #{endDate},
-     #{payDate},
-     #{memberId},
-     #{carNo},
-     #{status},
-     #{propertyId},
-     #{communityId},
-     #{parkingSpaceId}
-    )
-  </insert>
-
   <update id="update" parameterType="com.zwy.bill.model.Bill">
     UPDATE bill SET
     C_START_DATE = #{startDate},
