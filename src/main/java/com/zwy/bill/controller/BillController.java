@@ -75,6 +75,19 @@ public class BillController {
 	}
 
 	/**
+	 * 描 述： 保存订单
+	 * 作 者： 张文雅
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param bill 订单
+	 * @return 订单查询分页数据
+	 */
+	@PostMapping("/save")
+	public Result<Void> save(@RequestBody Bill bill){
+		String msg = billService.save(bill);
+		return Results.ok(msg);
+	}
+
+	/**
 	 * 描 述： 结束订单
 	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释

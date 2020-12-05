@@ -9,6 +9,7 @@ import com.zwy.base.restfulapi.Results;
 import com.zwy.placard.dao.IPlacardDao;
 import com.zwy.placard.model.Placard;
 import com.zwy.user.model.User;
+import com.zwy.user.model.UserRegister;
 import com.zwy.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -170,12 +171,12 @@ public class UserController {
 	 * 描 述： 用户注册
 	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param user 注册用户信息
+	 * @param registerUser 注册用户信息
 	 * @return 注册结果
 	 */
 	@PostMapping("/register")
-	public Result<Void> register(@RequestBody User user){
-		String msg = userService.register(user);
+	public Result<Void> register(@RequestBody UserRegister registerUser){
+		String msg = userService.register(registerUser);
 		return Results.ok(msg);
 	}
 }

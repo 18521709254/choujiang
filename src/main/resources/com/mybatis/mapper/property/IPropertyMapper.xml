@@ -4,14 +4,34 @@
   <resultMap type="com.zwy.property.model.Property" id="propertyResultMap" extends="BaseBusLongModel.model">
     <!-- 物业名称 -->
     <result property="name" column="C_NAME" />
+    <!-- 法人代表 -->
+    <result property="legalPerson" column="C_LEGAL_PERSON" />
+    <!-- 资质等级 -->
+    <result property="level" column="C_LEVEL" />
+    <!-- 资质证书号 -->
+    <result property="cardNo" column="C_CARD_NO" />
+    <!-- 准予时间 -->
+    <result property="grantTime" column="C_GRANT_TIME" />
+    <!-- 联系人 -->
+    <result property="contactName" column="C_CONTACT_NAME" />
+    <!-- 电话 -->
+    <result property="tel" column="C_TEL" />
+    <!-- 托管面积 -->
+    <result property="area" column="C_AREA" />
     <!-- 状态：0-审核中、1-审核通过、2-审核不通过 -->
     <result property="status" column="C_STATUS" />
-    
   </resultMap>
 
   <sql id="allColumnSql">
     o.ID,
     o.C_NAME,
+    o.C_LEGAL_PERSON,
+    o.C_LEVEL,
+    o.C_CARD_NO,
+    o.C_GRANT_TIME,
+    o.C_CONTACT_NAME,
+    o.C_TEL,
+    o.C_AREA,
     o.C_STATUS
   </sql>
 
@@ -54,11 +74,25 @@
     INSERT INTO property
     (
     C_NAME,
+    C_LEGAL_PERSON,
+    C_LEVEL,
+    C_CARD_NO,
+    C_GRANT_TIME,
+    C_CONTACT_NAME,
+    C_TEL,
+    C_AREA,
     C_STATUS
     )
     VALUES
     (
      #{name},
+     #{legalPerson},
+     #{level},
+     #{cardNo},
+     #{grantTime},
+     #{contactName},
+     #{tel},
+     #{area},
      #{status}
     )
   </insert>
@@ -66,6 +100,13 @@
   <update id="update" parameterType="com.zwy.property.model.Property">
     UPDATE property SET
     C_NAME = #{name},
+    C_LEGAL_PERSON = #{legalPerson},
+    C_LEVEL = #{level},
+    C_CARD_NO = #{cardNo},
+    C_GRANT_TIME = #{grantTime},
+    C_CONTACT_NAME = #{contactName},
+    C_TEL = #{tel},
+    C_AREA = #{area},
     C_STATUS = #{status}
     WHERE ID = #{id}
   </update>

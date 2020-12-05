@@ -111,8 +111,6 @@ public class ComplaintServiceImpl implements ComplaintService {
 		complaint.setStatus(status);
 		// ID 不存在新增
 		if(complaint.getId() == null){
-			// 新增状态为审核中
-			complaint.setStatus(status);
 			complaintDao.add(complaint);
 			return;
 		}

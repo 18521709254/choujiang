@@ -38,6 +38,7 @@ public final class SystemConstant {
 		adminRouter.add(new Router("用户管理","/property/userList"));
 		adminRouter.add(new Router("公告管理","/property/placardList"));
 		adminRouter.add(new Router("投诉管理","/property/complaintList"));
+		adminRouter.add(new Router("订单管理","/property/billList"));
 		// 其他路由集合
 		otherRouter.add(new Router("首页","/dashboard"));
 		otherRouter.add(new Router("小区管理","/property/communityList"));

@@ -104,8 +104,6 @@ public class CommunityServiceImpl implements CommunityService {
 	public void save(Community community) {
 		// ID 不存在新增
 		if(community.getId() == null){
-			// 新增状态为审核中
-			community.setStatus(0);
 			communityDao.add(community);
 			return;
 		}

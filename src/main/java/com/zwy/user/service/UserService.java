@@ -1,5 +1,6 @@
 package com.zwy.user.service;
 import com.zwy.user.model.User;
+import com.zwy.user.model.UserRegister;
 
 /**
  * 类 名: UserService
@@ -49,9 +50,9 @@ public interface UserService {
 	 * 描 述： 用户注册
 	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param user 用户
+	 * @param registerUser 注册用户信息
 	 */
-	String register(User user);
+	String register(UserRegister registerUser);
 
 	/**
 	 * 描 述： 根据ID删除用户

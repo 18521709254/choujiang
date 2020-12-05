@@ -51,5 +51,11 @@ public class Bill extends BaseQuery<Bill> {
 	private Long parkingSpaceId;
 	/** 车位编号 */
 	private String spaceNo;
+	/** 订单金额 */
+	private Double totalMoney;
+	/** 抽取金额 */
+	private Double percentMoney;
+	/** 费用占比 */
+	private Double percent;
 
 }

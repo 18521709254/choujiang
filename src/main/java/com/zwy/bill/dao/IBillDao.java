@@ -36,6 +36,15 @@ public interface IBillDao {
 	List<Bill> listBillByPage(@Param("item") Bill item, @Param("user")User user);
 
 	/**
+	 * 描 述： 根据ID集合批量查询订单
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param ids 用户ID数组
+	 * @return 订单数据
+	 */
+	List<Bill> listBillByIds(Long[] ids);
+
+	/**
 	 * 描 述： 根据ID查询订单信息
 	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
@@ -62,18 +71,18 @@ public interface IBillDao {
 
 
 	/**
-	 * 描 述： 结束订单
-	 * 作 者： 张文雅
-	 * 历 史： (版本) 作者 时间 注释
-	 * @param billIds 订单ID数组
-	 */
-	void closeBillByIds(Long[] billIds);
-
-	/**
 	 * 描 述： 订单缴费
 	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param billIds 订单ID数组
 	 */
 	void payBillByIds(Long[] billIds);
+
+	/**
+	 * 描 述： 批量结束订单
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param billList 订单集合
+	 */
+	void closeBillBatch(List<Bill> billList);
 }

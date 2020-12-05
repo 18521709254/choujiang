@@ -88,8 +88,6 @@ public class PropertyServiceImpl implements PropertyService {
 	public void save(Property property) {
 		// ID 不存在新增
 		if(property.getId() == null){
-			// 新增的数据全部需要审核
-			property.setStatus(0);
 			propertyDao.add(property);
 			return;
 		}

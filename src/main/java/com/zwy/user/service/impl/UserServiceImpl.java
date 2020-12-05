@@ -7,6 +7,7 @@ import com.zwy.property.dao.IPropertyDao;
 import com.zwy.property.model.Property;
 import com.zwy.user.dao.IUserDao;
 import com.zwy.user.model.User;
+import com.zwy.user.model.UserRegister;
 import com.zwy.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -101,21 +102,20 @@ public class UserServiceImpl implements UserService {
 	 * 描 述： 用户注册
 	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
-	 * @param user 用户
+	 * @param registerUser 注册用户信息
 	 * @return 注册结果
 	 */
 	@Override
-	public String register(User user) {
+	public String register(UserRegister registerUser) {
+		User user = registerUser.getUser();
+		Property property = registerUser.getProperty();
 		// 物业名称
-		String propertyName = user.getPropertyName();
+		String propertyName = property.getName();
 		// 查询物业
-		Property property = propertyDao.getPropertyByName(propertyName);
-		if(property != null){
+		Property existProperty = propertyDao.getPropertyByName(propertyName);
+		if(existProperty != null){
 			return "物业已存在";
 		}
-		property = new Property();
-		property.setName(user.getPropertyName());
-		property.setStatus(0);
 		propertyDao.add(property);
 		user.setPropertyId(property.getId());
 		// 查看账号是否存在
@@ -123,6 +123,7 @@ public class UserServiceImpl implements UserService {
 		if(exitUser != null){
 			return "注册账号已经存在";
 		}
+		// 新增用户全部为物业管理
 		user.setRoleId(2L);
 		userDao.add(user);
 		return "注册成功,请等待平台审核";

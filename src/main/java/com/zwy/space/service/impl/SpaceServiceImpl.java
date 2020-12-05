@@ -100,10 +100,6 @@ public class SpaceServiceImpl implements SpaceService {
 	public void save(Space space) {
 		// ID 不存在新增
 		if(space.getId() == null){
-			// 默认空闲
-			space.setUseStatus(0);
-			// 新增数据默认给审核中
-			space.setCheckStatus(0);
 			spaceDao.add(space);
 			return;
 		}

@@ -87,6 +87,15 @@
     </if>
   </select>
 
+  <select id="listBillByIds" resultMap="billResultMap">
+    SELECT <include refid="allColumnSql"/>
+    <include refid="tableAndLeftJoin"/>
+    WHERE o.ID IN
+    <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </select>
+
   <update id="update" parameterType="com.zwy.bill.model.Bill">
     UPDATE bill SET
     C_START_DATE = #{startDate},
@@ -101,11 +110,14 @@
     WHERE ID = #{id}
   </update>
 
-  <update id="closeBillByIds">
-    UPDATE bill set C_END_DATE = sysdate()
-    WHERE ID IN
-    <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
-      #{item}
+  <update id="closeBillBatch">
+    <foreach collection="list" index="index" item="item" separator=";">
+      UPDATE bill set
+      C_END_DATE = sysdate(),
+      C_TOTAL_MONEY = #{item.totalMoney},
+      C_PERCENT = #{item.percent},
+      C_PERCENT_MONEY = #{item.percentMoney}
+      WHERE ID = #{item.id}
     </foreach>
   </update>
 
@@ -118,6 +130,8 @@
       #{item}
     </foreach>
   </update>
+
+
 
   <delete id="delByIds">
     DELETE FROM bill
