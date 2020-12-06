@@ -65,6 +65,9 @@ public class BillServiceImpl implements BillService {
 		if(resultList == null){
 			resultList = Collections.emptyList();
 		}
+		// 插入总计数据
+		Bill totalBill = billDao.getTotalBill(item,user);
+		resultList.add(totalBill);
 		// 设置总数
 		pageInfo.setTotal(pageResult.getTotal());
 		// 设置总页数

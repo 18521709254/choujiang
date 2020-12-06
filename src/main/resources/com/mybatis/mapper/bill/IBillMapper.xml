@@ -28,7 +28,12 @@
     <result property="memberName" column="memberName" />
     <!-- 车位编号 -->
     <result property="spaceNo" column="spaceNo" />
-
+    <!-- 总金额 -->
+    <result property="totalMoney" column="C_TOTAL_MONEY" />
+    <!-- 结束订单时费用占比 -->
+    <result property="percent" column="C_PERCENT" />
+    <!-- 抽成金额 -->
+    <result property="percentMoney" column="C_PERCENT_MONEY" />
   </resultMap>
 
   <sql id="allColumnSql">
@@ -42,6 +47,9 @@
     o.C_PROPERTY_ID,
     o.C_COMMUNITY_ID,
     o.C_PARKING_SPACE_ID,
+    o.C_TOTAL_MONEY,
+    o.C_PERCENT,
+    o.C_PERCENT_MONEY,
     p.C_NAME AS propertyName,
     c.C_NAME AS communityName,
     m.C_NAME AS memberName,
@@ -52,6 +60,12 @@
 	  <if test="item.carNo != null and item.carNo != ''">
         AND o.C_CAR_NO like CONCAT('%',#{item.carNo},'%')
 	  </if>
+    <if test="item.startDate != null">
+      AND <![CDATA[ DATE_FORMAT(o.C_START_DATE,'%Y-%m-%d %H:%i:%s') >= DATE_FORMAT(#{item.startDate},'%Y-%m-%d %H:%i:%s') ]]>
+    </if>
+    <if test="item.endDate != null">
+      AND <![CDATA[ DATE_FORMAT(o.C_END_DATE,'%Y-%m-%d %H:%i:%s') <= DATE_FORMAT(#{item.endDate},'%Y-%m-%d %H:%i:%s') ]]>
+    </if>
   </sql>
 
   <sql id="tableAndLeftJoin">
@@ -96,6 +110,18 @@
     </foreach>
   </select>
 
+  <select id="getTotalBill" resultMap="billResultMap">
+    SELECT IFNULL(SUM(IFNULL(o.C_TOTAL_MONEY,0)),0) AS C_TOTAL_MONEY,
+           IFNULL(SUM(IFNULL(o.C_PERCENT_MONEY,0)),0) AS C_PERCENT_MONEY,
+           IFNULL(AVG(IFNULL(o.C_PERCENT,0)),0) AS C_PERCENT
+    <include refid="tableAndLeftJoin"/>
+    WHERE 1=1 <include refid="searchConditionSql"/>
+    AND o.C_STATUS = 1
+    <if test="user.roleName != '平台管理员'">
+      AND o.C_PROPERTY_ID = ${user.propertyId}
+    </if>
+  </select>
+
   <update id="update" parameterType="com.zwy.bill.model.Bill">
     UPDATE bill SET
     C_START_DATE = #{startDate},
@@ -130,8 +156,6 @@
       #{item}
     </foreach>
   </update>
-
-
 
   <delete id="delByIds">
     DELETE FROM bill

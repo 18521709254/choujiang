@@ -54,6 +54,16 @@ public interface IBillDao {
 	Bill getBillById(Long billId);
 
 	/**
+	 * 描 述： 查询订单总计数据
+	 * 作 者： 宋凯翔
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param item 订单信息
+	 * @param user 登陆用户
+	 * @return 总计数据
+	 */
+	Bill getTotalBill(Bill item, User user);
+
+	/**
 	 * 描 述： 修改用户
 	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
