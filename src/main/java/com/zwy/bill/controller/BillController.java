@@ -62,6 +62,21 @@ public class BillController {
 	}
 
 	/**
+	 * 描 述： 获取订单的合计
+	 * 作 者： 张文雅
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param bill 订单数据
+	 * @return 订单查询数据
+	 */
+	@PostMapping("/getBillTotal")
+	public Result<Bill> getTotalBill(@RequestBody Bill bill, HttpServletRequest request){
+		// 获取当前登录人信息
+		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
+		Bill totalBill = billService.getTotalBill(bill,apiAccessToken.getUser());
+		return Results.ok(totalBill);
+	}
+
+	/**
 	 * 描 述： 删除订单
 	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释

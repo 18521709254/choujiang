@@ -41,6 +41,16 @@ public interface BillService {
 	Bill getBillById(Long billId);
 
 	/**
+	 * 描 述： 获取订单总计数据
+	 * 作 者： 张文雅
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param bill 订单信息
+	 * @param user 当前用户
+	 * @return 订单总计数据
+	 */
+	Bill getTotalBill(Bill bill, User user);
+
+	/**
 	 * 描 述： 保存订单
 	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释

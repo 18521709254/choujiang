@@ -65,9 +65,6 @@ public class BillServiceImpl implements BillService {
 		if(resultList == null){
 			resultList = Collections.emptyList();
 		}
-		// 插入总计数据
-		Bill totalBill = billDao.getTotalBill(item,user);
-		resultList.add(totalBill);
 		// 设置总数
 		pageInfo.setTotal(pageResult.getTotal());
 		// 设置总页数
@@ -85,6 +82,19 @@ public class BillServiceImpl implements BillService {
 	@Override
 	public Bill getBillById(Long billId) {
 		return billDao.getBillById(billId);
+	}
+
+	/**
+	 * 描 述： 获取订单总计数据
+	 * 作 者： 张文雅
+	 * 历 史： (版本) 作者 时间 注释
+	 * @param bill 订单信息
+	 * @param user 当前用户
+	 * @return 订单总计数据
+	 */
+	@Override
+	public Bill getTotalBill(Bill bill, User user) {
+		return billDao.getTotalBill(bill,user);
 	}
 
 	/**
@@ -182,5 +192,5 @@ public class BillServiceImpl implements BillService {
 		// 获取时间差
 		long subTime = date1.getTime() - date2.getTime();
 		return subTime/ DateUtils.MILLIS_PER_HOUR;
-	};
+	}
 }

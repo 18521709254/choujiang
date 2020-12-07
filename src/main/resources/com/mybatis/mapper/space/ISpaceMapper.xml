@@ -38,6 +38,7 @@
     <if test="item.type != null and item.type != ''">
       AND o.C_TYPE = #{item.type}
     </if>
+
   </sql>
 
   <select id="listSpaceByPage" resultMap="parkingSpaceResultMap">
@@ -49,7 +50,7 @@
     <where>
       <include refid="searchConditionSql"/>
       <if test="user.roleName != '平台管理员'">
-        p.ID = ${user.propertyId}
+        AND p.ID = ${user.propertyId}
       </if>
     </where>
     ORDER BY o.C_CHECK_STATUS,o.C_USE_STATUS
