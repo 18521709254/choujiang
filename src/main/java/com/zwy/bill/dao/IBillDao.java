@@ -61,7 +61,7 @@ public interface IBillDao {
 	 * @param user 登陆用户
 	 * @return 总计数据
 	 */
-	Bill getTotalBill(Bill item, User user);
+	Bill getTotalBill(@Param("item") Bill item, @Param("user")User user);
 
 	/**
 	 * 描 述： 修改用户

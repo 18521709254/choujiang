@@ -38,7 +38,6 @@
     <if test="item.type != null and item.type != ''">
       AND o.C_TYPE = #{item.type}
     </if>
-
   </sql>
 
   <select id="listSpaceByPage" resultMap="parkingSpaceResultMap">
