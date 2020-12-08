@@ -30,10 +30,12 @@
     <result property="spaceNo" column="spaceNo" />
     <!-- 总金额 -->
     <result property="totalMoney" column="C_TOTAL_MONEY" />
-    <!-- 结束订单时费用占比 -->
-    <result property="percent" column="C_PERCENT" />
-    <!-- 抽成金额 -->
+    <!-- 平台抽成金额 -->
     <result property="percentMoney" column="C_PERCENT_MONEY" />
+    <!-- 物业抽成金额 -->
+    <result property="propertyMoney" column="C_PROPERTY_MONEY" />
+    <!-- 会员金额 -->
+    <result property="memberMoney" column="C_MEMBER_MONEY" />
   </resultMap>
 
   <sql id="allColumnSql">
@@ -48,8 +50,9 @@
     o.C_COMMUNITY_ID,
     o.C_PARKING_SPACE_ID,
     o.C_TOTAL_MONEY,
-    o.C_PERCENT,
+    o.C_PROPERTY_MONEY,
     o.C_PERCENT_MONEY,
+    o.C_MEMBER_MONEY,
     p.C_NAME AS propertyName,
     c.C_NAME AS communityName,
     m.C_NAME AS memberName,
@@ -60,6 +63,12 @@
 	  <if test="item.carNo != null and item.carNo != ''">
         AND o.C_CAR_NO like CONCAT('%',#{item.carNo},'%')
 	  </if>
+    <if test="item.carNo != null and item.carNo != ''">
+      AND o.C_CAR_NO like CONCAT('%',#{item.carNo},'%')
+    </if>
+    <if test="item.privateFlag == true">
+      AND ps.C_TYPE =2
+    </if>
     <if test="item.startDate != null">
       AND <![CDATA[ DATE_FORMAT(o.C_START_DATE,'%Y-%m-%d %H:%i:%s') >= DATE_FORMAT(#{item.startDate},'%Y-%m-%d %H:%i:%s') ]]>
     </if>
@@ -112,8 +121,9 @@
 
   <select id="getTotalBill" resultMap="billResultMap">
     SELECT IFNULL(SUM(IFNULL(o.C_TOTAL_MONEY,0)),0) AS C_TOTAL_MONEY,
+           IFNULL(SUM(IFNULL(o.C_PROPERTY_MONEY,0)),0) AS C_PROPERTY_MONEY,
            IFNULL(SUM(IFNULL(o.C_PERCENT_MONEY,0)),0) AS C_PERCENT_MONEY,
-           IFNULL(AVG(IFNULL(o.C_PERCENT,0)),0) AS C_PERCENT
+           IFNULL(SUM(IFNULL(o.C_MEMBER_MONEY,0)),0) AS C_MEMBER_MONEY
     <include refid="tableAndLeftJoin"/>
     WHERE 1=1 <include refid="searchConditionSql"/>
     AND o.C_STATUS = 1
@@ -141,7 +151,6 @@
       UPDATE bill set
       C_END_DATE = sysdate(),
       C_TOTAL_MONEY = #{item.totalMoney},
-      C_PERCENT = #{item.percent},
       C_PERCENT_MONEY = #{item.percentMoney}
       WHERE ID = #{item.id}
     </foreach>

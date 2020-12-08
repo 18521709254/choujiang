@@ -150,7 +150,6 @@ public class BillServiceImpl implements BillService {
 			bill.setTotalMoney(totalMoney);
 			// 如果车位是私人的需要抽成
 			if(Objects.equals(space.getType(),2)){
-				bill.setPercent(space.getPercent());
 				Double percentMoney = totalMoney * space.getPercent();
 				bill.setPercentMoney(percentMoney);
 			}

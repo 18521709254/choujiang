@@ -53,9 +53,13 @@ public class Bill extends BaseQuery<Bill> {
 	private String spaceNo;
 	/** 订单金额 */
 	private Double totalMoney;
-	/** 抽取金额 */
+	/** 平台抽取金额 */
 	private Double percentMoney;
-	/** 费用占比 */
-	private Double percent;
+	/** 物业抽取金额 */
+	private Double propertyMoney;
+	/** 会员获取金额 */
+	private Double memberMoney;
+	/** 私人标志 */
+	private Boolean privateFlag;
 
 }
