@@ -9,9 +9,9 @@ mybatis:
 #Mybatis数据源、
 spring:
   datasource:
-    url: "jdbc:mysql://127.0.0.1:3306/parking?serverTimezone=GMT&useUnicode=true&characterEncoding=utf8"
+    url: "jdbc:mysql://47.116.7.188:3306/parking?serverTimezone=GMT&useUnicode=true&characterEncoding=utf8"
     username: root
-    password: "root"
+    password: "T0cers0ft1@3$5^"
     driver-class-name: com.mysql.jdbc.Driver
 #分页插件数据库、
 pagehelper:
