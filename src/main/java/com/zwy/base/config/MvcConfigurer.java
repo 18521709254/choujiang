@@ -35,7 +35,8 @@ public class MvcConfigurer implements WebMvcConfigurer {
 	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		// 拦截全部api请求除了登陆接口
-		registry.addInterceptor(new Interceptor()).excludePathPatterns("/api/user/login","/api/user/register","/upload/**");
+		// 那些接口情况不处理
+		registry.addInterceptor(new Interceptor()).excludePathPatterns("/api/user/login","/api/user/register")
+				.excludePathPatterns("/api/base/uploadImage","/upload/**");
 	}
 }
