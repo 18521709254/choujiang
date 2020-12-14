@@ -3,7 +3,6 @@ package com.zwy.user.controller;
 import com.github.pagehelper.PageInfo;
 import com.zwy.base.config.SystemConstant;
 import com.zwy.base.model.ApiAccessToken;
-import com.zwy.base.model.FileUploadDataDTO;
 import com.zwy.base.model.Router;
 import com.zwy.base.restfulapi.Result;
 import com.zwy.base.restfulapi.Results;
@@ -12,12 +11,8 @@ import com.zwy.placard.model.Placard;
 import com.zwy.user.model.User;
 import com.zwy.user.model.UserRegister;
 import com.zwy.user.service.UserService;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateFormatUtils;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.ServletRequest;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -109,7 +104,7 @@ public class UserController {
 	 * @param user 用户
 	 */
 	@PostMapping("/login")
-	public Result<String> login(@RequestBody User user, HttpServletRequest request){
+	public Result<String> login(@RequestBody User user, ServletRequest request){
 		user = userService.getUserByUser(user);
 		// 设置令牌
 		String accessToken = UUID.randomUUID().toString().replaceAll("-", "");
@@ -143,7 +138,7 @@ public class UserController {
 	 * @param request 连接请求
 	 */
 	@PostMapping("/logout")
-	public Result<Void> logout(HttpServletRequest request){
+	public Result<Void> logout(ServletRequest request){
 		// 获取当前登录人信息
 		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
 		SystemConstant.TOKEN_MAP.remove(apiAccessToken.getToken());
@@ -157,7 +152,7 @@ public class UserController {
 	 * @param request 连接请求
 	 */
 	@GetMapping("/info")
-	public Result<User> info(HttpServletRequest request){
+	public Result<User> info(ServletRequest request){
 		// 获取当前登录人信息
 		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
 		User user = apiAccessToken.getUser();

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.ServletRequest;
 import java.util.List;
 
 /**
@@ -41,7 +41,7 @@ public class ComplaintController {
 	 * @return 投诉查询数据
 	 */
 	@PostMapping("/listComplaintByPage")
-	public Result<PageInfo<Complaint>> listComplaintByPage(@RequestBody Complaint complaint, HttpServletRequest request){
+	public Result<PageInfo<Complaint>> listComplaintByPage(@RequestBody Complaint complaint, ServletRequest request){
 		// 获取当前登录人信息
 		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
 		complaintService.listComplaintByPage(complaint,apiAccessToken.getUser());
@@ -55,7 +55,7 @@ public class ComplaintController {
 	 * @return 投诉查询数据
 	 */
 	@PostMapping("/listComplaintAll")
-	public Result<List<Complaint>> listComplaintAll(HttpServletRequest request){
+	public Result<List<Complaint>> listComplaintAll(ServletRequest request){
 		// 获取当前登录人信息
 		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
 		List<Complaint> complaintList = complaintService.listComplaintAll(apiAccessToken.getUser());
@@ -70,7 +70,7 @@ public class ComplaintController {
 	 * @return 投诉查询数据
 	 */
 	@PostMapping("/listComplaintByPropertyId")
-	public Result<List<Complaint>> listComplaintByPropertyId(@RequestParam(value = "propertyId")Long propertyId, HttpServletRequest request){
+	public Result<List<Complaint>> listComplaintByPropertyId(@RequestParam(value = "propertyId")Long propertyId, ServletRequest request){
 		// 获取当前登录人信息
 		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
 		List<Complaint> complaintList = complaintService.listComplaintByPropertyId(propertyId,apiAccessToken.getUser());

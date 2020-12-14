@@ -1,12 +1,8 @@
 package com.zwy.property.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.zwy.base.model.BaseQuery;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
  * 类 名: Property

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.ServletRequest;
 import java.util.List;
 
 /**
@@ -53,7 +53,7 @@ public class SpaceController {
 	 * @param space 车位数据
 	 */
 	@PostMapping("/listSpaceByPage")
-	public Result<PageInfo<Space>> listSpaceByPage(@RequestBody Space space,HttpServletRequest request){
+	public Result<PageInfo<Space>> listSpaceByPage(@RequestBody Space space, ServletRequest request){
 		// 获取当前登录人信息
 		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
 		spaceService.listSpaceByPage(space,apiAccessToken.getUser());

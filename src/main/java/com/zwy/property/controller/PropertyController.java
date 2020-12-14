@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.ServletRequest;
 import java.util.List;
 
 /**
@@ -43,7 +43,7 @@ public class PropertyController {
 	 * @return 物业查询数据
 	 */
 	@PostMapping("/listPropertyAll")
-	public Result<List<Property>> listPropertyAll(HttpServletRequest request){
+	public Result<List<Property>> listPropertyAll(ServletRequest request){
 		// 获取当前登录人信息
 		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
 		return Results.ok(propertyService.listPropertyAll(apiAccessToken.getUser()));
@@ -56,7 +56,7 @@ public class PropertyController {
 	 * @return 物业查询数据
 	 */
 	@PostMapping("/listPropertyByPage")
-	public Result<PageInfo<Property>> listPropertyByPage(@RequestBody Property item,HttpServletRequest request){
+	public Result<PageInfo<Property>> listPropertyByPage(@RequestBody Property item, ServletRequest request){
 		// 获取当前登录人信息
 		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
 		propertyService.listPropertyByPage(item,apiAccessToken.getUser());

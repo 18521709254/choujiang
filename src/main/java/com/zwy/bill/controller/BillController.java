@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.ServletRequest;
 
 /**
  * 类 名: BillController
@@ -41,7 +40,7 @@ public class BillController {
 	 * @return 订单查询数据
 	 */
 	@PostMapping("/listBillByPage")
-	public Result<PageInfo<Bill>> listBillByPage(@RequestBody Bill bill, HttpServletRequest request){
+	public Result<PageInfo<Bill>> listBillByPage(@RequestBody Bill bill, ServletRequest request){
 		// 获取当前登录人信息
 		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
 		billService.listBillByPage(bill,apiAccessToken.getUser());
@@ -69,7 +68,7 @@ public class BillController {
 	 * @return 订单查询数据
 	 */
 	@PostMapping("/getBillTotal")
-	public Result<Bill> getTotalBill(@RequestBody Bill bill, HttpServletRequest request){
+	public Result<Bill> getTotalBill(@RequestBody Bill bill, ServletRequest request){
 		// 获取当前登录人信息
 		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
 		Bill totalBill = billService.getTotalBill(bill,apiAccessToken.getUser());

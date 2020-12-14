@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.ServletRequest;
 import java.util.List;
 
 /**
@@ -52,7 +52,7 @@ public class MemberSpaceController {
 	 * @param memberSpace 车位数据
 	 */
 	@PostMapping("/listMemberSpaceByPage")
-	public Result<PageInfo<MemberSpace>> listMemberSpaceByPage(@RequestBody MemberSpace memberSpace,HttpServletRequest request){
+	public Result<PageInfo<MemberSpace>> listMemberSpaceByPage(@RequestBody MemberSpace memberSpace, ServletRequest request){
 		// 获取当前登录人信息
 		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
 		memberSpaceService.listMemberSpaceByPage(memberSpace,apiAccessToken.getUser());
