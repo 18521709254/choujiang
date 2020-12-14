@@ -2,7 +2,6 @@ package com.zwy.property.model;
 
 import com.zwy.base.model.BaseQuery;
 import lombok.Data;
-import java.time.LocalDate;
 
 /**
  * 类 名: Property
@@ -17,20 +16,6 @@ public class Property extends BaseQuery<Property> {
 
 	/** 物业名称 */
 	private String name;
-	/** 法人代表 */
-	private String legalPerson;
-	/** 资质等级 */
-	private String level;
-	/** 资质证书号 */
-	private String cardNo;
-	/** 准予时间 */
-	private LocalDate grantTime;
-	/** 联系人 */
-	private String contactName;
-	/** 电话 */
-	private String tel;
-	/** 托管面积 */
-	private String area;
 	/** 状态：0-审核中、1-审核通过、2-审核不通过 */
 	private Integer status;
 	/** 平台占比 */
