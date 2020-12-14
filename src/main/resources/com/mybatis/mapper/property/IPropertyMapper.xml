@@ -20,6 +20,12 @@
     <result property="area" column="C_AREA" />
     <!-- 状态：0-审核中、1-审核通过、2-审核不通过 -->
     <result property="status" column="C_STATUS" />
+    <!-- 平台占比 -->
+    <result property="platformPercent" column="C_PLATFORM_PERCENT" />
+    <!-- 物业占比 -->
+    <result property="propertyPercent" column="C_PROPERTY_PERCENT" />
+    <!-- 会员占比 -->
+    <result property="memberPercent" column="C_MEMBER_PERCENT" />
   </resultMap>
 
   <sql id="allColumnSql">
@@ -32,7 +38,10 @@
     o.C_CONTACT_NAME,
     o.C_TEL,
     o.C_AREA,
-    o.C_STATUS
+    o.C_STATUS,
+    o.C_PLATFORM_PERCENT,
+    o.C_PROPERTY_PERCENT,
+    o.C_MEMBER_PERCENT
   </sql>
 
   <sql id="searchConditionSql">
@@ -55,6 +64,9 @@
     SELECT DISTINCT <include refid="allColumnSql"/>
     FROM property o
     WHERE 1=1 <include refid="searchConditionSql"/>
+    <if test="user.roleName != '平台管理员'">
+      AND o.ID = ${user.propertyId}
+    </if>
     ORDER BY o.C_STATUS
   </select>
 
@@ -81,7 +93,10 @@
     C_CONTACT_NAME,
     C_TEL,
     C_AREA,
-    C_STATUS
+    C_STATUS,
+    C_PLATFORM_PERCENT,
+    C_PROPERTY_PERCENT,
+    C_MEMBER_PERCENT
     )
     VALUES
     (
@@ -93,7 +108,10 @@
      #{contactName},
      #{tel},
      #{area},
-     #{status}
+     #{status},
+     #{platformPercent},
+     #{propertyPercent},
+     #{memberPercent}
     )
   </insert>
 
@@ -107,7 +125,10 @@
     C_CONTACT_NAME = #{contactName},
     C_TEL = #{tel},
     C_AREA = #{area},
-    C_STATUS = #{status}
+    C_STATUS = #{status},
+    C_PLATFORM_PERCENT = #{platformPercent},
+    C_PROPERTY_PERCENT = #{propertyPercent},
+    C_MEMBER_PERCENT = #{memberPercent}
     WHERE ID = #{id}
   </update>
 
@@ -118,4 +139,5 @@
       #{item}
     </foreach>
   </delete>
+
 </mapper>

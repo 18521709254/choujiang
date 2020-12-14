@@ -56,8 +56,10 @@ public class PropertyController {
 	 * @return 物业查询数据
 	 */
 	@PostMapping("/listPropertyByPage")
-	public Result<PageInfo<Property>> listPropertyByPage(@RequestBody Property item){
-		propertyService.listPropertyByPage(item);
+	public Result<PageInfo<Property>> listPropertyByPage(@RequestBody Property item,HttpServletRequest request){
+		// 获取当前登录人信息
+		ApiAccessToken apiAccessToken = (ApiAccessToken) request.getAttribute(SystemConstant.CURRENT_API_ACCESS_TOKEN);
+		propertyService.listPropertyByPage(item,apiAccessToken.getUser());
 		return Results.ok(item.getPageInfo());
 	}
 

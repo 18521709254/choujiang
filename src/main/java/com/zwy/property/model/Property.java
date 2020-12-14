@@ -37,4 +37,11 @@ public class Property extends BaseQuery<Property> {
 	private String area;
 	/** 状态：0-审核中、1-审核通过、2-审核不通过 */
 	private Integer status;
+	/** 平台占比 */
+	private Double platformPercent;
+	/** 物业占比 */
+	private Double propertyPercent;
+	/** 会员占比 */
+	private Double memberPercent;
+
 }

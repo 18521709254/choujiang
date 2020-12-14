@@ -33,7 +33,7 @@ public interface IPropertyDao {
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 角色列表
 	 */
-	List<Property> listPropertyByPage(@Param("item") Property item);
+	List<Property> listPropertyByPage(@Param("item") Property item,@Param("user") User user);
 
 	/**
 	 * 描 述： 根据ID获取物业信息

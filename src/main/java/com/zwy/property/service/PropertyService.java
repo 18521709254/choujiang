@@ -20,8 +20,9 @@ public interface PropertyService {
 	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param item 物业
+	 * @param user 当前用户
 	 */
-	void listPropertyByPage(Property item);
+	void listPropertyByPage(Property item, User user);
 
 	/**
 	 * 描 述： 查询全部物业

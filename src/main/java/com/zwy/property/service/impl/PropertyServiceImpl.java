@@ -35,14 +35,15 @@ public class PropertyServiceImpl implements PropertyService {
 	 * 作 者： 张文雅
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param item 物业
+	 * @param user 当前用户
 	 */
 	@Override
-	public void listPropertyByPage(Property item) {
+	public void listPropertyByPage(Property item, User user) {
 		PageInfo<Property> pageInfo = item.getPageInfo();
 		// 设置分页属性
 		Page<Property> pageResult = PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
 		// 存放数据
-		List<Property> resultList = propertyDao.listPropertyByPage(item);
+		List<Property> resultList = propertyDao.listPropertyByPage(item,user);
 		// 如果为空存放空数据
 		if(resultList == null){
 			resultList = Collections.emptyList();
