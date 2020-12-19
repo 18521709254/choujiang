@@ -37,7 +37,7 @@
 
   <sql id="searchConditionSql">
     <if test="item.name != null and item.name != ''">
-      AND o.C_NAME = #{item.name}
+      AND o.C_NAME like CONCAT('%',#{item.name},'%')
     </if>
   </sql>
 
