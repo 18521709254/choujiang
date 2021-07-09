@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * 类 名: SpaceController
  * 描 述: 停车位控制层
- * 作 者: 张文雅
+ * 作 者: 宋凯翔
  * 创 建：2020年10月25日
  * 版 本：v2.2.0
  * 历 史: (版本) 作者 时间 注释
@@ -36,7 +36,7 @@ public class MemberSpaceController {
 
 	/**
 	 * 描 述： 分页查询全部停车位
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 停车位查询数据
 	 */
@@ -47,7 +47,7 @@ public class MemberSpaceController {
 
 	/**
 	 * 描 述： 分页查询停车位
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param memberSpace 车位数据
 	 */
@@ -61,7 +61,7 @@ public class MemberSpaceController {
 
 	/**
 	 * 描 述： 根据ID获取停车位
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param communityId 小区ID
 	 * @return 停车位查询数据
@@ -74,7 +74,7 @@ public class MemberSpaceController {
 
 	/**
 	 * 描 述： 根据ID获取停车位
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param memberSpaceId 车位ID
 	 * @return 停车位查询数据
@@ -87,7 +87,7 @@ public class MemberSpaceController {
 
 	/**
 	 * 描 述： 保存停车位
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param memberSpace 停车位
 	 * @return 停车位查询分页数据
@@ -100,7 +100,7 @@ public class MemberSpaceController {
 
 	/**
 	 * 描 述： 删除停车位
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param memberSpaceIds 停车位ID数组
 	 * @return 停车位查询分页数据

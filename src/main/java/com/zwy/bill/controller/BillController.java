@@ -19,7 +19,7 @@ import javax.servlet.ServletRequest;
 /**
  * 类 名: BillController
  * 描 述: 订单控制层
- * 作 者: 张文雅
+ * 作 者: 宋凯翔
  * 创 建：2020年10月25日
  * 版 本：v2.2.0
  * 历 史: (版本) 作者 时间 注释
@@ -35,7 +35,7 @@ public class BillController {
 
 	/**
 	 * 描 述： 分页查询订单
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 订单查询数据
 	 */
@@ -49,7 +49,7 @@ public class BillController {
 
 	/**
 	 * 描 述： 根据ID查询订单信息
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param billId 订单ID
 	 * @return 订单查询数据
@@ -62,7 +62,7 @@ public class BillController {
 
 	/**
 	 * 描 述： 获取订单的合计
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param bill 订单数据
 	 * @return 订单查询数据
@@ -77,7 +77,7 @@ public class BillController {
 
 	/**
 	 * 描 述： 删除订单
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param billIds 订单ID数组
 	 * @return 订单查询分页数据
@@ -90,7 +90,7 @@ public class BillController {
 
 	/**
 	 * 描 述： 保存订单
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param bill 订单
 	 * @return 订单查询分页数据
@@ -103,7 +103,7 @@ public class BillController {
 
 	/**
 	 * 描 述： 结束订单
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param billIds 订单ID数组
 	 * @return 订单查询分页数据
@@ -116,7 +116,7 @@ public class BillController {
 
 	/**
 	 * 描 述： 订单缴费
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param billIds 订单ID数组
 	 * @return 订单查询分页数据

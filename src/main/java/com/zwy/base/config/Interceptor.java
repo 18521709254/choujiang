@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 类 名: Interceptor
  * 描 述: 拦截器
- * 作 者: 张文雅
+ * 作 者: 宋凯翔
  * 创 建：2020年11月27日
  * 版 本：v2.2.0
  * 历 史: (版本) 作者 时间 注释

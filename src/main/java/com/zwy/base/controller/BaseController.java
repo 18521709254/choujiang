@@ -40,7 +40,7 @@ public class BaseController {
 
 	/**
 	 * 描 述： 上传图片
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param uploadFile 上传的文件
 	 * @return 小区查询分页数据

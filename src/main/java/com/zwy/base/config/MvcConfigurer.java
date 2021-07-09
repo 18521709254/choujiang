@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /**
  * 类 名: MvcConfigurer
  * 描 述: SpringMVC配置类
- * 作 者: 张文雅
+ * 作 者: 宋凯翔
  * 创 建：2020年10月30日
  * 版 本：v2.2.0
  * 历 史: (版本) 作者 时间 注释
@@ -18,7 +18,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class MvcConfigurer implements WebMvcConfigurer {
 	/**
 	 * 描 述： 静态资源映射
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param registry 请求数据获取
 	 */
@@ -29,7 +29,7 @@ public class MvcConfigurer implements WebMvcConfigurer {
 
 	/**
 	 * 描 述： 请求拦截
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param registry 请求数据获取
 	 */

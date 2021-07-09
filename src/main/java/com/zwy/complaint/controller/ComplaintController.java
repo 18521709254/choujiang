@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * 类 名: ComplaintController
  * 描 述: 投诉控制层
- * 作 者: 张文雅
+ * 作 者: 宋凯翔
  * 创 建：2020年10月25日
  * 版 本：v2.2.0
  * 历 史: (版本) 作者 时间 注释
@@ -36,7 +36,7 @@ public class ComplaintController {
 
 	/**
 	 * 描 述： 分页查询投诉
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 投诉查询数据
 	 */
@@ -50,7 +50,7 @@ public class ComplaintController {
 
 	/**
 	 * 描 述： 查询全部投诉
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 投诉查询数据
 	 */
@@ -64,7 +64,7 @@ public class ComplaintController {
 
 	/**
 	 * 描 述： 根据物业ID查询投诉
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param propertyId 物业ID
 	 * @return 投诉查询数据
@@ -81,7 +81,7 @@ public class ComplaintController {
 
 	/**
 	 * 描 述： 根据ID查询投诉
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param complaintId 投诉ID
 	 * @return 投诉数据
@@ -94,7 +94,7 @@ public class ComplaintController {
 	
 	/**
 	 * 描 述： 保存投诉
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param complaint 投诉
 	 * @return 投诉查询分页数据
@@ -107,7 +107,7 @@ public class ComplaintController {
 
 	/**
 	 * 描 述： 删除投诉
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param complaintIds 投诉ID数组
 	 * @return 投诉查询分页数据

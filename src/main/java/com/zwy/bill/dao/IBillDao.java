@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 类 名: IBillDao
  * 描 述: 订单控制层
- * 作 者: 张文雅
+ * 作 者: 宋凯翔
  * 创 建：2020年10月25日
  * 版 本：v2.2.0
  * 历 史: (版本) 作者 时间 注释
@@ -20,7 +20,7 @@ public interface IBillDao {
 
 	/**
 	 * 描 述： 查询全部订单
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 订单列表
 	 */
@@ -28,7 +28,7 @@ public interface IBillDao {
 
 	/**
 	 * 描 述： 分页查询订单
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param item 订单信息
 	 * @param user 登陆用户
@@ -46,7 +46,7 @@ public interface IBillDao {
 
 	/**
 	 * 描 述： 根据ID查询订单信息
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param billId 订单ID
 	 * @return 订单查询数据
@@ -65,7 +65,7 @@ public interface IBillDao {
 
 	/**
 	 * 描 述： 修改用户
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param user 用户信息
 	 */
@@ -73,7 +73,7 @@ public interface IBillDao {
 
 	/**
 	 * 描 述： 删除用户
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param ids 用户ID数组
 	 */
@@ -82,7 +82,7 @@ public interface IBillDao {
 
 	/**
 	 * 描 述： 订单缴费
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param billIds 订单ID数组
 	 */

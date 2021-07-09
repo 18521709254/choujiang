@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * 类 名: MemberController
  * 描 述: 会员控制层
- * 作 者: 张文雅
+ * 作 者: 宋凯翔
  * 创 建：2020年10月25日
  * 版 本：v2.2.0
  * 历 史: (版本) 作者 时间 注释
@@ -33,7 +33,7 @@ public class MemberController {
 
 	/**
 	 * 描 述： 分页查询会员
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 会员查询数据
 	 */
@@ -45,7 +45,7 @@ public class MemberController {
 
 	/**
 	 * 描 述： 查询全部会员
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @return 会员查询数据
 	 */
@@ -57,7 +57,7 @@ public class MemberController {
 
 	/**
 	 * 描 述： 根据ID查询会员
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param memberId 会员ID
 	 * @return 会员数据
@@ -70,7 +70,7 @@ public class MemberController {
 
 	/**
 	 * 描 述： 保存会员
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param member 会员
 	 * @return 会员查询分页数据
@@ -83,7 +83,7 @@ public class MemberController {
 
 	/**
 	 * 描 述： 删除会员
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param memberIds 会员ID数组
 	 * @return 会员查询分页数据

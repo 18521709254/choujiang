@@ -29,7 +29,7 @@ import java.util.UUID;
 /**
  * 类 名: UserController
  * 描 述: 用户控制层
- * 作 者: 张文雅
+ * 作 者: 宋凯翔
  * 创 建：2020年10月24日
  * 版 本：v2.2.0
  * 历 史: (版本) 作者 时间 注释
@@ -47,7 +47,7 @@ public class UserController {
 
 	/**
 	 * 描 述： 分页查询用户
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param user 用户
 	 * @return 用户查询分页数据
@@ -60,7 +60,7 @@ public class UserController {
 
 	/**
 	 * 描 述： 根据ID获取用户
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param userId 用户ID
 	 * @return 用户信息
@@ -73,7 +73,7 @@ public class UserController {
 
 	/**
 	 * 描 述： 保存用户
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param user 用户
 	 * @return 用户查询分页数据
@@ -86,7 +86,7 @@ public class UserController {
 
 	/**
 	 * 描 述： 删除用户
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param userIds 用户ID数组
 	 * @return 用户查询分页数据
@@ -99,7 +99,7 @@ public class UserController {
 
 	/**
 	 * 描 述： 用户登录
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param user 用户
 	 */
@@ -133,7 +133,7 @@ public class UserController {
 
 	/**
 	 * 描 述： 登出
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param request 连接请求
 	 */
@@ -147,7 +147,7 @@ public class UserController {
 
 	/**
 	 * 描 述： 单纯需要的用户信息接口
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param request 连接请求
 	 */
@@ -169,7 +169,7 @@ public class UserController {
 
 	/**
 	 * 描 述： 用户注册
-	 * 作 者： 张文雅
+	 * 作 者： 宋凯翔
 	 * 历 史： (版本) 作者 时间 注释
 	 * @param registerUser 注册用户信息
 	 * @return 注册结果
